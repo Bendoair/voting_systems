@@ -38,6 +38,7 @@ Static SPA — no backend or env vars. Deploy on Vercel (or any static host) wit
 | `/case-study` | Fixed scenario, results compared across systems |
 | `/games` | Games hub |
 | `/games/gerrymander` | Draw districts; minority votes, majority seats |
+| `/games/syspick` | Guess which system maximizes your party’s seats |
 | `/simulate` | Tweak parties, geography, seats; live engine |
 
 Old `/exercises` URLs redirect to `/games`.

@@ -14,7 +14,16 @@ const H = 280
 const PAD = 10
 
 /** Compact county map colored by meat↔plant baseline (not election winners). */
-export function CaseDietGeoMap({ regions }: { regions: Region[] }) {
+export function CaseDietGeoMap({
+  regions,
+  compact = false,
+  nationalLabel,
+}: {
+  regions: Region[]
+  compact?: boolean
+  /** Optional line under the legend (e.g. national lean) */
+  nationalLabel?: string
+}) {
   const { t, locale } = useI18n()
   const [countyGeo, setCountyGeo] = useState<FeatureCollection<Geometry, { megye: string }> | null>(
     null,
@@ -69,7 +78,7 @@ export function CaseDietGeoMap({ regions }: { regions: Region[] }) {
   const hoverLean = hoverId != null ? (baselineById[hoverId] ?? 0) : null
 
   return (
-    <div className="case-diet-geo-map">
+    <div className={`case-diet-geo-map${compact ? ' is-compact' : ''}`}>
       {pathGen && (
         <svg
           viewBox={`0 0 ${W} ${H}`}
@@ -99,7 +108,7 @@ export function CaseDietGeoMap({ regions }: { regions: Region[] }) {
                 <title>
                   {megye}
                   {regionId
-                    ? ` — ${t(`sim.diet.${dietTone(lean)}`)}`
+                    ? `: ${t(`sim.diet.${dietTone(lean)}`)}`
                     : ''}
                 </title>
               </path>
@@ -115,14 +124,20 @@ export function CaseDietGeoMap({ regions }: { regions: Region[] }) {
         <span className="case-diet-geo-swatch is-plant" />
         {t('sim.diet.plant')}
       </div>
-      <p
-        className={`case-diet-geo-hover muted ${hoverRegion && hoverLean != null ? 'is-hot' : ''}`}
-        aria-hidden={!(hoverRegion && hoverLean != null)}
-      >
-        {hoverRegion && hoverLean != null
-          ? `${locale === 'hu' ? hoverRegion.nameHu : hoverRegion.nameEn} · ${t(`sim.diet.${dietTone(hoverLean)}`)}`
-          : '\u00a0'}
-      </p>
+      {nationalLabel && (
+        <p className="case-diet-geo-national">{nationalLabel}</p>
+      )}
+      {!compact && (
+        <p
+          className={`case-diet-geo-hover muted ${hoverRegion && hoverLean != null ? 'is-hot' : ''}`}
+          aria-hidden={!(hoverRegion && hoverLean != null)}
+        >
+          {hoverRegion && hoverLean != null
+            ? `${locale === 'hu' ? hoverRegion.nameHu : hoverRegion.nameEn} · ${t(`sim.diet.${dietTone(hoverLean)}`)}`
+            : '\u00a0'}
+        </p>
+      )}
     </div>
   )
 }
+

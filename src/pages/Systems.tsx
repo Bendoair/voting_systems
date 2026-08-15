@@ -48,8 +48,17 @@ function SystemSection({
 function GerryLink() {
   const { t } = useI18n()
   return (
-    <Link className="btn ghost system-gerry-btn" to="/games/gerrymander">
+    <Link className="btn ghost system-game-btn" to="/games/gerrymander">
       {t('systems.gerry.cta')}
+    </Link>
+  )
+}
+
+function SysPickLink() {
+  const { t } = useI18n()
+  return (
+    <Link className="btn ghost system-game-btn" to="/games/syspick">
+      {t('systems.syspick.cta')}
     </Link>
   )
 }
@@ -62,6 +71,7 @@ export function Systems() {
       <header className="page-head">
         <h1>{t('systems.title')}</h1>
         <p>{t('systems.intro')}</p>
+        <SysPickLink />
       </header>
 
       <SystemSection

@@ -12,7 +12,7 @@ The site is not a prediction tool. It teaches mechanisms: same people and prefer
 | Tour | `/tour` | Guided mental model (preferences → parties → tactics → “rules matter”) |
 | Systems | `/systems`, `/systems/:id` | Catalog + deep explainers for common systems |
 | Case study | `/case-study` | Frozen scenario: identical inputs, compared across systems |
-| Games | `/games`, `/games/gerrymander` | Interactive exercises that make distortions tangible |
+| Games | `/games`, `/games/gerrymander`, `/games/syspick` | Interactive exercises that make distortions tangible |
 | Simulate | `/simulate` | Adjustable parties, geography, seats; live engine runs |
 
 Legacy `/exercises*` URLs redirect to `/games*`.
@@ -57,7 +57,7 @@ src/
 | [features/systems.md](./features/systems.md) | System catalog and explainers |
 | [features/case-study.md](./features/case-study.md) | Frozen multi-system comparison |
 | [features/simulation.md](./features/simulation.md) | Interactive election playground |
-| [features/games.md](./features/games.md) | Games hub + gerrymander exercise |
+| [features/games.md](./features/games.md) | Games hub + gerrymander + system pick |
 | [features/engines.md](./features/engines.md) | Shared election engines and types |
 | [features/i18n-theme.md](./features/i18n-theme.md) | Locale and appearance |
 

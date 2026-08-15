@@ -15,24 +15,24 @@ export function Home() {
           <ul className="home-guide">
             <li>
               <Link to="/tour">{t('home.guide.tour')}</Link>
-              {' — '}
+              {': '}
               {t('home.guide.tourDesc')}
             </li>
             <li>
               <Link to="/systems">{t('home.guide.systems')}</Link>
-              {' — '}
+              {': '}
               {t('home.guide.systemsDesc')}
             </li>
             <li>
               <Link to="/case-study">
                 <strong>{t('home.guide.case')}</strong>
               </Link>
-              {' — '}
+              {': '}
               {t('home.guide.caseDesc')}
             </li>
             <li>
               <Link to="/simulate">{t('home.guide.simulate')}</Link>
-              {' — '}
+              {': '}
               {t('home.guide.simulateDesc')}
             </li>
           </ul>

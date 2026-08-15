@@ -24,6 +24,22 @@ export function Exercises() {
             <span className="ex-card-cta btn primary">{t('ex.gerry.play')}</span>
           </div>
         </Link>
+
+        <Link to="/games/syspick" className="ex-card ex-card-syspick">
+          <div className="ex-card-visual" aria-hidden>
+            <div className="syspick-card-glyphs">
+              <span className="syspick-card-chip">FPTP</span>
+              <span className="syspick-card-chip is-accent">PR</span>
+              <span className="syspick-card-chip">IRV</span>
+            </div>
+            <span className="ex-card-badge">{t('ex.syspick.badge')}</span>
+          </div>
+          <div className="ex-card-body">
+            <h2>{t('ex.syspick.cardTitle')}</h2>
+            <p>{t('ex.syspick.cardBlurb')}</p>
+            <span className="ex-card-cta btn primary">{t('ex.syspick.play')}</span>
+          </div>
+        </Link>
       </div>
     </div>
   )

@@ -218,7 +218,6 @@ export function GerryBoard({
       const line1 = `#${d}`
       const line2 = `${winnerLabel} ${tally.player}–${tally.opponent}`
       const padX = 6
-      const padY = 4
       ctx.font = `bold ${Math.max(10, cellSize * 0.7)}px sans-serif`
       const w1 = ctx.measureText(line1).width
       ctx.font = `${Math.max(9, cellSize * 0.55)}px sans-serif`

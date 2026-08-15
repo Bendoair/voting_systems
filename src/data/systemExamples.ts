@@ -126,8 +126,8 @@ export const SYSTEM_EXAMPLES: Record<SystemId, SystemExample[]> = {
       wikiEn: 'https://en.wikipedia.org/wiki/Electoral_system_of_Australia',
     },
     {
-      titleHu: 'Írország (STV — rokon rendszer)',
-      titleEn: 'Ireland (STV — related system)',
+      titleHu: 'Írország (STV, rokon rendszer)',
+      titleEn: 'Ireland (STV, related system)',
       wikiHu: 'https://hu.wikipedia.org/wiki/%C3%8Drorsz%C3%A1g',
       wikiEn: 'https://en.wikipedia.org/wiki/Single_transferable_vote',
     },

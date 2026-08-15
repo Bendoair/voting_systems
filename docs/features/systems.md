@@ -10,6 +10,7 @@ Each system ties to:
 - Real-world Wikipedia-linked examples (`systemExamples`)
 - Optional jump into simulation with that system preselected
 - For relevant systems, a path into the gerrymander game (district distortion)
+- Page intro CTA: system-pick game under the systems intro; gerrymander next to the local section (shared `system-game-btn` style)
 
 ## Structure
 

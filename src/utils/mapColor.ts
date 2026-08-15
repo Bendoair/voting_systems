@@ -62,3 +62,14 @@ export function colorForDiet(lean: number): string {
   if (t <= 0.5) return mixHex('#8d6e4c', '#c4b49a', t * 2)
   return mixHex('#c4b49a', '#5f8f55', (t - 0.5) * 2)
 }
+
+/** Population-weighted national diet baseline in [-1, 1]. */
+export function nationalDietLean(
+  regions: { population: number; dietBaseline?: number }[],
+): number {
+  const totalPop = regions.reduce((a, r) => a + r.population, 0)
+  if (totalPop <= 0) return 0
+  return (
+    regions.reduce((a, r) => a + r.population * (r.dietBaseline ?? 0), 0) / totalPop
+  )
+}

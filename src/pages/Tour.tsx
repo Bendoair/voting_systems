@@ -137,14 +137,20 @@ export function Tour() {
               <h2>{t('tour.s7.title')}</h2>
               <p>{t('tour.s7.body')}</p>
               <div className="tour-explore">
-                {EXPLORE_LINKS.map((item) => (
-                  <div key={item.to} className="tour-explore-item">
-                    <Link className="btn primary soft" to={item.to}>
-                      {t(item.labelKey)}
-                    </Link>
-                    <p>{t(item.blurbKey)}</p>
-                  </div>
-                ))}
+                {EXPLORE_LINKS.map((item) => {
+                  const highlight = item.to === '/case-study'
+                  return (
+                    <div key={item.to} className="tour-explore-item">
+                      <Link
+                        className={highlight ? 'btn primary' : 'btn'}
+                        to={item.to}
+                      >
+                        {t(item.labelKey)}
+                      </Link>
+                      <p>{t(item.blurbKey)}</p>
+                    </div>
+                  )
+                })}
               </div>
             </>
           )}

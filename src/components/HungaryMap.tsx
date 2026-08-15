@@ -272,7 +272,7 @@ export function HungaryMap({
                 >
                   <title>
                     {megye}
-                    {party ? ` — ${party.fruit} ${party.name}` : ''}
+                    {party ? `: ${party.fruit} ${party.name}` : ''}
                     {stats ? ` (+${(stats.lead * 100).toFixed(0)}pp)` : ''}
                   </title>
                 </path>
@@ -315,7 +315,7 @@ export function HungaryMap({
                 >
                   <title>
                     {name}
-                    {party ? ` — ${party.fruit} ${party.name}` : ''}
+                    {party ? `: ${party.fruit} ${party.name}` : ''}
                     {activeSeat && !colorByWinners
                       ? ` (+${(stats.lead * 100).toFixed(0)}pp)`
                       : ''}

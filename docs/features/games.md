@@ -2,9 +2,24 @@
 
 ## Intent
 
-Let visitors **play with rules and geography** so advantages and failure modes stick. The hub lists short exercises; the flagship is **gerrymander**: draw districts so a minority of voters still wins a majority of seats.
+Let visitors **play with rules and geography** so advantages and failure modes stick. The hub lists short exercises; current games:
+
+- **gerrymander** — draw districts so a minority of voters still wins a majority of seats
+- **syspick** (Rendszertipp / System pick) — given a random party assignment, guess which counting system maximizes *your* seats
 
 User-facing name is **Games** (HU: **Játékok**). Code modules may still live under `exercises/` for historical path stability.
+
+## Copy convention (all games)
+
+Match the gerrymander pattern for hub + in-game framing:
+
+| Key | Role |
+|-----|------|
+| `ex.<game>.cardBlurb` | **Concept explainer** on the hub card — what phenomenon the game teaches (definition / mechanism), not a how-to. |
+| `ex.<game>.rules` / `rulesL*` | **Short in-world brief** in the page `info-panel gerry-brief` — narrative stake, second person, inviting. Prefer short line paragraphs (`rulesL1`…) when the brief is longer than one beat. |
+| `ex.<game>.rulesP*` + `rulesLink` | **How-to dialog** opened from the brief — concrete steps; end with a short luck line. |
+
+UI chrome: back link, title, `aside.info-panel.gerry-brief` with rules paragraph + `gerry-rules-btn`, modal dialog for the numbered steps.
 
 ## Structure
 
@@ -12,7 +27,7 @@ User-facing name is **Games** (HU: **Játékok**). Code modules may still live u
 
 **Route:** `/games` (redirect from `/exercises`)  
 **Page:** `src/pages/Exercises.tsx`  
-**Copy:** `ex.title`, `ex.intro`, card keys under `ex.gerry.*`
+**Copy:** `ex.title`, `ex.intro`, card keys under `ex.gerry.*` and `ex.syspick.*`
 
 ### Gerrymander
 
@@ -36,8 +51,31 @@ User-facing name is **Games** (HU: **Játékok**). Code modules may still live u
 - Difficulty sets **player popular-vote share** only (Easy → Insane bands in `DIFFICULTY_BANDS`); changing the slider must **not** regenerate until “New map”.
 - Map generation is abstract (simplex noise), not real Hungarian counties.
 
+### System pick (Rendszertipp)
+
+**Route:** `/games/syspick` (redirect from `/exercises/syspick`)  
+**Page:** `src/pages/SysPick.tsx`  
+**Module:** `src/exercises/syspick/`
+
+| File | Role |
+|------|------|
+| `types.ts` | Party pool, seat budgets, scenario shape |
+| `generate.ts` | Random lineup + geography + precomputed `runElection` for every `SystemId` |
+| `score.ts` | Optimal-pick check and seat ranking helpers |
+
+#### Game rules (product)
+
+- Each deal: usually 3–5 parties; ~10% of deals are a two-party large matchup (≈42–58% split) with independent diet leans.
+- Player vote share is sampled from a truncated normal **N(25, 10)** (median ~25%, most outcomes within ±20 → roughly 5–45%), then rivals fill the remainder. Two-party mode assigns you one of the two large camps instead.
+- Player picks **one** system via chips in a single panel with subsections (list / local / mixed). Open and closed list are one **List** choice (same D’Hondt seats). Map result tabs follow the same order. Win if the pick maximizes the player’s seats (ties count).
+- Engines and seat budgets match simulation / case study (`199` / `106` OEVK, mixed uses plurality districts).
+- Generation retries until systems diverge for the player (seat spread ≥ 2 when possible).
+- Deal UI shows a compact county diet map (meat↔plant) under the assigned party, plus population-weighted national lean.
+- After the pick, a Hungary election map with system tab chips compares outcomes; chips mark the player’s pick and the best system(s). Correct guesses trigger confetti.
+
 ## Boundaries
 
-- Do not reuse simulation engines for gerrymander scoring; this is a separate pedagogical mechanic.
+- Do not reuse simulation engines for gerrymander scoring; that game is a separate pedagogical mechanic.
+- **Syspick does** reuse `runElection` so outcomes stay consistent with simulation and the case study.
 - New games: add `src/exercises/<name>/`, a hub card, routes under `/games/...`, and a feature subsection here.
 - Keep copy in `ex.*` / `ex.<game>.*` for both locales.

@@ -576,7 +576,25 @@ a.btn.primary.soft:hover {
 .systems-page {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1.35rem;
+}
+
+.systems-page .page-head .system-game-btn {
+  margin-top: 0.15rem;
+}
+
+.system-section {
+  padding: 1.15rem 1.25rem 1.35rem;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 2px);
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--accent) 7%, var(--paper-2)) 0%,
+      var(--paper-2) 42%,
+      color-mix(in srgb, var(--ink) 3%, var(--paper-2)) 100%
+    );
+  box-shadow: var(--shadow);
 }
 
 .system-section-head {
@@ -598,6 +616,7 @@ a.btn.primary.soft:hover {
   font-size: 1.35rem;
 }
 
+.system-game-btn,
 .system-gerry-btn {
   font-size: 0.85rem;
   padding: 0.3rem 0.65rem;
@@ -1233,6 +1252,11 @@ a.btn.primary.soft:hover {
   text-align: right;
 }
 
+.seat-you-tag {
+  font-size: 0.78em;
+  font-weight: 700;
+}
+
 .district-list {
   columns: 2;
   font-size: 0.85rem;
@@ -1641,7 +1665,7 @@ a.btn.primary.soft:hover {
   display: grid;
   grid-template-columns: minmax(8.5rem, 11rem) 1fr;
   gap: 0.75rem 1rem;
-  align-items: start;
+  align-items: center;
 }
 
 .tour-explore-item .btn {
@@ -1650,7 +1674,7 @@ a.btn.primary.soft:hover {
 }
 
 .tour-explore-item p {
-  margin: 0.15rem 0 0;
+  margin: 0;
   color: var(--ink-soft);
   font-size: 0.95rem;
   line-height: 1.45;
@@ -2128,6 +2152,7 @@ a.btn.primary.soft:hover {
   gap: 0;
   padding: 0;
   overflow: hidden;
+  height: 100%;
   background: var(--paper-2);
   border: 1px solid var(--line-strong);
   border-radius: calc(var(--radius) + 2px);
@@ -2146,18 +2171,25 @@ a.btn.primary.soft:hover {
   box-shadow: 0 16px 36px rgba(28, 25, 20, 0.16);
 }
 
-.ex-card-gerry .ex-card-visual {
+.ex-card-visual {
   position: relative;
   margin: 0;
   padding: 1.25rem 1.25rem 0.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 9.5rem;
   min-height: 9.5rem;
+  max-height: 9.5rem;
+  box-sizing: border-box;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.ex-card-gerry .ex-card-visual {
   background:
     radial-gradient(ellipse at 30% 40%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 55%),
     linear-gradient(165deg, color-mix(in srgb, var(--accent) 6%, var(--paper-2)), var(--paper-2));
-  border-bottom: 1px solid var(--line);
   --salamander-belly: color-mix(in srgb, var(--accent-2) 35%, #f0d8b8);
   --salamander-spot: color-mix(in srgb, var(--ink) 55%, #6b3a1a);
   --salamander-eye: var(--ink);
@@ -2168,10 +2200,17 @@ a.btn.primary.soft:hover {
   color: var(--accent);
 }
 
+.ex-card-syspick .ex-card-visual {
+  background:
+    radial-gradient(ellipse at 30% 40%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 55%),
+    linear-gradient(165deg, color-mix(in srgb, var(--accent) 6%, var(--paper-2)), var(--paper-2));
+}
+
 .ex-card-salamander {
   display: block;
-  width: min(100%, 168px);
-  height: auto;
+  width: auto;
+  height: 6.75rem;
+  max-width: 100%;
   image-rendering: pixelated;
 }
 
@@ -2194,12 +2233,15 @@ a.btn.primary.soft:hover {
   display: flex;
   flex-direction: column;
   gap: 0.55rem;
+  flex: 1;
   padding: 1.15rem 1.25rem 1.25rem;
 }
 
 .ex-card h2 {
   margin: 0;
   font-size: 1.45rem;
+  line-height: 1.25;
+  min-height: 1.8em;
 }
 
 .ex-card p {
@@ -2732,6 +2774,607 @@ a.btn.primary.soft:hover {
 
   .gerry-hud {
     position: static;
+  }
+}
+
+/* System pick hub card accents */
+.syspick-card-glyphs {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.syspick-card-chip {
+  padding: 0.35rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--line-strong);
+  border-radius: 4px;
+  background: var(--paper);
+  color: var(--ink-soft);
+  transform: rotate(-4deg);
+}
+
+.syspick-card-chip:nth-child(2) {
+  transform: rotate(2deg) translateY(-4px);
+}
+
+.syspick-card-chip:nth-child(3) {
+  transform: rotate(5deg);
+}
+
+.syspick-card-chip.is-accent {
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 55%, var(--line-strong));
+  background: color-mix(in srgb, var(--accent) 12%, var(--paper));
+}
+
+.syspick-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+.syspick-intro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 1.25rem;
+  margin-top: 0.9rem;
+}
+
+.syspick-intro .info-panel {
+  margin-top: 0;
+  flex: 0 1 60%;
+  max-width: 60%;
+  box-sizing: border-box;
+}
+
+.syspick-intro .syspick-geo {
+  flex: 0 1 20rem;
+  max-width: 20rem;
+}
+
+.syspick-brief {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  align-items: flex-start;
+}
+
+.syspick-brief > p {
+  margin: 0;
+  max-width: 38rem;
+  line-height: 1.45;
+}
+
+.syspick-brief .gerry-rules-btn {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+.syspick-systems-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 1rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.syspick-systems-head .sim-section-title {
+  margin-bottom: 0.25rem;
+}
+
+.syspick-systems-head .muted {
+  margin: 0;
+}
+
+.syspick-explainers-btn {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.65rem;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.syspick-pick-panel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem 1.25rem;
+  align-items: start;
+  padding: 0.85rem 1rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: calc(var(--radius) + 2px);
+  background:
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--accent) 7%, var(--paper-2)) 0%,
+      var(--paper-2) 42%,
+      color-mix(in srgb, var(--ink) 3%, var(--paper-2)) 100%
+    );
+  box-shadow: var(--shadow);
+}
+
+.syspick-pick-subsection {
+  margin: 0;
+  min-width: 0;
+}
+
+.syspick-pick-subsection + .syspick-pick-subsection {
+  border-left: 1px solid var(--line);
+  padding-left: 1rem;
+}
+
+.syspick-pick-section-title {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.syspick-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.syspick-chip {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  padding: 0.55rem 0.85rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--paper-2);
+  color: inherit;
+  cursor: pointer;
+  font: inherit;
+  line-height: 1.25;
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.syspick-chip:hover:not(:disabled) {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.syspick-chip:disabled {
+  cursor: default;
+  opacity: 1;
+}
+
+.syspick-chip-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.syspick-chip-desc {
+  font-size: 0.72rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--ink-soft);
+  max-width: 11.5rem;
+}
+
+.syspick-chip-seats {
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.syspick-chip.is-best {
+  border-color: color-mix(in srgb, var(--ok, #2e7d32) 70%, var(--line-strong));
+  background: color-mix(in srgb, var(--ok, #2e7d32) 12%, var(--paper));
+}
+
+.syspick-chip.is-pick.is-miss {
+  border-color: color-mix(in srgb, var(--warn) 70%, var(--line-strong));
+  background: color-mix(in srgb, var(--warn) 10%, var(--paper));
+}
+
+.syspick-chip.is-pick.is-best {
+  outline: 2px solid color-mix(in srgb, var(--ok, #2e7d32) 55%, transparent);
+  outline-offset: 1px;
+}
+
+@media (max-width: 720px) {
+  .syspick-pick-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .syspick-pick-subsection + .syspick-pick-subsection {
+    border-left: none;
+    border-top: 1px solid var(--line);
+    padding-left: 0;
+    padding-top: 0.75rem;
+  }
+}
+
+.syspick-deal {
+  display: grid;
+  grid-template-columns: minmax(12rem, 20rem) 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.syspick-geo-blurb {
+  margin: 0 0 0.35rem;
+  font-size: 0.88rem;
+}
+
+.case-diet-geo-map.is-compact {
+  max-width: 20rem;
+}
+
+.case-diet-geo-map.is-compact .case-diet-geo-svg {
+  aspect-ratio: 420 / 280;
+}
+
+.case-diet-geo-national {
+  margin: 0;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.syspick-you {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  align-items: stretch;
+}
+
+.syspick-you-label {
+  margin: 0 0 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.syspick-you-card {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  border: 3px solid var(--party, var(--accent));
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--party, var(--accent)) 18%, var(--paper));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--party, var(--accent)) 35%, transparent);
+}
+
+.syspick-you-card strong {
+  display: block;
+  font-size: 1.15rem;
+}
+
+.syspick-you-card p {
+  margin: 0.15rem 0 0;
+  font-size: 0.92rem;
+}
+
+.syspick-you-fruit {
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.syspick-new-deal {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.7rem 1.1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.syspick-new-deal-icon {
+  flex-shrink: 0;
+}
+
+.syspick-meta {
+  margin: 0;
+  font-size: 0.88rem;
+}
+
+.syspick-parties {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.syspick-parties li {
+  display: grid;
+  grid-template-columns: 1.6rem 1fr auto auto;
+  grid-template-rows: auto auto;
+  gap: 0.15rem 0.55rem;
+  align-items: center;
+  padding: 0.45rem 0.55rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+}
+
+.syspick-parties li.is-you {
+  border: 2px solid var(--party, var(--accent));
+  background: color-mix(in srgb, var(--party, var(--accent)) 16%, var(--paper));
+  box-shadow: inset 4px 0 0 var(--party, var(--accent));
+}
+
+.syspick-parties li.is-you .syspick-party-name {
+  font-weight: 700;
+}
+
+.syspick-party-fruit {
+  font-size: 1.25rem;
+  grid-row: 1;
+}
+
+.syspick-party-name {
+  font-weight: 600;
+  grid-column: 2;
+}
+
+.syspick-party-pop {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  grid-column: 3;
+}
+
+.syspick-diet {
+  grid-column: 4;
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.syspick-pop-bar {
+  grid-column: 2 / -1;
+  grid-row: 2;
+  height: 4px;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+  overflow: hidden;
+}
+
+.syspick-pop-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 2px;
+}
+
+.syspick-win {
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--ok, #2e7d32) 85%, var(--ink));
+  background: color-mix(in srgb, var(--ok, #2e7d32) 12%, var(--paper-2));
+  border-left: 3px solid var(--ok, #2e7d32);
+  border-radius: var(--radius);
+}
+
+.syspick-lose {
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  font-weight: 600;
+  color: var(--warn);
+  background: color-mix(in srgb, var(--warn) 10%, var(--paper-2));
+  border-left: 3px solid var(--warn);
+  border-radius: var(--radius);
+}
+
+.syspick-reveal {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.syspick-map-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.syspick-results-layout {
+  display: grid;
+  grid-template-columns: minmax(12rem, 0.85fr) minmax(16rem, 1.15fr);
+  gap: 1rem 1.25rem;
+  align-items: start;
+}
+
+.syspick-results-map .hungary-map {
+  margin-bottom: 0;
+  padding: 0.65rem;
+}
+
+.syspick-results-map .hungary-map.is-district-view .hungary-svg,
+.syspick-results-map .hungary-map.is-expanded .hungary-svg {
+  min-height: 0;
+}
+
+.syspick-results-map .map-head h3 {
+  font-size: 1rem;
+}
+
+.syspick-results-map .map-expand-btn {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+}
+
+.syspick-results-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-width: 0;
+}
+
+.syspick-results-summary .sim-section-title {
+  margin: 0;
+}
+
+.syspick-rank-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.syspick-rank-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.4rem 0.55rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--paper-2);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.92rem;
+}
+
+.syspick-rank-list li.is-best {
+  border-color: color-mix(in srgb, var(--ok, #2e7d32) 55%, var(--line));
+  background: color-mix(in srgb, var(--ok, #2e7d32) 10%, var(--paper));
+}
+
+.syspick-rank-list li.is-pick {
+  outline: 1px solid color-mix(in srgb, var(--accent-2) 55%, transparent);
+  outline-offset: 0;
+}
+
+@media (max-width: 800px) {
+  .syspick-results-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.syspick-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  padding-top: 0.35rem; /* room for crown corners */
+}
+
+.syspick-tab {
+  --tab-edge: var(--line-strong);
+  --tab-ring: transparent;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  overflow: visible;
+  padding: 0.5rem 0.9rem;
+  border: 2px solid var(--tab-edge);
+  border-radius: var(--radius);
+  background: var(--paper-2);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  line-height: 1.2;
+  box-shadow: 0 0 0 2px var(--tab-ring);
+  transition:
+    border-color 0.15s ease,
+    background 0.15s ease,
+    box-shadow 0.15s ease,
+    color 0.15s ease;
+}
+
+.syspick-tab:hover {
+  --tab-edge: color-mix(in srgb, var(--accent) 55%, var(--line-strong));
+}
+
+/* Currently viewing this map — warm outer ring (distinct from pick green) */
+.syspick-tab.is-active {
+  --tab-ring: color-mix(in srgb, var(--accent-2) 85%, transparent);
+  background: color-mix(in srgb, var(--accent-2) 10%, var(--paper));
+}
+
+/* Your guess — strong green identity */
+.syspick-tab.is-pick {
+  --tab-edge: #1b7a4a;
+  background: color-mix(in srgb, #1b7a4a 28%, var(--paper));
+  color: color-mix(in srgb, #0f4d2e 70%, var(--ink));
+  font-weight: 700;
+}
+
+html[data-theme='dark'] .syspick-tab.is-pick {
+  --tab-edge: #3dba7a;
+  background: color-mix(in srgb, #3dba7a 22%, var(--paper));
+  color: color-mix(in srgb, #9eecc0 35%, var(--ink));
+}
+
+/* Active + your pick: green body, warm ring still visible */
+.syspick-tab.is-pick.is-active {
+  --tab-ring: color-mix(in srgb, var(--accent-2) 90%, transparent);
+  background: color-mix(in srgb, #1b7a4a 34%, var(--paper));
+}
+
+html[data-theme='dark'] .syspick-tab.is-pick.is-active {
+  background: color-mix(in srgb, #3dba7a 28%, var(--paper));
+}
+
+.syspick-tab-name {
+  position: relative;
+  z-index: 1;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* Best — crown grows from the top-right border corner */
+.syspick-tab.is-best {
+  padding-right: 1.15rem;
+}
+
+.syspick-tab-crown-edge {
+  position: absolute;
+  top: -10px;
+  right: -2px;
+  z-index: 5;
+  width: 1.65rem;
+  height: 1.05rem;
+  color: #d4af37;
+  pointer-events: none;
+  overflow: visible;
+  filter: drop-shadow(0 1px 1px color-mix(in srgb, var(--ink) 22%, transparent));
+}
+
+/* Crown follows pick border when both apply — still gold-tinted for “best” */
+.syspick-tab.is-pick.is-best .syspick-tab-crown-edge {
+  color: color-mix(in srgb, #d4af37 65%, #1b7a4a);
+}
+
+html[data-theme='dark'] .syspick-tab.is-pick.is-best .syspick-tab-crown-edge {
+  color: color-mix(in srgb, #e8c547 70%, #3dba7a);
+}
+
+.syspick-tab.is-active.is-best:not(.is-pick) .syspick-tab-crown-edge {
+  color: color-mix(in srgb, #d4af37 70%, var(--accent-2));
+}
+
+@media (max-width: 720px) {
+  .syspick-intro {
+    flex-direction: column;
+  }
+
+  .syspick-intro .info-panel,
+  .syspick-intro .syspick-geo {
+    flex: 1 1 auto;
+    max-width: none;
+  }
+
+  .syspick-deal {
+    grid-template-columns: 1fr;
   }
 }
 
