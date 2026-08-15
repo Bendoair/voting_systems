@@ -1,3 +1,5 @@
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import { BrowserRouter, Navigate, Routes, Route } from 'react-router-dom'
 import { I18nProvider } from './i18n'
 import { ThemeProvider } from './theme'
@@ -41,6 +43,8 @@ export default function App() {
             </Route>
           </Routes>
         </BrowserRouter>
+        <Analytics />
+        <SpeedInsights />
       </I18nProvider>
     </ThemeProvider>
   )

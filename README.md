@@ -27,6 +27,8 @@ npm run lint     # oxlint
 
 Static SPA — no backend or env vars. Deploy on Vercel (or any static host) with framework **Vite**, build `npm run build`, output `dist`.
 
+On Vercel, enable **Web Analytics** and **Speed Insights** in the project dashboard after deploy (`@vercel/analytics` + `@vercel/speed-insights` are already wired in `App.tsx`).
+
 ## What’s in the product
 
 | Path | What it is |
