@@ -422,12 +422,12 @@ export const hu: Dict = {
     'Húsos preferencia {meatVotes}% → {meatSeatPct}% mandátum ({meatSeats} vs {plantSeats} növényes). Az IRV/kétforduló összevonja a tábort.',
   'case.ranked.title': '3a. Rangsorolt szavazás (IRV)',
   'case.ranked.body':
-    'A kieső húsos pártok szavazatai a tengelyen közeli párthoz mennek. Ez a taktikai összeállás: ahol az Alma csak a megosztott húsos mező miatt nyert volna, ott a húsos tábor átveszi. Előny: a mandátumok erősebben követik a preferenciát. Hátrány: továbbra is egyéni győzteses.',
+    'A kieső húsos pártok szavazatai a tengelyen közeli párthoz mennek. Ez a taktikai összeállás: ahol az Alma csak a megosztott húsos mező miatt nyert volna, ott a húsos tábor átveszi. Nézd a preferencia–mandátum sávot: a szavazatarány változatlan (~56% hús / ~44% növény), a mandátumarány viszont már a többségi preferenciához igazodik. Előny: a mandátumok erősebben követik a preferenciát. Hátrány: továbbra is egyéni győzteses, tehát marad némi aránytalanság.',
   'case.ranked.diet':
     'Ugyanaz a {meatVotes}% húsos preferencia → {meatSeatPct}% mandátum ({meatSeats} vs {plantSeats} növényes). Az átvitelek a preferenciához igazítják az eredményt.',
   'case.twoRound.title': '3b. Kétfordulós választás',
   'case.twoRound.body':
-    'Csak a két éllovas megy tovább; a többiek a közelebbi döntőshöz igazodnak a hús↔növény tengelyen. Gyakran hasonló, mint az IRV: a megosztott húsos többség összeállhat. Előny: a második fordulóban a preferencia „láthatóvá” válik. Hátrány: két választási nap, erős taktikai alkuk.',
+    'Csak a két éllovas megy tovább; a többiek a közelebbi döntőshöz igazodnak a hús↔növény tengelyen. Gyakran hasonló, mint az IRV: a megosztott húsos többség összeállhat. A pártonkénti mandátumok és a térkép is ezt mutatja — a húsos oldal több körzetet visz, mint FPTP alatt. Előny: a második fordulóban a preferencia „láthatóvá” válik. Hátrány: két választási nap, erős taktikai alkuk, és a mandátumok még mindig nem tökéletesen arányosak.',
   'case.twoRound.diet':
     'Húsos tábor: {meatVotes}% szavazat → {meatSeatPct}% mandátum ({meatSeats} vs {plantSeats}). A második forduló újra a preferencia szerint rendezi a versenyt.',
   'case.geo.title': 'Földrajz: hús ↔ növény alap',
@@ -436,6 +436,32 @@ export const hu: Dict = {
   'case.geo.mapAria': 'Megyék színezése a hús–növény preferencia szerint',
   'case.cta.simulate': 'Játszd újra a szimulációban',
   'case.cta.systems': 'Részletes magyarázók',
+  'case.tour.modeGroup': 'Megjelenítés',
+  'case.tour.modeTour': 'Animált túra',
+  'case.tour.modePage': 'Egyszerű oldal',
+  'case.tour.step': 'Lépés',
+  'case.tour.of': '/',
+  'case.tour.prev': 'Előző',
+  'case.tour.next': 'Következő',
+  'case.tour.done': 'Kész',
+  'case.tour.s1.meat':
+    'Négy párt preferálja a húst, de egyikük sem túl nagy.',
+  'case.tour.s1.plant':
+    'Csak egy párt preferálja a növényi ételt, az viszont nagy.',
+  'case.tour.s1.ladder':
+    'A két tábor összevont szavazataránya: kb. 56% húsos, 44% növényes.',
+  'case.tour.s2.body':
+    'Ahogy láthatod, a mandátumok nagyjából követik az emberek tényleges preferenciáit, enyhe regionális eltérésekkel a szavazásban.',
+  'case.tour.s3.body':
+    'Egyéni győzteses (FPTP) rendszerben a legnagyobb párt a szavazatok nagy részét „elsöpri”. Ez erős torzításhoz vezethet.',
+  'case.tour.s4.a':
+    'Rangsorolt szavazásnál a kieső húsos pártok szavazatai a közeli ízléshez mennek. A megosztott többség összeáll: a hús növény feletti tényleges preferenciája most a mandátumokban is átjön.',
+  'case.tour.s4.b':
+    'Nézd a preferencia vs mandátum sávot: a szavazatarány változatlan, a mandátumsáv viszont már a többséget követi. Egyéni győzteses rendszer lévén még mindig marad némi aránytalanság.',
+  'case.tour.s5.a':
+    'Kétfordulós rendszerben csak a két éllovas marad; a többiek a közelebbi döntőshöz igazodnak. A pártonkénti mandátumok ismét a húsos többséget mutatják — hasonlóan az IRV-hez.',
+  'case.tour.s5.b':
+    'A térképen is látszik a váltás: sok körzet, amit FPTP alatt a megosztott húsos mező miatt Alma vitt volna, most a többségi preferencia szerint dől el. A preferencia láthatóbb, de a mandátumok továbbra sem tökéletesen arányosak.',
 
   'footer.note': '2026. Made with ❤️ by Bendoair',
 }
@@ -859,12 +885,12 @@ export const en: Dict = {
     'Meat preference {meatVotes}% → {meatSeatPct}% of seats ({meatSeats} vs {plantSeats} plant). IRV/runoff consolidates the camp.',
   'case.ranked.title': '3a. Ranked choice (IRV)',
   'case.ranked.body':
-    'Eliminated meat parties transfer along the diet axis to a nearby party. That tactical consolidation flips districts Apple would have won only because the meat field was split. Upside: seats track the preference more strongly. Downside: still one winner per district.',
+    'Eliminated meat parties transfer along the diet axis to a nearby party. That tactical consolidation flips districts Apple would have won only because the meat field was split. Watch the preference-vs-seats bars: vote share stays ~56% meat / ~44% plant, but seat share now tracks the majority preference. Upside: seats follow preference more strongly. Downside: still one winner per district, so some disproportionality remains.',
   'case.ranked.diet':
     'Same {meatVotes}% meat preference → {meatSeatPct}% of seats ({meatSeats} vs {plantSeats} plant). Transfers realign the result with the preference.',
   'case.twoRound.title': '3b. Two-round runoff',
   'case.twoRound.body':
-    'Only the top two advance; others align with the closer finalist on the meat↔plant axis. Often similar to IRV: the split meat majority can coalesce. Upside: the runoff makes the preference visible. Downside: two election days and heavy tactical bargaining.',
+    'Only the top two advance; others align with the closer finalist on the meat↔plant axis. Often similar to IRV: the split meat majority can coalesce. Seats-by-party and the map both show it — the meat side takes more districts than under FPTP. Upside: the runoff makes the preference visible. Downside: two election days, heavy tactical bargaining, and seats still are not perfectly proportional.',
   'case.twoRound.diet':
     'Meat camp: {meatVotes}% of votes → {meatSeatPct}% of seats ({meatSeats} vs {plantSeats}). Round two again sorts the race by preference.',
   'case.geo.title': 'Geography: meat ↔ plant baseline',
@@ -873,6 +899,32 @@ export const en: Dict = {
   'case.geo.mapAria': 'Counties colored by meat–plant preference',
   'case.cta.simulate': 'Replay in the simulation',
   'case.cta.systems': 'Deep explainers',
+  'case.tour.modeGroup': 'Display mode',
+  'case.tour.modeTour': 'Animated tour',
+  'case.tour.modePage': 'Simple page',
+  'case.tour.step': 'Step',
+  'case.tour.of': 'of',
+  'case.tour.prev': 'Previous',
+  'case.tour.next': 'Next',
+  'case.tour.done': 'Done',
+  'case.tour.s1.meat':
+    'There are 4 parties preferring meat, but neither is too big.',
+  'case.tour.s1.plant':
+    'Only one party prefers plant food, but it is large.',
+  'case.tour.s1.ladder':
+    'The combined camp vote share: about 56% meat, 44% plant.',
+  'case.tour.s2.body':
+    'As you can see, the seats roughly match the actual preferences of people with slight regional variations in voting patterns.',
+  'case.tour.s3.body':
+    'In a first-past-the-post system the largest party sweeps most of the votes. This can lead to large distortions.',
+  'case.tour.s4.a':
+    'Under ranked choice, eliminated meat parties transfer to a nearby taste. The split majority consolidates: the real meat-over-plant preference now shows up in seats as well.',
+  'case.tour.s4.b':
+    'Look at the preference vs seats bars: vote share is unchanged, but the seat bar now follows the majority. Because it is still winner-take-all locally, some disproportionality remains.',
+  'case.tour.s5.a':
+    'In a two-round system only the top two remain; everyone else aligns with the closer finalist. Seats by party again show the meat majority — much like IRV.',
+  'case.tour.s5.b':
+    'The map shows the shift too: many districts Apple would have taken under FPTP only because the meat field was split now follow the majority preference. Preference is more visible, but seats are still not perfectly proportional.',
 
   'footer.note': '2026. Made with ❤️ by Bendoair',
 }

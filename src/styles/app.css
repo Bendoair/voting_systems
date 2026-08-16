@@ -1730,6 +1730,211 @@ a.btn.primary.soft:hover {
   gap: 2rem;
 }
 
+.case-page-head,
+.case-tour-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.case-tour-head-main {
+  min-width: 0;
+  flex: 1;
+}
+
+.case-tour-head-main h1 {
+  margin-bottom: 0.35rem;
+}
+
+.case-mode-toggle {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.case-mode-toggle .btn {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.88rem;
+}
+
+.case-page-tour {
+  padding-bottom: 4.5rem;
+}
+
+.case-tour-caption {
+  min-height: 3.4rem;
+  display: flex;
+  align-items: center;
+  background: var(--paper-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  box-shadow: var(--shadow);
+}
+
+.case-tour-caption-text {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.45;
+  max-width: 48rem;
+  animation: caseCaptionIn 0.35s ease;
+}
+
+.case-tour-body {
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+.case-tour-body.is-exiting {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.case-tour-body.is-entering {
+  opacity: 1;
+  transform: none;
+}
+
+.case-tour-step-diet {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.case-tour-nav {
+  position: sticky;
+  bottom: 0.5rem;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.65rem 0.75rem;
+  margin: 0;
+  background: var(--chrome-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  color: var(--ink);
+}
+
+.case-tour-nav .btn {
+  min-width: 6.5rem;
+}
+
+.case-tour-nav .btn.primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--btn-on-accent);
+}
+
+.case-tour-nav .dots {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.case-tour-nav .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--rule);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.case-tour-nav .dot.on {
+  background: var(--accent);
+  transform: scale(1.2);
+}
+
+@keyframes caseCaptionIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes caseDietPop {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  35% {
+    transform: scale(1.06);
+  }
+  55% {
+    transform: scale(0.97);
+  }
+}
+
+@keyframes caseTourFocus {
+  0% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent);
+    transform: scale(1);
+  }
+  35% {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 55%, transparent);
+    transform: scale(1.015);
+  }
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent);
+    transform: scale(1);
+  }
+}
+
+@keyframes caseTourPrefRow {
+  0%,
+  100% {
+    outline-color: transparent;
+    background: transparent;
+  }
+  40% {
+    outline-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    background: color-mix(in srgb, var(--accent) 8%, transparent);
+  }
+}
+
+.is-tour-focus {
+  border-radius: var(--radius);
+  animation: caseTourFocus 1.15s ease;
+}
+
+.is-tour-focus-pref .case-pref {
+  margin-top: 0;
+}
+
+.is-tour-focus-pref .case-pref-row {
+  outline: 2px solid transparent;
+  outline-offset: 3px;
+  border-radius: 4px;
+  animation: caseTourPrefRow 1.4s ease;
+}
+
+.is-tour-focus-pref .case-pref-row + .case-pref-row {
+  animation-delay: 0.45s;
+}
+
+.case-seats-block.is-tour-focus {
+  padding: 0.35rem 0.45rem;
+  margin: 0 -0.45rem;
+}
+
+.case-map.is-tour-focus {
+  padding: 0.25rem;
+}
+
 .case-diet-legend {
   background: var(--paper-2);
   border: 1px solid rgba(28, 25, 20, 0.12);
@@ -1788,6 +1993,20 @@ a.btn.primary.soft:hover {
 .case-diet-bar {
   stroke: var(--paper-2);
   stroke-width: 1.25;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  transition: opacity 0.35s ease;
+}
+
+.case-diet-bar.is-dim {
+  opacity: 0.28;
+}
+
+.case-diet-bar.is-hot {
+  opacity: 1;
+  stroke: var(--ink);
+  stroke-width: 2;
+  animation: caseDietPop 0.7s ease;
 }
 
 .case-diet-seg-label {
@@ -1852,6 +2071,45 @@ a.btn.primary.soft:hover {
   border-radius: calc(var(--radius) - 2px);
   background: var(--control-bg);
   border: 1px solid var(--line);
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease,
+    max-height 0.45s ease,
+    margin 0.45s ease,
+    padding 0.45s ease,
+    border-width 0.45s ease;
+}
+
+.case-pref.is-hidden {
+  opacity: 0;
+  transform: translateY(8px);
+  max-height: 0;
+  margin: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-width: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.case-pref.is-revealed {
+  opacity: 1;
+  transform: none;
+  max-height: 24rem;
+}
+
+.case-pref.is-compact {
+  margin: 0 0 0.85rem;
+  padding: 0.55rem 0.65rem;
+  background: color-mix(in srgb, var(--paper) 40%, var(--control-bg));
+}
+
+.case-pref.is-compact.is-hidden {
+  margin: 0;
+}
+
+.case-pref.is-compact .case-pref-legend {
+  margin-top: 0.35rem;
 }
 
 .case-pref h3 {
@@ -1883,6 +2141,12 @@ a.btn.primary.soft:hover {
   border-radius: 999px;
   overflow: hidden;
   background: rgba(28, 25, 20, 0.08);
+}
+
+.case-pref-bar > span {
+  display: block;
+  height: 100%;
+  transition: width 0.55s ease;
 }
 
 .case-pref-bar .is-meat {
@@ -2091,6 +2355,16 @@ a.btn.primary.soft:hover {
 
   .case-geo-aside {
     grid-template-columns: 1fr;
+  }
+
+  .case-page-head,
+  .case-tour-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .case-mode-toggle {
+    justify-content: flex-end;
   }
 }
 
@@ -3415,7 +3689,11 @@ html[data-theme='dark'] .syspick-tab.is-pick.is-best .syspick-tab-crown-edge {
   .hungary-svg.is-ready,
   .compass-wrap.compass-fading-in .compass-svg,
   .compass-wrap.compass-fading-in .dim-badge,
-  .compass-axis-in {
+  .compass-axis-in,
+  .case-diet-bar.is-hot,
+  .case-tour-caption-text,
+  .is-tour-focus,
+  .is-tour-focus-pref .case-pref-row {
     animation: none !important;
   }
 
@@ -3425,14 +3703,23 @@ html[data-theme='dark'] .syspick-tab.is-pick.is-best .syspick-tab-crown-edge {
   .hungary-svg,
   .tour-nav .dot,
   .emma-rail-panel,
-  .region-path {
+  .region-path,
+  .case-tour-body,
+  .case-pref,
+  .case-pref-bar > span,
+  .case-diet-bar {
     transition: none !important;
   }
 
   .tour-body.is-exiting,
+  .case-tour-body.is-exiting,
   .compass-frame:not(.is-ready),
   .hungary-svg:not(.is-ready) {
     opacity: 1;
     transform: none;
+  }
+
+  .case-pref.is-hidden {
+    max-height: none;
   }
 }
