@@ -1121,9 +1121,11 @@ a.btn.primary.soft:hover {
   height: auto;
   display: block;
   opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .hungary-svg.is-ready {
+  opacity: 1;
   animation: mapEnter 0.4s ease both;
 }
 
@@ -3714,7 +3716,7 @@ html[data-theme='dark'] .syspick-tab.is-pick.is-best .syspick-tab-crown-edge {
   .tour-body.is-exiting,
   .case-tour-body.is-exiting,
   .compass-frame:not(.is-ready),
-  .hungary-svg:not(.is-ready) {
+  .hungary-svg.is-ready {
     opacity: 1;
     transform: none;
   }
