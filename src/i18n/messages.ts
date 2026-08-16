@@ -348,10 +348,19 @@ export const hu: Dict = {
 
   'tour.s2.title': 'Nincs tökéletes egyezés',
   'tour.s2.body':
-    'Egy párt soha nem fog minden kérdésben pontosan egyezni veled. Példa: két tengely, két ügy, például hús vagy zöldség; hagyományos ételek vagy új ételtalálmányok. Két ügy még egyszerűen ábrázolható, a térkép megmarad. Ha minden dimenziót felrajzolnánk, használhatatlan lenne. Kattints az iránytűre: dimenziórobbanás, majd vissza a két tengelyre.',
+    'Egy párt soha nem fog minden kérdésben pontosan egyezni veled. Kezdjük két üggyel: hús vagy növény; hagyományos ételek vagy új ételtalálmányok. Két tengely még ábrázolható, a térkép működik. Nézd, mi történik, ahogy jönnek az újabb ügyek.',
   'tour.s2.dims': '{n} dimenzió',
-  'tour.s2.collapse': 'Két tengely: a térkép megmarad',
-  'tour.s2.clickHint': 'Kattints: sok dimenzió ↔ két ügy',
+  'tour.s2.ax3Neg': 'Olcsó',
+  'tour.s2.ax3Pos': 'Ínyenc',
+  'tour.s2.ax4Neg': 'Gyors',
+  'tour.s2.ax4Pos': 'Lassan főtt',
+  'tour.s2.cap2': 'Két ügy: a térkép működik',
+  'tour.s2.cap3': 'Harmadik ügy: olcsó ↔ ínyenc. Még megy.',
+  'tour.s2.cap4':
+    'Negyedik ügy: ezt már nem lehet őszintén lerajzolni, 4D kellene hozzá.',
+  'tour.s2.capMore': 'És jön a következő ügy… és a következő…',
+  'tour.s2.capAll': 'A valódi preferenciáid ennyi tengelyen élnek',
+  'tour.s2.replay': 'Újra',
 
   'tour.s3.title': 'Élelmiszer-iránytű',
   'tour.s3.body':
@@ -775,10 +784,18 @@ export const en: Dict = {
 
   'tour.s2.title': 'No perfect match',
   'tour.s2.body':
-    'No party will match you on every issue. Example: two axes, two issues, for instance preferring meat or vegetables; old-school dishes or new food inventions. Two issues stay simple to represent; the map stays usable. Plot every dimension and it falls apart. Click the compass: dimension explosion, then back to two axes.',
+    'No party will match you on every issue. Start with two: meat or plant; old-school dishes or new food inventions. Two axes still draw fine, the map works. Watch what happens as more issues arrive.',
   'tour.s2.dims': '{n} dimensions',
-  'tour.s2.collapse': 'Two axes keep the map',
-  'tour.s2.clickHint': 'Click: many dimensions ↔ two issues',
+  'tour.s2.ax3Neg': 'Cheap',
+  'tour.s2.ax3Pos': 'Fine dining',
+  'tour.s2.ax4Neg': 'Quick',
+  'tour.s2.ax4Pos': 'Slow-cooked',
+  'tour.s2.cap2': 'Two issues: the map works',
+  'tour.s2.cap3': 'Third issue: cheap ↔ fine dining. Still fine.',
+  'tour.s2.cap4': 'Fourth issue: no honest way to draw it, that would need 4D.',
+  'tour.s2.capMore': 'And the next issue… and the next…',
+  'tour.s2.capAll': 'Your real preferences live on this many axes',
+  'tour.s2.replay': 'Replay',
 
   'tour.s3.title': 'Food compass',
   'tour.s3.body':
