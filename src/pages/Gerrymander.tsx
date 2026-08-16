@@ -194,29 +194,30 @@ export function Gerrymander() {
           </header>
           <ol className="gerry-rules-list">
             <li>{t('ex.gerry.rulesP1')}</li>
+            <li>{t('ex.gerry.rulesP2')}</li>
             <li>
-              {t('ex.gerry.rulesP2a')} <strong>{t('ex.gerry.districts')}</strong>{' '}
-              {t('ex.gerry.rulesP2b')}
-            </li>
-            <li>
-              {t('ex.gerry.rulesP3a')} <strong>{t('ex.gerry.rulesP3em')}</strong>{' '}
+              {t('ex.gerry.rulesP3a')} <strong>{t('ex.gerry.districts')}</strong>{' '}
               {t('ex.gerry.rulesP3b')}
             </li>
             <li>
-              {t('ex.gerry.rulesP4a')} <strong>{t('ex.gerry.undo')}</strong>
+              {t('ex.gerry.rulesP4a')} <strong>{t('ex.gerry.rulesP4em')}</strong>{' '}
               {t('ex.gerry.rulesP4b')}
             </li>
-            <li>{t('ex.gerry.rulesP5')}</li>
             <li>
-              {t('ex.gerry.rulesP6a')} <strong>{t('ex.gerry.rulesP6em')}</strong>
-              {t('ex.gerry.rulesP6b')}
+              {t('ex.gerry.rulesP5a')} <strong>{t('ex.gerry.undo')}</strong>
+              {t('ex.gerry.rulesP5b')}
             </li>
+            <li>{t('ex.gerry.rulesP6')}</li>
             <li>
-              {t('ex.gerry.rulesP7a')} <strong>{t('ex.gerry.fixBorders')}</strong>{' '}
+              {t('ex.gerry.rulesP7a')} <strong>{t('ex.gerry.rulesP7em')}</strong>
               {t('ex.gerry.rulesP7b')}
             </li>
+            <li>
+              {t('ex.gerry.rulesP8a')} <strong>{t('ex.gerry.fixBorders')}</strong>{' '}
+              {t('ex.gerry.rulesP8b')}
+            </li>
           </ol>
-          <p className="gerry-rules-luck">{t('ex.gerry.rulesP8')}</p>
+          <p className="gerry-rules-luck">{t('ex.gerry.rulesP9')}</p>
         </div>
       </dialog>
 
