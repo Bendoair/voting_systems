@@ -7,6 +7,7 @@ import { Bar } from '@visx/shape'
 import type { Party } from '../engines/types'
 import { dietTone } from '../data/diet'
 import { useI18n } from '../i18n'
+import { CasePreferenceBar } from './CasePreferenceBar'
 
 const W = 640
 const H = 320
@@ -43,7 +44,24 @@ function buildStacks(parties: Party[]): StackSeg[] {
 }
 
 /** Parties as a visx bar chart: X = diet lean, Y = vote % (stacked if same lean). */
-export function CaseDietLegend({ parties }: { parties: Party[] }) {
+export type DietCampHighlight = 'none' | 'meat' | 'plant'
+
+export function CaseDietLegend({
+  parties,
+  highlight = 'none',
+  hideBlurb = false,
+  preferenceRevealed,
+}: {
+  parties: Party[]
+  highlight?: DietCampHighlight
+  /** Tour mode: title only, narration lives in the caption slot */
+  hideBlurb?: boolean
+  /**
+   * Tour: embed camp vote bar above the chart.
+   * `undefined` = omit (page mode). `false` = reserved/hidden. `true` = shown.
+   */
+  preferenceRevealed?: boolean
+}) {
   const { t } = useI18n()
   const meatVotes = parties
     .filter((p) => (p.dietLean ?? 0) < 0)
@@ -84,12 +102,29 @@ export function CaseDietLegend({ parties }: { parties: Party[] }) {
   const midX = xScale(0) ?? 0
   const barW = Math.abs((xScale(BAR_HALF) ?? 0) - (xScale(-BAR_HALF) ?? 0))
 
+  function barClass(lean: number): string {
+    if (highlight === 'none') return 'case-diet-bar'
+    const camp: DietCampHighlight = lean < 0 ? 'meat' : lean > 0 ? 'plant' : 'none'
+    if (camp === highlight) return 'case-diet-bar is-hot'
+    return 'case-diet-bar is-dim'
+  }
+
   return (
     <aside className="case-diet-legend" aria-label={t('case.diet.title')}>
       <div className="case-diet-legend-head">
         <h2>{t('case.diet.title')}</h2>
-        <p>{t('case.diet.blurb')}</p>
+        {!hideBlurb && <p>{t('case.diet.blurb')}</p>}
       </div>
+
+      {preferenceRevealed !== undefined && (
+        <CasePreferenceBar
+          parties={parties}
+          votesOnly
+          compact
+          revealed={preferenceRevealed}
+          className="case-pref-in-diet"
+        />
+      )}
 
       <div className="case-diet-plot-wrap">
         <svg
@@ -140,7 +175,7 @@ export function CaseDietLegend({ parties }: { parties: Party[] }) {
                     height={h}
                     fill={s.party.color}
                     rx={4}
-                    className="case-diet-bar"
+                    className={barClass(s.lean)}
                   />
                   {h > 16 && (
                     <text

@@ -63,21 +63,23 @@ export const hu: Dict = {
   'ex.gerry.rulesLink': 'Játékszabályok',
   'ex.gerry.rulesClose': 'Bezárás',
   'ex.gerry.rulesP1': 'Ez Borókásvölgyhátság megye teljes térképe.',
-  'ex.gerry.rulesP2a': 'A',
-  'ex.gerry.rulesP2b': 'panelen kiválaszthatod a körzetet.',
-  'ex.gerry.rulesP3a': 'Körzet bővítéséhez',
-  'ex.gerry.rulesP3em': 'karikázz be egy területet',
-  'ex.gerry.rulesP3b': 'a térképen. Új területet újabb karikázással adhatsz hozzá.',
-  'ex.gerry.rulesP4a': 'Ha hibáztál, használd a',
-  'ex.gerry.rulesP4b': ' gombot.',
-  'ex.gerry.rulesP5':
+  'ex.gerry.rulesP2':
+    'A térkép eredeti színezése a szavazók eloszlását mutatja. Minden pixel egy szavazó; a színeket és a szavazók összlétszámát a térkép mellett látod.',
+  'ex.gerry.rulesP3a': 'A',
+  'ex.gerry.rulesP3b': 'panelen kiválaszthatod a körzetet.',
+  'ex.gerry.rulesP4a': 'Körzet bővítéséhez',
+  'ex.gerry.rulesP4em': 'karikázz be egy területet',
+  'ex.gerry.rulesP4b': 'a térképen. Új területet újabb karikázással adhatsz hozzá.',
+  'ex.gerry.rulesP5a': 'Ha hibáztál, használd a',
+  'ex.gerry.rulesP5b': ' gombot.',
+  'ex.gerry.rulesP6':
     'Ha kész egy körzettel, válaszd a következőt a panelen, és kezdj újra karikázni.',
-  'ex.gerry.rulesP6a': 'A jelenleg kiválasztott körzet',
-  'ex.gerry.rulesP6em': 'a korábbi fölé rajzol',
-  'ex.gerry.rulesP6b': '.',
-  'ex.gerry.rulesP7a': 'Ne izgulj a kis szélekért vagy határokért. A',
-  'ex.gerry.rulesP7b': 'gomb helyreteszi a határokat.',
-  'ex.gerry.rulesP8': 'Sok sikert!',
+  'ex.gerry.rulesP7a': 'A jelenleg kiválasztott körzet',
+  'ex.gerry.rulesP7em': 'a korábbi fölé rajzol',
+  'ex.gerry.rulesP7b': '.',
+  'ex.gerry.rulesP8a': 'Ne izgulj a kis szélekért vagy határokért. A',
+  'ex.gerry.rulesP8b': 'gomb helyreteszi a határokat.',
+  'ex.gerry.rulesP9': 'Sok sikert!',
   'ex.gerry.drawHint': 'Aktív körzettel karikázz be egy területet a térképen.',
   'ex.gerry.view': 'Nézet',
   'ex.gerry.viewVoters': 'Szavazók',
@@ -272,7 +274,7 @@ export const hu: Dict = {
   'sim.districtMethod.two-round.note':
     'Körzetenként két forduló; a kiesők a két döntős közül a közelebbi ízlésűhöz mennek. A lista továbbra is D’Hondt.',
   'sim.parties': 'Pártok',
-  'sim.addParty': 'Párt hozzáadása',
+  'sim.addParty': 'Új Párt',
   'sim.remove': 'Törlés',
   'sim.voteShare': 'Szavazatarány',
   'sim.voteSum': 'Összesen',
@@ -348,10 +350,19 @@ export const hu: Dict = {
 
   'tour.s2.title': 'Nincs tökéletes egyezés',
   'tour.s2.body':
-    'Egy párt soha nem fog minden kérdésben pontosan egyezni veled. Példa: két tengely, két ügy, például hús vagy zöldség; hagyományos ételek vagy új ételtalálmányok. Két ügy még egyszerűen ábrázolható, a térkép megmarad. Ha minden dimenziót felrajzolnánk, használhatatlan lenne. Kattints az iránytűre: dimenziórobbanás, majd vissza a két tengelyre.',
+    'Egy párt soha nem fog minden kérdésben pontosan egyezni veled. Kezdjük két üggyel: hús vagy növény; hagyományos ételek vagy új ételtalálmányok. Két tengely még ábrázolható, a térkép működik. Nézd, mi történik, ahogy jönnek az újabb ügyek.',
   'tour.s2.dims': '{n} dimenzió',
-  'tour.s2.collapse': 'Két tengely: a térkép megmarad',
-  'tour.s2.clickHint': 'Kattints: sok dimenzió ↔ két ügy',
+  'tour.s2.ax3Neg': 'Olcsó',
+  'tour.s2.ax3Pos': 'Ínyenc',
+  'tour.s2.ax4Neg': 'Gyors',
+  'tour.s2.ax4Pos': 'Lassan főtt',
+  'tour.s2.cap2': 'Két ügy: a térkép működik',
+  'tour.s2.cap3': 'Harmadik ügy: olcsó ↔ ínyenc. Még megy.',
+  'tour.s2.cap4':
+    'Negyedik ügy: ezt már nem lehet őszintén lerajzolni, 4D kellene hozzá.',
+  'tour.s2.capMore': 'És jön a következő ügy… és a következő…',
+  'tour.s2.capAll': 'A valódi preferenciáid ennyi tengelyen élnek',
+  'tour.s2.replay': 'Újra',
 
   'tour.s3.title': 'Élelmiszer-iránytű',
   'tour.s3.body':
@@ -411,20 +422,47 @@ export const hu: Dict = {
     'Húsos preferencia {meatVotes}% → {meatSeatPct}% mandátum ({meatSeats} vs {plantSeats} növényes). Az IRV/kétforduló összevonja a tábort.',
   'case.ranked.title': '3a. Rangsorolt szavazás (IRV)',
   'case.ranked.body':
-    'A kieső húsos pártok szavazatai a tengelyen közeli párthoz mennek. Ez a taktikai összeállás: ahol az Alma csak a megosztott húsos mező miatt nyert volna, ott a húsos tábor átveszi. Előny: a mandátumok erősebben követik a preferenciát. Hátrány: továbbra is egyéni győzteses.',
+    'A kieső húsos pártok szavazatai a tengelyen közeli párthoz mennek. Ez a taktikai összeállás: ahol az Alma csak a megosztott húsos mező miatt nyert volna, ott a húsos tábor átveszi. Nézd a preferencia–mandátum sávot: a szavazatarány változatlan (~56% hús / ~44% növény), a mandátumarány viszont már a többségi preferenciához igazodik. Előny: a mandátumok erősebben követik a preferenciát. Hátrány: továbbra is egyéni győzteses, tehát marad némi aránytalanság.',
   'case.ranked.diet':
     'Ugyanaz a {meatVotes}% húsos preferencia → {meatSeatPct}% mandátum ({meatSeats} vs {plantSeats} növényes). Az átvitelek a preferenciához igazítják az eredményt.',
   'case.twoRound.title': '3b. Kétfordulós választás',
   'case.twoRound.body':
-    'Csak a két éllovas megy tovább; a többiek a közelebbi döntőshöz igazodnak a hús↔növény tengelyen. Gyakran hasonló, mint az IRV: a megosztott húsos többség összeállhat. Előny: a második fordulóban a preferencia „láthatóvá” válik. Hátrány: két választási nap, erős taktikai alkuk.',
+    'Csak a két éllovas megy tovább; a többiek a közelebbi döntőshöz igazodnak a hús↔növény tengelyen. Gyakran hasonló, mint az IRV: a megosztott húsos többség összeállhat. A pártonkénti mandátumok és a térkép is ezt mutatja — a húsos oldal több körzetet visz, mint FPTP alatt. Előny: a második fordulóban a preferencia „láthatóvá” válik. Hátrány: két választási nap, erős taktikai alkuk, és a mandátumok még mindig nem tökéletesen arányosak.',
   'case.twoRound.diet':
     'Húsos tábor: {meatVotes}% szavazat → {meatSeatPct}% mandátum ({meatSeats} vs {plantSeats}). A második forduló újra a preferencia szerint rendezi a versenyt.',
   'case.geo.title': 'Földrajz: hús ↔ növény alap',
   'case.geo.body':
     'A megyék saját hús↔növény alapja (nem a választási győztes). Budapest és a nyugat növényesebb; a keleti megyék húsosabbak. Ez a háttér hajtja a körzeti szavazatokat a szimulációban.',
   'case.geo.mapAria': 'Megyék színezése a hús–növény preferencia szerint',
-  'case.cta.simulate': 'Játszd újra a szimulációban',
+  'case.cta.games': 'Játékok',
   'case.cta.systems': 'Részletes magyarázók',
+  'case.cta.simulate': 'Játsz a szimulációval',
+  'case.tour.modeGroup': 'Megjelenítés',
+  'case.tour.modeTour': 'Animált túra',
+  'case.tour.modePage': 'Egyszerű oldal',
+  'case.tour.step': 'Lépés',
+  'case.tour.of': '/',
+  'case.tour.prev': 'Előző',
+  'case.tour.next': 'Következő',
+  'case.tour.done': 'Kész',
+  'case.tour.s1.meat':
+    'Négy párt preferálja a húst, de egyikük sem túl nagy.',
+  'case.tour.s1.plant':
+    'Csak egy párt preferálja a növényi ételt, az viszont nagy.',
+  'case.tour.s1.ladder':
+    'A két tábor összevont szavazataránya: kb. 56% húsos, 44% növényes.',
+  'case.tour.s2.body':
+    'Ahogy láthatod, a mandátumok nagyjából követik az emberek tényleges preferenciáit, enyhe regionális eltérésekkel a szavazásban.',
+  'case.tour.s3.body':
+    'Egyéni győzteses (FPTP) rendszerben a legnagyobb párt a szavazatok nagy részét „elsöpri”. Ez erős torzításhoz vezethet.',
+  'case.tour.s4.a':
+    'Rangsorolt szavazásnál a kieső húsos pártok szavazatai a közeli ízléshez mennek. A megosztott többség összeáll: a hús növény feletti tényleges preferenciája most a mandátumokban is átjön.',
+  'case.tour.s4.b':
+    'Nézd a preferencia vs mandátum sávot: a szavazatarány változatlan, a mandátumsáv viszont már a többséget követi. Egyéni győzteses rendszer lévén még mindig marad némi aránytalanság.',
+  'case.tour.s5.a':
+    'Kétfordulós rendszerben csak a két éllovas marad; a többiek a közelebbi döntőshöz igazodnak. A pártonkénti mandátumok ismét a húsos többséget mutatják — hasonlóan az IRV-hez.',
+  'case.tour.s5.b':
+    'A térképen is látszik a váltás: sok körzet, amit FPTP alatt a megosztott húsos mező miatt Alma vitt volna, most a többségi preferencia szerint dől el. A preferencia láthatóbb, de a mandátumok továbbra sem tökéletesen arányosak.',
 
   'footer.note': '2026. Made with ❤️ by Bendoair',
 }
@@ -490,21 +528,23 @@ export const en: Dict = {
   'ex.gerry.rulesLink': 'Game rules',
   'ex.gerry.rulesClose': 'Close',
   'ex.gerry.rulesP1': 'This is the whole map of Upper-Juniperhollow-on-the-Heights County.',
-  'ex.gerry.rulesP2a': 'You can select the district on the',
-  'ex.gerry.rulesP2b': 'panel.',
-  'ex.gerry.rulesP3a': 'To add to a district,',
-  'ex.gerry.rulesP3em': 'circle an area on the map',
-  'ex.gerry.rulesP3b': '. You can add a new area by circling a new region.',
-  'ex.gerry.rulesP4a': 'If you made a mistake, use',
-  'ex.gerry.rulesP4b': '.',
-  'ex.gerry.rulesP5':
+  'ex.gerry.rulesP2':
+    'The original coloring of the map represents the voter distribution. Each pixel is one voter; the colors and total voter count are shown next to the map.',
+  'ex.gerry.rulesP3a': 'You can select the district on the',
+  'ex.gerry.rulesP3b': 'panel.',
+  'ex.gerry.rulesP4a': 'To add to a district,',
+  'ex.gerry.rulesP4em': 'circle an area on the map',
+  'ex.gerry.rulesP4b': '. You can add a new area by circling a new region.',
+  'ex.gerry.rulesP5a': 'If you made a mistake, use',
+  'ex.gerry.rulesP5b': '.',
+  'ex.gerry.rulesP6':
     'Once finished with a district, select the next one on the panel and start circling.',
-  'ex.gerry.rulesP6a': 'The currently selected district will',
-  'ex.gerry.rulesP6em': 'draw over the previous one',
-  'ex.gerry.rulesP6b': '.',
-  'ex.gerry.rulesP7a': 'Do not fret about small edges or boundaries.',
-  'ex.gerry.rulesP7b': 'will fix the borders.',
-  'ex.gerry.rulesP8': 'Good luck!',
+  'ex.gerry.rulesP7a': 'The currently selected district will',
+  'ex.gerry.rulesP7em': 'draw over the previous one',
+  'ex.gerry.rulesP7b': '.',
+  'ex.gerry.rulesP8a': 'Do not fret about small edges or boundaries.',
+  'ex.gerry.rulesP8b': 'will fix the borders.',
+  'ex.gerry.rulesP9': 'Good luck!',
   'ex.gerry.drawHint': 'With a district selected, circle an area on the map.',
   'ex.gerry.view': 'View',
   'ex.gerry.viewVoters': 'Voters',
@@ -775,10 +815,18 @@ export const en: Dict = {
 
   'tour.s2.title': 'No perfect match',
   'tour.s2.body':
-    'No party will match you on every issue. Example: two axes, two issues, for instance preferring meat or vegetables; old-school dishes or new food inventions. Two issues stay simple to represent; the map stays usable. Plot every dimension and it falls apart. Click the compass: dimension explosion, then back to two axes.',
+    'No party will match you on every issue. Start with two: meat or plant; old-school dishes or new food inventions. Two axes still draw fine, the map works. Watch what happens as more issues arrive.',
   'tour.s2.dims': '{n} dimensions',
-  'tour.s2.collapse': 'Two axes keep the map',
-  'tour.s2.clickHint': 'Click: many dimensions ↔ two issues',
+  'tour.s2.ax3Neg': 'Cheap',
+  'tour.s2.ax3Pos': 'Fine dining',
+  'tour.s2.ax4Neg': 'Quick',
+  'tour.s2.ax4Pos': 'Slow-cooked',
+  'tour.s2.cap2': 'Two issues: the map works',
+  'tour.s2.cap3': 'Third issue: cheap ↔ fine dining. Still fine.',
+  'tour.s2.cap4': 'Fourth issue: no honest way to draw it, that would need 4D.',
+  'tour.s2.capMore': 'And the next issue… and the next…',
+  'tour.s2.capAll': 'Your real preferences live on this many axes',
+  'tour.s2.replay': 'Replay',
 
   'tour.s3.title': 'Food compass',
   'tour.s3.body':
@@ -838,20 +886,47 @@ export const en: Dict = {
     'Meat preference {meatVotes}% → {meatSeatPct}% of seats ({meatSeats} vs {plantSeats} plant). IRV/runoff consolidates the camp.',
   'case.ranked.title': '3a. Ranked choice (IRV)',
   'case.ranked.body':
-    'Eliminated meat parties transfer along the diet axis to a nearby party. That tactical consolidation flips districts Apple would have won only because the meat field was split. Upside: seats track the preference more strongly. Downside: still one winner per district.',
+    'Eliminated meat parties transfer along the diet axis to a nearby party. That tactical consolidation flips districts Apple would have won only because the meat field was split. Watch the preference-vs-seats bars: vote share stays ~56% meat / ~44% plant, but seat share now tracks the majority preference. Upside: seats follow preference more strongly. Downside: still one winner per district, so some disproportionality remains.',
   'case.ranked.diet':
     'Same {meatVotes}% meat preference → {meatSeatPct}% of seats ({meatSeats} vs {plantSeats} plant). Transfers realign the result with the preference.',
   'case.twoRound.title': '3b. Two-round runoff',
   'case.twoRound.body':
-    'Only the top two advance; others align with the closer finalist on the meat↔plant axis. Often similar to IRV: the split meat majority can coalesce. Upside: the runoff makes the preference visible. Downside: two election days and heavy tactical bargaining.',
+    'Only the top two advance; others align with the closer finalist on the meat↔plant axis. Often similar to IRV: the split meat majority can coalesce. Seats-by-party and the map both show it — the meat side takes more districts than under FPTP. Upside: the runoff makes the preference visible. Downside: two election days, heavy tactical bargaining, and seats still are not perfectly proportional.',
   'case.twoRound.diet':
     'Meat camp: {meatVotes}% of votes → {meatSeatPct}% of seats ({meatSeats} vs {plantSeats}). Round two again sorts the race by preference.',
   'case.geo.title': 'Geography: meat ↔ plant baseline',
   'case.geo.body':
     'Counties colored by their meat↔plant baseline (not election winners). Budapest and the west lean plant; eastern counties lean meat. That backdrop drives district votes in the simulation.',
   'case.geo.mapAria': 'Counties colored by meat–plant preference',
-  'case.cta.simulate': 'Replay in the simulation',
+  'case.cta.games': 'Games',
   'case.cta.systems': 'Deep explainers',
+  'case.cta.simulate': 'Play with the simulation',
+  'case.tour.modeGroup': 'Display mode',
+  'case.tour.modeTour': 'Animated tour',
+  'case.tour.modePage': 'Simple page',
+  'case.tour.step': 'Step',
+  'case.tour.of': 'of',
+  'case.tour.prev': 'Previous',
+  'case.tour.next': 'Next',
+  'case.tour.done': 'Done',
+  'case.tour.s1.meat':
+    'There are 4 parties preferring meat, but neither is too big.',
+  'case.tour.s1.plant':
+    'Only one party prefers plant food, but it is large.',
+  'case.tour.s1.ladder':
+    'The combined camp vote share: about 56% meat, 44% plant.',
+  'case.tour.s2.body':
+    'As you can see, the seats roughly match the actual preferences of people with slight regional variations in voting patterns.',
+  'case.tour.s3.body':
+    'In a first-past-the-post system the largest party sweeps most of the votes. This can lead to large distortions.',
+  'case.tour.s4.a':
+    'Under ranked choice, eliminated meat parties transfer to a nearby taste. The split majority consolidates: the real meat-over-plant preference now shows up in seats as well.',
+  'case.tour.s4.b':
+    'Look at the preference vs seats bars: vote share is unchanged, but the seat bar now follows the majority. Because it is still winner-take-all locally, some disproportionality remains.',
+  'case.tour.s5.a':
+    'In a two-round system only the top two remain; everyone else aligns with the closer finalist. Seats by party again show the meat majority — much like IRV.',
+  'case.tour.s5.b':
+    'The map shows the shift too: many districts Apple would have taken under FPTP only because the meat field was split now follow the majority preference. Preference is more visible, but seats are still not perfectly proportional.',
 
   'footer.note': '2026. Made with ❤️ by Bendoair',
 }

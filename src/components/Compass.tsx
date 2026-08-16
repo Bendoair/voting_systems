@@ -27,6 +27,23 @@ export type TacticalCallout = {
   tactParty: CompassPoint
 }
 
+export interface ExtraAxisLabel {
+  neg: string
+  pos: string
+  /** dashed: an axis that cannot honestly be drawn on a plane */
+  ghost?: boolean
+}
+
+/**
+ * Angle (deg) of the i-th extra axis, bisecting ever finer:
+ * 45, 135, 22.5, 67.5, 112.5, 157.5, 11.25, …
+ */
+function extraAxisAngle(i: number): number {
+  const count = 2 ** (Math.floor(Math.log2(i / 2 + 1)) + 1)
+  const step = 180 / count
+  return step / 2 + (i - (count - 2)) * step
+}
+
 function CompassChart({
   width,
   height,
@@ -40,7 +57,9 @@ function CompassChart({
   tacticalCallout,
   explode,
   dimCountLabel,
-  onToggleExplode,
+  extraAxes,
+  extraAxisLabels,
+  caption,
 }: {
   width: number
   height: number
@@ -54,7 +73,9 @@ function CompassChart({
   tacticalCallout?: TacticalCallout
   explode: boolean
   dimCountLabel?: string
-  onToggleExplode?: () => void
+  extraAxes: number
+  extraAxisLabels?: ExtraAxisLabel[]
+  caption?: string
 }) {
   const { t } = useI18n()
   const [fade, setFade] = useState<'in' | 'out' | 'idle'>('idle')
@@ -120,6 +141,28 @@ function CompassChart({
     })
   }, [displayExplode, innerW, innerH])
 
+  const extraAxisLines = useMemo(() => {
+    if (displayExplode || extraAxes <= 0) return []
+    const hx = innerW / 2
+    const hy = innerH / 2
+    return Array.from({ length: extraAxes }, (_, i) => {
+      const rad = (extraAxisAngle(i) * Math.PI) / 180
+      const cos = Math.cos(rad)
+      const sin = Math.sin(rad)
+      const reach = Math.min(
+        Math.abs(cos) < 1e-6 ? Infinity : hx / Math.abs(cos),
+        Math.abs(sin) < 1e-6 ? Infinity : hy / Math.abs(sin),
+      )
+      return {
+        i,
+        dx: cos * reach,
+        // screen y grows downward; keep "pos" toward the top
+        dy: -sin * reach,
+        label: extraAxisLabels?.[i],
+      }
+    })
+  }, [displayExplode, extraAxes, extraAxisLabels, innerW, innerH])
+
   const hovered = hoverId ? dots.find((d) => d.id === hoverId) : null
   const hoverTrue =
     hovered && parties.length > 0 ? nearestParty(hovered, parties) : null
@@ -136,10 +179,6 @@ function CompassChart({
   const railOpen = emmaFocus
 
   function handleBgClick(e: ReactMouseEvent<SVGElement>) {
-    if (onToggleExplode) {
-      onToggleExplode()
-      return
-    }
     if (!onPlaceYou) return
     const pt = localPoint(e)
     if (!pt) return
@@ -156,17 +195,12 @@ function CompassChart({
       ? `${hoverTarget.emoji} ${t(`tour.party.${hoverTarget.labelKey}`)}`
       : ''
 
-  const showHintSlot = Boolean(onToggleExplode || (hoverPrefs && dots.length > 0))
-  const hintText = onToggleExplode
-    ? t('tour.s2.clickHint')
-    : hoverPrefs
-      ? t('tour.hoverHint')
-      : ''
+  const hintText = caption ?? (hoverPrefs && dots.length > 0 ? t('tour.hoverHint') : '')
 
   return (
     <div className={`compass-wrap ${displayExplode ? 'explode' : ''} ${fadeClass}`}>
-      <div className="compass-hint-slot" aria-hidden={!showHintSlot}>
-        {showHintSlot && !displayExplode ? (
+      <div className="compass-hint-slot" aria-hidden={!hintText}>
+        {hintText ? (
           <p className="dim-hint muted">{hintText}</p>
         ) : (
           <p className="dim-hint muted">&nbsp;</p>
@@ -185,7 +219,7 @@ function CompassChart({
         <svg
           width={width}
           height={height}
-          className={`compass-svg ${onToggleExplode ? 'interactive' : ''} ${onPlaceYou ? 'placeable' : ''}`}
+          className={`compass-svg ${onPlaceYou ? 'placeable' : ''}`}
           onClick={handleBgClick}
           role="img"
           aria-label={t('tour.compassAria')}
@@ -231,6 +265,47 @@ function CompassChart({
                 />
               </g>
             )}
+
+            {extraAxisLines.map((ax) => (
+              <g
+                key={ax.i}
+                transform={`translate(${innerW / 2},${innerH / 2})`}
+                style={{ pointerEvents: 'none' }}
+              >
+                <g className="compass-axis-in">
+                  <line
+                    x1={-ax.dx}
+                    y1={-ax.dy}
+                    x2={ax.dx}
+                    y2={ax.dy}
+                    stroke={ax.label ? 'var(--ink)' : 'var(--accent)'}
+                    strokeWidth={ax.label ? 1.6 : 1.1}
+                    strokeOpacity={ax.label ? 0.7 : 0.4}
+                    strokeDasharray={ax.label?.ghost ? '6 4' : undefined}
+                  />
+                  {ax.label && (
+                    <>
+                      <text
+                        x={ax.dx * 0.8}
+                        y={ax.dy * 0.8 + 4}
+                        textAnchor="middle"
+                        className="axis-label axis-label-edge"
+                      >
+                        {ax.label.pos}
+                      </text>
+                      <text
+                        x={-ax.dx * 0.8}
+                        y={-ax.dy * 0.8 + 4}
+                        textAnchor="middle"
+                        className="axis-label axis-label-edge"
+                      >
+                        {ax.label.neg}
+                      </text>
+                    </>
+                  )}
+                </g>
+              </g>
+            ))}
 
             {displayExplode && (
               <g className="compass-nd">
@@ -459,7 +534,9 @@ export function Compass({
   tacticalCallout,
   explode = false,
   dimCountLabel,
-  onToggleExplode,
+  extraAxes = 0,
+  extraAxisLabels,
+  caption,
 }: {
   parties?: CompassPoint[]
   voters?: CompassPoint[]
@@ -472,7 +549,10 @@ export function Compass({
   tacticalCallout?: TacticalCallout
   explode?: boolean
   dimCountLabel?: string
-  onToggleExplode?: () => void
+  /** axes drawn on top of the two base ones, added in a fixed order */
+  extraAxes?: number
+  extraAxisLabels?: ExtraAxisLabel[]
+  caption?: string
 }) {
   const dots: HoverDot[] = useMemo(() => {
     const named: HoverDot[] = voters.map((v) => ({
@@ -530,7 +610,9 @@ export function Compass({
         tacticalCallout={tacticalCallout}
         explode={explode}
         dimCountLabel={dimCountLabel}
-        onToggleExplode={onToggleExplode}
+        extraAxes={extraAxes}
+        extraAxisLabels={extraAxisLabels}
+        caption={caption}
       />
     </div>
   )
