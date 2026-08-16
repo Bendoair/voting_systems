@@ -274,7 +274,7 @@ export const hu: Dict = {
   'sim.districtMethod.two-round.note':
     'Körzetenként két forduló; a kiesők a két döntős közül a közelebbi ízlésűhöz mennek. A lista továbbra is D’Hondt.',
   'sim.parties': 'Pártok',
-  'sim.addParty': 'Párt hozzáadása',
+  'sim.addParty': 'Új Párt',
   'sim.remove': 'Törlés',
   'sim.voteShare': 'Szavazatarány',
   'sim.voteSum': 'Összesen',
@@ -434,8 +434,9 @@ export const hu: Dict = {
   'case.geo.body':
     'A megyék saját hús↔növény alapja (nem a választási győztes). Budapest és a nyugat növényesebb; a keleti megyék húsosabbak. Ez a háttér hajtja a körzeti szavazatokat a szimulációban.',
   'case.geo.mapAria': 'Megyék színezése a hús–növény preferencia szerint',
-  'case.cta.simulate': 'Játszd újra a szimulációban',
+  'case.cta.games': 'Játékok',
   'case.cta.systems': 'Részletes magyarázók',
+  'case.cta.simulate': 'Játsz a szimulációval',
   'case.tour.modeGroup': 'Megjelenítés',
   'case.tour.modeTour': 'Animált túra',
   'case.tour.modePage': 'Egyszerű oldal',
@@ -897,8 +898,9 @@ export const en: Dict = {
   'case.geo.body':
     'Counties colored by their meat↔plant baseline (not election winners). Budapest and the west lean plant; eastern counties lean meat. That backdrop drives district votes in the simulation.',
   'case.geo.mapAria': 'Counties colored by meat–plant preference',
-  'case.cta.simulate': 'Replay in the simulation',
+  'case.cta.games': 'Games',
   'case.cta.systems': 'Deep explainers',
+  'case.cta.simulate': 'Play with the simulation',
   'case.tour.modeGroup': 'Display mode',
   'case.tour.modeTour': 'Animated tour',
   'case.tour.modePage': 'Simple page',

@@ -463,11 +463,14 @@ function CaseStudyPage({
       </aside>
 
       <div className="case-footer-cta cta-row">
-        <Link className="btn primary" to="/simulate">
-          {t('case.cta.simulate')}
+        <Link className="btn primary" to="/games">
+          {t('case.cta.games')}
         </Link>
         <Link className="btn" to="/systems">
           {t('case.cta.systems')}
+        </Link>
+        <Link className="btn" to="/simulate">
+          {t('case.cta.simulate')}
         </Link>
       </div>
     </div>
