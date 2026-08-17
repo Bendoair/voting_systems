@@ -1,18 +1,20 @@
 import { Link } from 'react-router-dom'
 import { SalamanderPixel } from '../components/SalamanderPixel'
+import { useCompactLayout } from '../hooks/useCompactLayout'
 import { useI18n } from '../i18n'
 
 export function Exercises() {
   const { t } = useI18n()
+  const compact = useCompactLayout()
 
   return (
-    <div className="page games-page exercises-page">
+    <div className={`page games-page exercises-page ${compact ? 'is-compact-page' : ''}`}>
       <header className="page-head">
         <h1>{t('ex.title')}</h1>
-        <p>{t('ex.intro')}</p>
+        {!compact && <p>{t('ex.intro')}</p>}
       </header>
 
-      <div className="ex-grid">
+      <div className={`ex-grid ${compact ? 'is-compact-grid' : ''}`}>
         <Link to="/games/gerrymander" className="ex-card ex-card-gerry">
           <div className="ex-card-visual" aria-hidden>
             <SalamanderPixel className="ex-card-salamander" />

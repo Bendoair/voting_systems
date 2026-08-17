@@ -8,7 +8,7 @@ The site is not a prediction tool. It teaches mechanisms: same people and prefer
 
 | Area | Route | Role |
 |------|--------|------|
-| Home | `/` | Brand + orientation into the rest of the site |
+| Home | `/` | Brand + orientation into the rest of the site. Compact (≤720px): one-viewport card (brand, lead, Tour CTA, Case/Games); guide bullets in a “Where to start?” dialog. |
 | Tour | `/tour` | Guided mental model (preferences → parties → tactics → “rules matter”) |
 | Systems | `/systems`, `/systems/:id` | Catalog + deep explainers for common systems |
 | Case study | `/case-study` | Frozen scenario: identical inputs, compared across systems |
@@ -46,7 +46,8 @@ src/
 
 - **i18n** — `hu` default; keys shared across features (`tour.*`, `sys.*`, `case.*`, `sim.*`, `ex.*`).
 - **Theme** — light/dark via `ThemeProvider`; CSS variables in `app.css`.
-- **Maps** — Hungary GeoJSON + `d3-geo` for simulation/case; gerrymander uses a generated grid, not real counties.
+- **Maps** — Hungary GeoJSON + `d3-geo` for simulation/case; gerrymander uses a generated grid, not real counties. Compact mode caches GeoJSON loaders and caps map height.
+- **Compact layout (≤720px)** — `useCompactLayout()` + `html.is-compact`; bottom nav chrome; pages compose tabs/sheets (C) with short-scroll (B) only where feature docs say so. No forked mobile routes.
 - **Docs** — this folder; each feature has its own doc focused on *intent and structure*.
 
 ## Feature docs

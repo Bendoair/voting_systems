@@ -49,7 +49,7 @@ UI chrome: back link, title, `aside.info-panel.gerry-brief` with rules paragraph
 - Win: all land cells assigned **and** player holds a majority of districts (soft size balance is advisory).
 - Assignment via closed-path lasso; active district overwrites.
 - Difficulty sets **player popular-vote share** only (Easy → Insane bands in `DIFFICULTY_BANDS`); changing the slider must **not** regenerate until “New map”.
-- Map generation is abstract (simplex noise), not real Hungarian counties.
+- Map generation is abstract (simplex noise), not real Hungarian counties. Playfield is **64×48** (4:3).
 
 ### System pick (Rendszertipp)
 
@@ -79,3 +79,19 @@ UI chrome: back link, title, `aside.info-panel.gerry-brief` with rules paragraph
 - **Syspick does** reuse `runElection` so outcomes stay consistent with simulation and the case study.
 - New games: add `src/exercises/<name>/`, a hub card, routes under `/games/...`, and a feature subsection here.
 - Keep copy in `ex.*` / `ex.<game>.*` for both locales.
+
+## Mobile composition (≤720px)
+
+**Hub C:** Full-viewport carousel or two stacked cards that fit without scroll (shrink visual band). Both games remain.
+
+**Hub B:** Tiny scroll if cards are tall.
+
+**Gerrymander C:** Board fills most of the viewport; bottom sheet for district palette + status (peek: active district + seats; expand: undo, difficulty, actions), anchored above the site bottom nav. View toggle on board chrome. Rules stay dialog.
+
+**Gerrymander B:** Board then HUD below (current ≤900 stack) — acceptable only if sheet feels wrong.
+
+**SysPick deal C:** Tabs **Lineup | Pick** — Lineup stacks You above rivals; Pick = system chips + confirm.
+
+**SysPick reveal C:** Tabs **Map | Seats** + system chips; win/lose banner sticky top.
+
+**SysPick B:** Short scroll deal → pick → reveal as desktop, tightened.

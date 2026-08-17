@@ -19,6 +19,8 @@ import {
   type SysPickScenario,
 } from '../exercises/syspick/types'
 import { useI18n } from '../i18n'
+import { useCompactLayout } from '../hooks/useCompactLayout'
+import { PanelTabs } from '../components/PanelTabs'
 import { nationalDietLean } from '../utils/mapColor'
 
 function DietMark({ lean }: { lean: number }) {
@@ -79,6 +81,7 @@ function SystemChip({
 
 export function SysPick() {
   const { t, locale } = useI18n()
+  const compact = useCompactLayout()
   const [scenario, setScenario] = useState<SysPickScenario>(() =>
     generateSysPickScenario(locale),
   )
@@ -86,6 +89,8 @@ export function SysPick() {
   const [pick, setPick] = useState<SystemId | null>(null)
   const [mapTab, setMapTab] = useState<SystemId>('closed-list')
   const [rulesOpen, setRulesOpen] = useState(false)
+  const [dealTab, setDealTab] = useState<'deal' | 'pick'>('deal')
+  const [revealPane, setRevealPane] = useState<'map' | 'seats'>('map')
   const rulesDialogRef = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
@@ -125,7 +130,7 @@ export function SysPick() {
   }
 
   return (
-    <div className="page syspick-page">
+    <div className={`page syspick-page ${compact ? 'is-compact-page' : ''}`}>
       <ConfettiBurst active={phase === 'reveal' && won} />
 
       <header className="page-head">
@@ -133,7 +138,43 @@ export function SysPick() {
           <Link to="/games">{t('ex.back')}</Link>
         </p>
         <h1>{t('ex.syspick.title')}</h1>
-        <div className="syspick-intro">
+        {compact && (
+          <button
+            type="button"
+            className="gerry-rules-btn"
+            onClick={() => setRulesOpen(true)}
+            aria-haspopup="dialog"
+            aria-expanded={rulesOpen}
+          >
+            <span className="gerry-rules-info" aria-hidden>
+              i
+            </span>
+            {t('ex.syspick.rulesLink')}
+          </button>
+        )}
+        {compact && phase === 'pick' && (
+          <PanelTabs
+            ariaLabel={t('compact.syspick.tabs')}
+            value={dealTab}
+            onChange={setDealTab}
+            tabs={[
+              { id: 'deal', label: t('compact.syspick.deal') },
+              { id: 'pick', label: t('compact.syspick.pick') },
+            ]}
+          />
+        )}
+        {compact && phase === 'reveal' && (
+          <PanelTabs
+            ariaLabel={t('compact.syspick.revealTabs')}
+            value={revealPane}
+            onChange={setRevealPane}
+            tabs={[
+              { id: 'map', label: t('compact.syspick.map') },
+              { id: 'seats', label: t('compact.syspick.seats') },
+            ]}
+          />
+        )}
+        <div className={`syspick-intro ${compact ? 'is-compact-hidden' : ''}`}>
           <aside className="info-panel gerry-brief syspick-brief" role="note">
             <p>{t('ex.syspick.rulesL1')}</p>
             <p>{t('ex.syspick.rulesL2')}</p>
@@ -194,7 +235,10 @@ export function SysPick() {
         </div>
       </dialog>
 
-      <section className="syspick-deal" aria-label={t('ex.syspick.lineup')}>
+      <section
+        className={`syspick-deal ${compact && phase === 'pick' ? `deal-tab-${dealTab}` : ''}`}
+        aria-label={t('ex.syspick.lineup')}
+      >
         <div className="syspick-you">
           <p className="syspick-you-label">{t('ex.syspick.youAre')}</p>
           {player && (
@@ -271,7 +315,10 @@ export function SysPick() {
         </div>
       </section>
 
-      <section className="syspick-systems" aria-label={t('ex.syspick.choose')}>
+      <section
+        className={`syspick-systems ${compact && phase === 'pick' && dealTab !== 'pick' ? 'is-compact-hidden' : ''}`}
+        aria-label={t('ex.syspick.choose')}
+      >
         <div className="syspick-systems-head">
           <div>
             <h2 className="sim-section-title">
@@ -382,7 +429,9 @@ export function SysPick() {
               })}
             </div>
 
-            <div className="syspick-results-layout">
+            <div
+              className={`syspick-results-layout ${compact ? `reveal-${revealPane}` : ''}`}
+            >
               <div className="syspick-results-map">
                 <HungaryMap
                   regions={scenario.regions}

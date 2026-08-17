@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Compass } from '../components/Compass'
+import { SegmentDots } from '../components/SegmentDots'
 import {
   TOUR_PARTIES,
   TOUR_VOTERS,
@@ -9,6 +10,8 @@ import {
   HUGE_DIMS,
 } from '../data/tourScenario'
 import { useI18n } from '../i18n'
+import { useCompactLayout } from '../hooks/useCompactLayout'
+import { useOwnBottomNav } from '../hooks/useCompactChrome'
 
 const STEPS = 7
 const STEP_MS = 200
@@ -19,6 +22,21 @@ const STEP_MS = 200
  */
 const DIM_STAGE_MS = [0, 5000, 2600, 2600, 1400, 1000, 720, 520, 380, 280, 210, 160, 120, 900]
 const DIM_EXPLODE = DIM_STAGE_MS.length - 1
+
+/** Caption beats that change text (not every axis tick). */
+const REEL_CAPTIONS = [
+  { stage: 0, key: 'cap2' },
+  { stage: 1, key: 'cap3' },
+  { stage: 2, key: 'cap4' },
+  { stage: 3, key: 'capMore' },
+  { stage: DIM_EXPLODE, key: 'capAll' },
+] as const
+
+function reelCaptionIndex(stage: number): number {
+  if (stage >= DIM_EXPLODE) return 4
+  if (stage >= 3) return 3
+  return stage
+}
 
 const EXPLORE_LINKS = [
   { to: '/case-study', labelKey: 'tour.explore.case', blurbKey: 'tour.explore.caseBlurb' },
@@ -32,8 +50,10 @@ function DimensionReel() {
   const { t } = useI18n()
   const [stage, setStage] = useState(0)
   const [runId, setRunId] = useState(0)
+  const [paused, setPaused] = useState(false)
 
   useEffect(() => {
+    if (paused) return
     setStage(0)
     let next = 1
     let timer = 0
@@ -44,7 +64,7 @@ function DimensionReel() {
     }
     timer = window.setTimeout(tick, runId === 0 ? DIM_STAGE_MS[1]! : 0)
     return () => window.clearTimeout(timer)
-  }, [runId])
+  }, [runId, paused])
 
   const axisLabels = useMemo(
     () => [
@@ -54,25 +74,26 @@ function DimensionReel() {
     [t],
   )
 
+  const captionIdx = reelCaptionIndex(stage)
+  const captionKey = REEL_CAPTIONS[captionIdx]!.key
   const exploded = stage >= DIM_EXPLODE
-  const captionKey = exploded
-    ? 'capAll'
-    : stage === 0
-      ? 'cap2'
-      : stage === 1
-        ? 'cap3'
-        : stage === 2
-          ? 'cap4'
-          : 'capMore'
+
+  function selectCaption(i: number) {
+    const beat = REEL_CAPTIONS[i]
+    if (!beat) return
+    setPaused(true)
+    setStage(beat.stage)
+  }
+
+  function replay() {
+    setPaused(false)
+    setRunId((r) => r + 1)
+  }
 
   return (
     <>
       <div className="compass-controls">
-        <button
-          type="button"
-          className="btn ghost"
-          onClick={() => setRunId((r) => r + 1)}
-        >
+        <button type="button" className="btn ghost" onClick={replay}>
           {t('tour.s2.replay')}
         </button>
       </div>
@@ -84,6 +105,14 @@ function DimensionReel() {
           exploded ? t('tour.s2.dims').replace('{n}', HUGE_DIMS) : undefined
         }
         caption={t(`tour.s2.${captionKey}`)}
+        captionAccessory={
+          <SegmentDots
+            count={REEL_CAPTIONS.length}
+            index={captionIdx}
+            onSelect={selectCaption}
+            label={t('segment.dots')}
+          />
+        }
       />
     </>
   )
@@ -91,6 +120,8 @@ function DimensionReel() {
 
 export function Tour() {
   const { t } = useI18n()
+  const compact = useCompactLayout()
+  useOwnBottomNav(true)
   const [step, setStep] = useState(1)
   const [exiting, setExiting] = useState(false)
   const [you, setYou] = useState<{ x: number; y: number } | null>(null)
@@ -117,7 +148,7 @@ export function Tour() {
   const vegParty = TOUR_PARTIES.find((p) => p.id === EMMA_TACTICAL)!
 
   return (
-    <div className="page tour-page">
+    <div className={`page tour-page ${compact ? 'is-compact-page owns-page-nav' : ''}`}>
       <header className="page-head">
         <h1>{t('tour.title')}</h1>
         <p className="step-meta">
