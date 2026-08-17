@@ -18,7 +18,11 @@ import {
   type CaseScenarioId,
 } from '../data/caseStudy'
 import type { Party } from '../engines/types'
+import { useCompactLayout } from '../hooks/useCompactLayout'
+import { useOwnBottomNav } from '../hooks/useCompactChrome'
 import { useI18n } from '../i18n'
+import { PanelTabs } from '../components/PanelTabs'
+import { SegmentDots } from '../components/SegmentDots'
 
 const TOUR_SEEN_KEY = 'vs-case-tour-seen'
 const TOUR_STEPS = 5
@@ -55,6 +59,7 @@ function CaseBlock({
   hideBody = false,
   tourFocus = null,
   tourFocusNonce = 0,
+  compactPane = 'full',
 }: {
   scenarioId: CaseScenarioId
   titleKey: string
@@ -67,6 +72,8 @@ function CaseBlock({
   tourFocus?: 'pref' | 'seats' | 'map' | null
   /** Bumps to retrigger the focus animation on the same target */
   tourFocusNonce?: number
+  /** Compact: show map only, summary only, or both */
+  compactPane?: 'full' | 'map' | 'summary'
 }) {
   const { t, locale } = useI18n()
   const { parties, regions, result } = useMemo(
@@ -93,7 +100,8 @@ function CaseBlock({
       .replace('{plantSeatPct}', camps.plantSeatPct.toFixed(0))
 
   return (
-    <section className="case-block">
+    <section className={`case-block ${compactPane !== 'full' ? `pane-${compactPane}` : ''}`}>
+      {compactPane !== 'summary' && (
       <div
         key={tourFocus === 'map' ? `map-${tourFocusNonce}` : 'map'}
         className={`case-map ${tourFocus === 'map' ? 'is-tour-focus' : ''}`}
@@ -111,6 +119,8 @@ function CaseBlock({
           hideMapNote
         />
       </div>
+      )}
+      {compactPane !== 'map' && (
       <div className="case-summary">
         <h2>{t(titleKey)}</h2>
         {!hideBody && bodyKey && <p>{t(bodyKey)}</p>}
@@ -130,6 +140,7 @@ function CaseBlock({
           <SeatChart parties={parties} seats={result.seats} />
         </div>
       </div>
+      )}
     </section>
   )
 }
@@ -232,6 +243,8 @@ function CaseStudyTour({
   onPage: () => void
 }) {
   const { t } = useI18n()
+  const compact = useCompactLayout()
+  useOwnBottomNav(true)
   const [step, setStep] = useState(1)
   const [exiting, setExiting] = useState(false)
   const [s1Stage, setS1Stage] = useState(0)
@@ -312,8 +325,24 @@ function CaseStudyTour({
         ? system.tourFocusB
         : (system.tourFocus ?? null)
 
+  const captionBeatCount = step === 1 ? 3 : system?.captionKeyB ? 2 : 0
+  const captionBeatIndex = step === 1 ? s1Stage : focusBeat
+
+  function selectCaptionBeat(i: number) {
+    if (step === 1) {
+      for (const id of s1Timers.current) window.clearTimeout(id)
+      s1Timers.current = []
+      setS1Stage(i)
+      return
+    }
+    if (focusTimer.current) window.clearTimeout(focusTimer.current)
+    setFocusBeat(i)
+  }
+
   return (
-    <div className="page case-page case-page-tour">
+    <div
+      className={`page case-page case-page-tour ${compact ? 'is-compact-page owns-page-nav' : ''}`}
+    >
       <header className="page-head case-tour-head">
         <div className="case-tour-head-main">
           <h1>{t('case.title')}</h1>
@@ -331,6 +360,12 @@ function CaseStudyTour({
         >
           {caption}
         </p>
+        <SegmentDots
+          count={captionBeatCount}
+          index={captionBeatIndex}
+          onSelect={selectCaptionBeat}
+          label={t('segment.dots')}
+        />
       </div>
 
       <div className={`case-tour-body ${exiting ? 'is-exiting' : 'is-entering'}`}>
@@ -394,6 +429,8 @@ function CaseStudyTour({
   )
 }
 
+type CasePageTab = 'diet' | 'list' | 'fptp' | 'ranked' | 'two-round' | 'geo' | 'explore'
+
 function CaseStudyPage({
   parties,
   regions,
@@ -404,6 +441,117 @@ function CaseStudyPage({
   onTour: () => void
 }) {
   const { t } = useI18n()
+  const compact = useCompactLayout()
+  const [tab, setTab] = useState<CasePageTab>('diet')
+  const [pane, setPane] = useState<'map' | 'summary'>('summary')
+
+  if (compact) {
+    return (
+      <div className="page case-page is-compact-page">
+        <header className="page-head case-page-head">
+          <div className="case-tour-head-main">
+            <h1>{t('case.title')}</h1>
+          </div>
+          <ModeToggle mode="page" onTour={onTour} onPage={() => undefined} />
+        </header>
+        <PanelTabs
+          ariaLabel={t('compact.case.tabs')}
+          value={tab}
+          onChange={setTab}
+          tabs={[
+            { id: 'diet', label: t('compact.case.diet') },
+            { id: 'list', label: t('compact.case.list') },
+            { id: 'fptp', label: t('compact.case.fptp') },
+            { id: 'ranked', label: t('compact.case.ranked') },
+            { id: 'two-round', label: t('compact.case.twoRound') },
+            { id: 'geo', label: t('compact.case.geo') },
+            { id: 'explore', label: t('compact.case.explore') },
+          ]}
+        />
+        <div className="compact-panel">
+          {tab === 'diet' && <CaseDietLegend parties={parties} />}
+          {(tab === 'list' ||
+            tab === 'fptp' ||
+            tab === 'ranked' ||
+            tab === 'two-round') && (
+            <>
+              <PanelTabs
+                ariaLabel={t('compact.case.paneTabs')}
+                value={pane}
+                onChange={setPane}
+                tabs={[
+                  { id: 'summary', label: t('compact.case.summary') },
+                  { id: 'map', label: t('compact.case.map') },
+                ]}
+              />
+              {tab === 'list' && (
+                <CaseBlock
+                  scenarioId="list"
+                  titleKey="case.list.title"
+                  bodyKey="case.list.body"
+                  districtView={false}
+                  compactPane={pane}
+                />
+              )}
+              {tab === 'fptp' && (
+                <CaseBlock
+                  scenarioId="fptp"
+                  titleKey="case.fptp.title"
+                  bodyKey="case.fptp.body"
+                  highlightKey="case.fptp.highlight"
+                  dietHighlightKey="case.fptp.diet"
+                  districtView
+                  compactPane={pane}
+                />
+              )}
+              {tab === 'ranked' && (
+                <CaseBlock
+                  scenarioId="ranked"
+                  titleKey="case.ranked.title"
+                  bodyKey="case.ranked.body"
+                  dietHighlightKey="case.ranked.diet"
+                  districtView
+                  compactPane={pane}
+                />
+              )}
+              {tab === 'two-round' && (
+                <CaseBlock
+                  scenarioId="two-round"
+                  titleKey="case.twoRound.title"
+                  bodyKey="case.twoRound.body"
+                  dietHighlightKey="case.twoRound.diet"
+                  districtView
+                  compactPane={pane}
+                />
+              )}
+            </>
+          )}
+          {tab === 'geo' && (
+            <aside className="case-geo-aside">
+              <div className="case-geo-copy">
+                <h2>{t('case.geo.title')}</h2>
+                <p>{t('case.geo.body')}</p>
+              </div>
+              <CaseDietGeoMap regions={regions} />
+            </aside>
+          )}
+          {tab === 'explore' && (
+            <div className="case-footer-cta cta-row">
+              <Link className="btn primary" to="/games">
+                {t('case.cta.games')}
+              </Link>
+              <Link className="btn" to="/systems">
+                {t('case.cta.systems')}
+              </Link>
+              <Link className="btn" to="/simulate">
+                {t('case.cta.simulate')}
+              </Link>
+            </div>
+          )}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="page case-page">

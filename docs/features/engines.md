@@ -28,10 +28,11 @@ No React, no i18n, no DOM.
 - **In:** parties, regions (with diet baselines), districts, seat budgets, optional district method, polarization.
 - **Out:** seats per party, vote/seat shares, and any system-specific breakdown the UI already consumes.
 
-Consumers: `Simulate`, `caseStudy`, `syspick` (and anything else that must stay consistent with those).
+Consumers: `Simulate`, `caseStudy`, `syspick` (and anything else that must stay consistent with those). Polarization is an `ElectionInput` field; UI copy for it should stay aligned across simulation and system-pick.
 
 ## Boundaries
 
 - Prefer extending `shared` / `districtRules` over copy-pasting seat math.
 - Behavioral changes are product decisions: update case-study narrative and system explainer copy when outcomes shift.
 - Unit tests are welcome here if added later; keep them next to engines, not in pages.
+- Engines are viewport-agnostic; compact UI only changes how results are shown, never how seats are computed.

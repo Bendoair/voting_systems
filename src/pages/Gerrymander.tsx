@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { BottomSheet } from '../components/BottomSheet'
 import { ConfettiBurst } from '../components/ConfettiBurst'
 import { GerryBoard, type GerryViewMode } from '../exercises/gerrymander/Board'
 import { generateGerryMap } from '../exercises/gerrymander/generate'
@@ -23,6 +24,7 @@ import {
   type GerryMap,
 } from '../exercises/gerrymander/types'
 import { useI18n } from '../i18n'
+import { useCompactLayout } from '../hooks/useCompactLayout'
 
 const HISTORY_LIMIT = 5
 
@@ -33,6 +35,8 @@ function newRound(difficulty: GerryDifficulty): { map: GerryMap; assignment: Dis
 
 export function Gerrymander() {
   const { t } = useI18n()
+  const compact = useCompactLayout()
+  const [sheetOpen, setSheetOpen] = useState(false)
   const [difficulty, setDifficulty] = useState<GerryDifficulty>('medium')
   const [{ map, assignment }, setRound] = useState(() => newRound('medium'))
   const [past, setPast] = useState<DistrictId[][]>([])
@@ -148,13 +152,14 @@ export function Gerrymander() {
   const shareLabel = `${Math.round(band.min * 100)}–${Math.round(band.max * 100)}%`
 
   return (
-    <div className="page gerry-page">
+    <div className={`page gerry-page ${compact ? 'is-compact-page' : ''}`}>
       <ConfettiBurst active={score.won} />
       <header className="page-head">
         <p className="gerry-back">
           <Link to="/games">{t('ex.back')}</Link>
         </p>
         <h1>{t('ex.gerry.title')}</h1>
+        {!compact && (
         <aside className="info-panel gerry-brief" role="note">
           <p>{t('ex.gerry.rules')}</p>
           <button
@@ -170,6 +175,16 @@ export function Gerrymander() {
             {t('ex.gerry.rulesLink')}
           </button>
         </aside>
+        )}
+        {compact && (
+          <button
+            type="button"
+            className="gerry-rules-btn"
+            onClick={() => setRulesOpen(true)}
+          >
+            {t('ex.gerry.rulesLink')}
+          </button>
+        )}
       </header>
 
       <dialog
@@ -265,7 +280,7 @@ export function Gerrymander() {
           />
         </div>
 
-        <aside className="gerry-hud">
+        <aside className={`gerry-hud ${compact ? 'is-desktop-only' : ''}`}>
           <section className="sim-section">
             <div className="gerry-districts-head">
               <h3 className="sim-section-title">{t('ex.gerry.districts')}</h3>
@@ -440,6 +455,163 @@ export function Gerrymander() {
           </section>
         </aside>
       </div>
+      {compact && (
+        <BottomSheet
+          open={sheetOpen}
+          onOpenChange={setSheetOpen}
+          title={t('ex.gerry.districts')}
+          bottomOffset="var(--compact-bottom-nav-h)"
+          peek={
+            <span>
+              {t('ex.gerry.district')} {activeDistrict} · {score.playerSeats}/{DISTRICT_COUNT}{' '}
+              {t('ex.gerry.seatsWon')}
+            </span>
+          }
+        >
+          <div className="gerry-hud gerry-hud-sheet">
+            <section className="sim-section">
+              <div className="gerry-history" style={{ marginBottom: '0.5rem' }}>
+                <button type="button" className="btn" onClick={undo} disabled={past.length === 0}>
+                  {t('ex.gerry.undo')}
+                </button>
+                <button type="button" className="btn" onClick={redo} disabled={future.length === 0}>
+                  {t('ex.gerry.redo')}
+                </button>
+              </div>
+              <div className="gerry-palette">
+                {Array.from({ length: DISTRICT_COUNT }, (_, i) => {
+                  const id = i + 1
+                  const tally = score.tallies[i]!
+                  const chipClass =
+                    tally.winner === 'player'
+                      ? 'is-you'
+                      : tally.winner === 'opponent'
+                        ? 'is-them'
+                        : tally.winner === 'tie'
+                          ? 'is-tie'
+                          : 'is-empty'
+                  const color = DISTRICT_COLORS[i]!
+                  return (
+                    <div key={id} className="gerry-district-row">
+                      <button
+                        type="button"
+                        className={`gerry-district-btn ${activeDistrict === id ? 'is-active' : ''} ${
+                          tally.winner === 'player' ? 'is-yours' : ''
+                        }`}
+                        style={{
+                          borderColor: color,
+                          ['--district' as string]: color,
+                        }}
+                        onClick={() => {
+                          setActiveDistrict(id)
+                          setSheetOpen(false)
+                        }}
+                      >
+                        <span
+                          className="gerry-district-dot"
+                          style={{ background: color }}
+                        />
+                        <span className="gerry-district-meta">
+                          <span className="gerry-district-name">
+                            {t('ex.gerry.district')} {id}
+                            <small>
+                              {tally.total}/{target}
+                              <span
+                                className={`gerry-size-warn ${
+                                  !tally.sizeOk && tally.total > 0 ? 'is-hot' : ''
+                                }`}
+                              >
+                                {' · '}
+                                {t('ex.gerry.sizeWarn')}
+                              </span>
+                            </small>
+                          </span>
+                          <span
+                            className={`gerry-win-chip ${chipClass} ${tally.total > 0 ? 'is-hot' : ''}`}
+                            aria-hidden={tally.total === 0}
+                          >
+                            <span className="gerry-win-chip-label">
+                              {tally.winner === 'player'
+                                ? t('ex.gerry.winSeat')
+                                : tally.winner === 'opponent'
+                                  ? t('ex.gerry.loseSeat')
+                                  : tally.winner === 'tie'
+                                    ? t('ex.gerry.tie')
+                                    : t('ex.gerry.winSeat')}
+                            </span>
+                            <strong>
+                              {tally.player}–{tally.opponent}
+                            </strong>
+                          </span>
+                        </span>
+                      </button>
+                      <button
+                        type="button"
+                        className="btn danger gerry-district-clear"
+                        disabled={tally.total === 0}
+                        onClick={() => clearDistrict(id)}
+                        title={t('ex.gerry.clearDistrict')}
+                        aria-label={t('ex.gerry.clearDistrict')}
+                      >
+                        {t('ex.gerry.clear')}
+                      </button>
+                    </div>
+                  )
+                })}
+              </div>
+            </section>
+            <section className="sim-section">
+              <p>
+                <strong>
+                  {score.playerSeats}/{DISTRICT_COUNT}
+                </strong>{' '}
+                {t('ex.gerry.seatsWon')}
+              </p>
+              {score.won ? <p className="gerry-win">{t('ex.gerry.victory')}</p> : null}
+              <div className="cta-row gerry-map-actions">
+                <button type="button" className="btn" onClick={fixBorders}>
+                  {t('ex.gerry.fillBorders')}
+                </button>
+                <button type="button" className="btn primary" onClick={newMap}>
+                  {t('ex.gerry.newMap')}
+                </button>
+              </div>
+              <div className="gerry-difficulty">
+                <label className="gerry-difficulty-label" htmlFor="gerry-difficulty-compact">
+                  {t('ex.gerry.difficulty')}
+                  <span className="gerry-difficulty-value">
+                    {t(`ex.gerry.diff.${difficulty}`)} · {shareLabel}
+                  </span>
+                </label>
+                <input
+                  id="gerry-difficulty-compact"
+                  type="range"
+                  min={0}
+                  max={DIFFICULTY_ORDER.length - 1}
+                  step={1}
+                  value={difficultyIdx}
+                  onChange={(e) => {
+                    const next = DIFFICULTY_ORDER[Number(e.target.value)]
+                    if (next) onDifficultyChange(next)
+                  }}
+                  list="gerry-difficulty-marks-compact"
+                  aria-valuetext={t(`ex.gerry.diff.${difficulty}`)}
+                />
+                <datalist id="gerry-difficulty-marks-compact">
+                  {DIFFICULTY_ORDER.map((_, i) => (
+                    <option key={i} value={i} />
+                  ))}
+                </datalist>
+                <div className="gerry-difficulty-ticks" aria-hidden>
+                  {DIFFICULTY_ORDER.map((d) => (
+                    <span key={d}>{t(`ex.gerry.diff.${d}`)}</span>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </div>
+        </BottomSheet>
+      )}
     </div>
   )
 }

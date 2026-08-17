@@ -35,7 +35,7 @@ Step count is intentional: step 7 is the finale. Do not reintroduce a separate �
 
 The point is made without asking for a click. `DimensionReel` (in `Tour.tsx`) drives `Compass` through fixed stages: two labelled axes → a third (cheap ↔ fine dining) → a fourth drawn dashed, because honestly it needs 4D → further unlabelled axes appearing faster and faster → the dimension explosion with the absurd axis count. A caption names each stage.
 
-Playback starts ~5s after the step opens, so the reader can take in the two axes first; **Replay** restarts it immediately. Re-entering the step remounts the reel and restarts the wait.
+Playback starts ~5s after the step opens, so the reader can take in the two axes first; **Replay** restarts it immediately. Re-entering the step remounts the reel and restarts the wait. **Segment dots** under the caption jump to a prior caption beat (pauses autoplay until Replay).
 
 ### i18n
 
@@ -46,3 +46,9 @@ Keys under `tour.*` (`tour.sN.title` / `body`, explore blurbs, compass labels, p
 - Tour **does not** run the election engines. It builds intuition only.
 - Party/voter positions are a pedagogical cast, not the simulation defaults.
 - Keep new steps rare; prefer enriching existing steps over lengthening the path.
+
+## Mobile composition (≤720px)
+
+**C (primary):** Keep the step model. Slim site chrome; tour **owns** the bottom bar (`useOwnBottomNav`) so only Prev/Next show. Caption/title above; Compass fills remaining `dvh`. Step 7 explore links stack vertically (full-width buttons + blurbs). Dimension-reel captions use **SegmentDots** (pause until Replay).
+
+**B:** Short page scroll only if Compass + body cannot fit (rare).

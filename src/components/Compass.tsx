@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type MouseEvent as ReactMouseEvent, type ReactNode } from 'react'
 import { localPoint } from '@visx/event'
 import { Group } from '@visx/group'
 import { scaleLinear } from '@visx/scale'
@@ -60,6 +60,7 @@ function CompassChart({
   extraAxes,
   extraAxisLabels,
   caption,
+  captionAccessory,
 }: {
   width: number
   height: number
@@ -76,6 +77,7 @@ function CompassChart({
   extraAxes: number
   extraAxisLabels?: ExtraAxisLabel[]
   caption?: string
+  captionAccessory?: ReactNode
 }) {
   const { t } = useI18n()
   const [fade, setFade] = useState<'in' | 'out' | 'idle'>('idle')
@@ -199,12 +201,16 @@ function CompassChart({
 
   return (
     <div className={`compass-wrap ${displayExplode ? 'explode' : ''} ${fadeClass}`}>
-      <div className="compass-hint-slot" aria-hidden={!hintText}>
+      <div
+        className={`compass-hint-slot ${captionAccessory ? 'has-accessory' : ''}`}
+        aria-hidden={!hintText}
+      >
         {hintText ? (
           <p className="dim-hint muted">{hintText}</p>
         ) : (
           <p className="dim-hint muted">&nbsp;</p>
         )}
+        {captionAccessory}
       </div>
 
       <div className="compass-badge-slot">
@@ -537,6 +543,7 @@ export function Compass({
   extraAxes = 0,
   extraAxisLabels,
   caption,
+  captionAccessory,
 }: {
   parties?: CompassPoint[]
   voters?: CompassPoint[]
@@ -553,6 +560,7 @@ export function Compass({
   extraAxes?: number
   extraAxisLabels?: ExtraAxisLabel[]
   caption?: string
+  captionAccessory?: ReactNode
 }) {
   const dots: HoverDot[] = useMemo(() => {
     const named: HoverDot[] = voters.map((v) => ({
@@ -613,6 +621,7 @@ export function Compass({
         extraAxes={extraAxes}
         extraAxisLabels={extraAxisLabels}
         caption={caption}
+        captionAccessory={captionAccessory}
       />
     </div>
   )

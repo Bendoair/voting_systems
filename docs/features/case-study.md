@@ -35,7 +35,7 @@ A visible top-right toggle switches **Animated tour** ↔ **Simple page**. Leavi
 | 4 | Ranked (IRV) | Staged captions; pulse preference-vs-seats bars (majority shows, some disproportionality remains) |
 | 5 | Two-round | Staged captions; pulse seats-by-party on enter |
 
-Narration lives in one caption slot above the panel (not duplicated in the system block body). Navigation is manual only.
+Narration lives in one caption slot above the panel (not duplicated in the system block body). Navigation is manual only. When a step has staged captions (step 1 beats; steps 4–5 A/B), **segment dots** under the caption jump between those texts and pause the auto-advance timer.
 
 ### Data contract
 
@@ -53,3 +53,13 @@ Keys under `case.*` (page copy) and `case.tour.*` (tour chrome + step captions).
 - Visuals should emphasize **comparison across systems**, not free exploration.
 - If you change engine semantics, re-check case-study narrative copy; the story assumes specific qualitative outcomes.
 - Tour does not include the bridge aside, geo map, or footer CTAs — those stay page-mode only.
+
+## Mobile composition (≤720px)
+
+**Page mode C:** Horizontal system pager (List → FPTP → IRV → Two-round) plus optional Diet / Geo / Explore tabs — one system `CaseBlock` (or one secondary panel) at a time. Within a system: sub-tabs Map | Pref/Seats. Mode toggle stays top-right.
+
+**Page mode B:** Vertical story with only one tall map expanded; others collapsed headers (some scroll).
+
+**Tour mode C:** Same as site Tour — owns bottom nav; caption one screen; viz fills rest; no map remount flash. Staged captions use **SegmentDots**.
+
+**Tour mode B:** N/A (already step-shaped).

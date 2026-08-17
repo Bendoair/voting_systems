@@ -205,6 +205,8 @@ p {
 
 .site-header {
   display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
@@ -227,6 +229,7 @@ p {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
 .brand-mark {
@@ -237,9 +240,17 @@ p {
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
 }
 
+.header-tools {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.55rem 0.85rem;
+  min-width: 0;
+}
+
 .nav {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
   gap: 0.35rem 0.85rem;
 }
@@ -250,6 +261,7 @@ p {
   font-weight: 600;
   font-size: 0.95rem;
   transition: color 0.15s ease;
+  white-space: nowrap;
 }
 
 .nav a.active {
@@ -266,12 +278,41 @@ p {
   padding: 0.25rem 0.55rem;
   cursor: pointer;
   border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 0;
+}
+
+.lang-btn.icon-btn {
+  width: 2.15rem;
+  height: 2.15rem;
+  padding: 0;
+}
+
+.lang-btn .theme-icon,
+.lang-btn .flag-icon {
+  display: block;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.lang-btn .flag-icon {
+  width: 1.25rem;
+  height: 0.9rem;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 18%, transparent);
 }
 
 .lang-btn:hover {
   background: var(--accent);
   color: var(--btn-on-accent);
   border-color: var(--accent);
+}
+
+.lang-btn:hover .flag-icon {
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--btn-on-accent) 35%, transparent);
 }
 
 .main {
@@ -1091,7 +1132,8 @@ a.btn.primary.soft:hover {
 }
 
 .hungary-map.is-district-view .hungary-svg {
-  min-height: min(58vh, 520px);
+  /* Keep the same box as county view so toggling does not jump when the column is narrow */
+  min-height: 0;
 }
 
 .map-head {
@@ -1113,17 +1155,20 @@ a.btn.primary.soft:hover {
 }
 
 .hungary-map.is-expanded .hungary-svg {
-  min-height: min(62vh, 560px);
+  min-height: 0;
 }
 
 .hungary-svg {
   width: 100%;
   height: auto;
+  aspect-ratio: 760 / 480;
   display: block;
   opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
 .hungary-svg.is-ready {
+  opacity: 1;
   animation: mapEnter 0.4s ease both;
 }
 
@@ -1148,6 +1193,7 @@ a.btn.primary.soft:hover {
 
 .map-note {
   margin-top: 0;
+  min-height: 2.8em;
 }
 
 .map-tooltip {
@@ -1386,11 +1432,19 @@ a.btn.primary.soft:hover {
 }
 
 .compass-hint-slot {
-  height: 1.25rem;
+  min-height: 1.25rem;
+  height: auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 0.35rem;
   flex-shrink: 0;
+  padding-bottom: 0.15rem;
+}
+
+.compass-hint-slot.has-accessory {
+  min-height: 2.6rem;
 }
 
 .compass-badge-slot {
@@ -1766,7 +1820,10 @@ a.btn.primary.soft:hover {
 .case-tour-caption {
   min-height: 3.4rem;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  gap: 0.45rem;
   background: var(--paper-2);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1780,6 +1837,40 @@ a.btn.primary.soft:hover {
   line-height: 1.45;
   max-width: 48rem;
   animation: caseCaptionIn 0.35s ease;
+}
+
+.segment-dots {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+}
+
+.segment-dot {
+  width: 0.58rem;
+  height: 0.58rem;
+  padding: 0;
+  border-radius: 999px;
+  border: 1.5px solid color-mix(in srgb, var(--ink-soft) 85%, var(--ink));
+  background: transparent;
+  cursor: pointer;
+  box-sizing: content-box;
+  box-shadow: 0 0 0 4px transparent;
+}
+
+.segment-dot:hover {
+  border-color: var(--accent);
+}
+
+.segment-dot:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.segment-dot.is-on {
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
 .case-tour-body {
@@ -1959,13 +2050,16 @@ a.btn.primary.soft:hover {
   width: 100%;
   max-width: 42rem;
   margin: 0 auto;
+  overflow: visible;
+  padding-bottom: 0.35rem;
 }
 
 .case-diet-plot {
   display: block;
   width: 100%;
   height: auto;
-  min-height: 360px;
+  aspect-ratio: 640 / 348;
+  overflow: visible;
 }
 
 .case-diet-half.is-meat {
@@ -2422,11 +2516,6 @@ a.btn.primary.soft:hover {
   .seat-legend .nums {
     grid-column: 2;
     text-align: left;
-  }
-
-  .site-header {
-    flex-direction: column;
-    align-items: flex-start;
   }
 
   .tour-body {
@@ -3714,7 +3803,7 @@ html[data-theme='dark'] .syspick-tab.is-pick.is-best .syspick-tab-crown-edge {
   .tour-body.is-exiting,
   .case-tour-body.is-exiting,
   .compass-frame:not(.is-ready),
-  .hungary-svg:not(.is-ready) {
+  .hungary-svg.is-ready {
     opacity: 1;
     transform: none;
   }
@@ -3722,4 +3811,445 @@ html[data-theme='dark'] .syspick-tab.is-pick.is-best .syspick-tab-crown-edge {
   .case-pref.is-hidden {
     max-height: none;
   }
+}
+
+/* —— Compact layout (≤720px, html.is-compact) —— */
+:root {
+  --compact-map-h: min(42dvh, 280px);
+  --compact-map-focus-h: min(50dvh, 360px);
+  --compact-bottom-nav-h: 4.35rem;
+}
+
+html.is-compact .app-shell.is-compact-shell {
+  padding-bottom: var(--compact-bottom-nav-h);
+}
+
+html.is-compact .site-header {
+  flex-direction: row;
+  align-items: center;
+  padding: 0.45rem 0.75rem;
+  gap: 0.5rem;
+}
+
+html.is-compact .brand-text {
+  font-size: 0.95rem;
+}
+
+html.is-compact .header-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-left: auto;
+}
+
+html.is-compact .main {
+  width: min(100% - 1rem, var(--max));
+  padding: 0.65rem 0 1rem;
+}
+
+html.is-compact .site-footer {
+  display: none;
+}
+
+.site-bottom-nav {
+  display: none;
+}
+
+html.is-compact .site-bottom-nav {
+  display: flex;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  height: var(--compact-bottom-nav-h);
+  background: var(--chrome-bg);
+  border-top: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+  justify-content: stretch;
+  align-items: stretch;
+  padding: 0.2rem 0.2rem;
+  padding-bottom: max(0.2rem, env(safe-area-inset-bottom, 0));
+}
+
+.site-bottom-slot {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  position: relative;
+}
+
+.site-bottom-sep {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--ink);
+  opacity: 0.22;
+  pointer-events: none;
+  user-select: none;
+}
+
+.site-bottom-link {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.18rem;
+  text-align: center;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--ink-soft);
+  text-decoration: none;
+  padding: 0.3rem 0.2rem;
+  min-width: 0;
+}
+
+.site-bottom-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.site-bottom-label {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.site-bottom-link.active {
+  color: var(--accent);
+}
+
+.panel-tabs {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.25rem;
+  overflow-x: auto;
+  padding: 0.15rem 0;
+  margin-bottom: 0.55rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+.panel-tab {
+  flex: 1 0 auto;
+  border: 1.5px solid var(--line-strong);
+  background: var(--paper-2);
+  color: var(--ink-soft);
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0.45rem 0.55rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.panel-tab.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--btn-on-accent);
+}
+
+.panel-tab.is-narrow {
+  flex: 0 0 auto;
+  padding-inline: 0.4rem;
+  font-size: 0.72rem;
+}
+
+.bottom-sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 28;
+  background: var(--chrome-bg);
+  border-top: 1px solid var(--line);
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -8px 28px rgba(28, 25, 20, 0.14);
+  max-height: 72dvh;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
+}
+
+.bottom-sheet.is-peek .bottom-sheet-panel {
+  display: none;
+}
+
+.bottom-sheet.is-open {
+  bottom: 0;
+}
+
+.bottom-sheet-peek {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 0.45rem 0.75rem 0.55rem;
+  cursor: pointer;
+}
+
+.bottom-sheet-handle {
+  width: 2.5rem;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--rule);
+}
+
+.bottom-sheet-peek-body {
+  width: 100%;
+  text-align: left;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.bottom-sheet-panel {
+  overflow: auto;
+  padding: 0 0.75rem 0.85rem;
+  max-height: 55dvh;
+}
+
+.bottom-sheet-title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+
+html.is-compact .hungary-map.is-district-view .hungary-svg,
+html.is-compact .hungary-map .hungary-svg {
+  min-height: var(--compact-map-h);
+}
+
+html.is-compact .simulate-page.is-compact-page .hungary-map .hungary-svg {
+  min-height: var(--compact-map-focus-h);
+}
+
+html.is-compact .gerry-page.is-compact-page .gerry-board-wrap {
+  min-height: 0;
+}
+
+html.is-compact .gerry-page.is-compact-page .gerry-canvas {
+  width: 100%;
+  height: auto;
+  max-height: min(52dvh, calc(100dvw * 3 / 4));
+}
+
+html.is-compact .case-diet-plot-wrap {
+  padding-bottom: 0.5rem;
+}
+
+html.is-compact .case-diet-plot {
+  min-height: 0;
+}
+
+html.is-compact .page.is-compact-page {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-height: calc(100dvh - 3.2rem - var(--compact-bottom-nav-h));
+}
+
+html.is-compact .page.is-compact-page.owns-page-nav {
+  min-height: calc(100dvh - 3.2rem);
+  padding-bottom: 4.2rem;
+}
+
+html.is-compact .compact-panel {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+html.is-compact .compact-live-chip {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.4rem 0.55rem;
+  margin-bottom: 0.35rem;
+  background: var(--chrome-bg);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 0.82rem;
+  font-weight: 700;
+}
+
+html.is-compact .home.is-compact-page .hero {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+html.is-compact .home.is-compact-page .hero-visual {
+  order: 0;
+  max-height: 28dvh;
+  overflow: hidden;
+}
+
+html.is-compact .home.is-compact-page .cta-row {
+  flex-direction: column;
+}
+
+.home-guide-dialog {
+  border: none;
+  padding: 0;
+  max-width: min(26rem, calc(100vw - 1.5rem));
+  background: transparent;
+}
+
+.home-guide-dialog::backdrop {
+  background: color-mix(in srgb, var(--ink) 45%, transparent);
+}
+
+.home-guide-panel {
+  margin: 0;
+  padding: 1rem 1.1rem 1.15rem;
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.home-guide-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.home-guide-panel-head h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+}
+
+.home-guide-panel .home-guide {
+  margin: 0;
+}
+
+html.is-compact .tour-page.is-compact-page .compass-frame {
+  width: min(100%, 70dvh);
+}
+
+html.is-compact .tour-page.is-compact-page .tour-explore {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+html.is-compact .tour-page.is-compact-page .tour-explore-item {
+  flex: none;
+  min-width: 0;
+  width: 100%;
+}
+
+html.is-compact .tour-page.is-compact-page .tour-explore-item .btn {
+  width: 100%;
+}
+
+html.is-compact .case-page-tour.is-compact-page .case-map .hungary-svg {
+  min-height: var(--compact-map-h);
+}
+
+html.is-compact .gerry-page.is-compact-page .gerry-layout {
+  display: block;
+}
+
+html.is-compact .gerry-page.is-compact-page .gerry-hud.is-desktop-only {
+  display: none;
+}
+
+html.is-compact .gerry-page.is-compact-page {
+  /* Clearance for the district sheet peek sitting above site bottom nav */
+  padding-bottom: 3.25rem;
+}
+
+html.is-compact .gerry-hud-sheet .gerry-map-actions {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+html.is-compact .gerry-hud-sheet .gerry-difficulty {
+  width: 100%;
+  max-width: none;
+  margin-top: 0.65rem;
+}
+
+html.is-compact .gerry-hud-sheet .gerry-district-btn {
+  border-width: 2.5px;
+  border-color: var(--district, var(--line));
+  box-shadow: inset 3px 0 0 var(--district);
+}
+
+html.is-compact .gerry-hud-sheet .gerry-district-btn.is-active {
+  background: color-mix(in srgb, var(--district) 38%, var(--control-bg));
+  box-shadow:
+    inset 4px 0 0 var(--district),
+    inset 0 0 0 1px color-mix(in srgb, var(--district) 55%, var(--accent));
+}
+
+html.is-compact .gerry-hud-sheet .gerry-district-btn.is-active.is-yours {
+  background: color-mix(in srgb, var(--district) 22%, color-mix(in srgb, var(--accent) 18%, var(--control-bg)));
+}
+
+html.is-compact .gerry-hud-sheet .gerry-district-dot {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-top: 0.2rem;
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, var(--district) 45%, transparent),
+    0 1px 2px color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+html.is-compact .ex-grid.is-compact-grid {
+  grid-template-columns: 1fr;
+  gap: 0.65rem;
+}
+
+html.is-compact .is-compact-hidden {
+  display: none !important;
+}
+
+html.is-compact .syspick-page.is-compact-page .syspick-deal.deal-tab-pick {
+  display: none;
+}
+
+html.is-compact .syspick-page.is-compact-page .syspick-results-layout.reveal-map .syspick-results-summary,
+html.is-compact .syspick-page.is-compact-page .syspick-results-layout.reveal-seats .syspick-results-map {
+  display: none;
+}
+
+html.is-compact .case-block.pane-map,
+html.is-compact .case-block.pane-summary {
+  display: block;
+}
+
+html.is-compact .case-block.pane-map .case-summary,
+html.is-compact .case-block.pane-summary .case-map {
+  display: none;
+}
+
+html.is-compact .case-block.pane-map,
+html.is-compact .case-block.pane-summary {
+  grid-template-columns: 1fr;
 }

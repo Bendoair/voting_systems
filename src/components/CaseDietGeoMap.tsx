@@ -3,6 +3,7 @@ import { geoMercator, geoPath, type GeoPermissibleObjects } from 'd3-geo'
 import type { Feature, FeatureCollection, Geometry } from 'geojson'
 import type { Region } from '../engines/types'
 import { MEGYE_TO_REGION } from '../data/counties'
+import { loadCountyGeo } from '../data/mapGeo'
 import { dietTone } from '../data/diet'
 import { colorForDiet } from '../utils/mapColor'
 import { useI18n } from '../i18n'
@@ -41,11 +42,7 @@ export function CaseDietGeoMap({
 
   useEffect(() => {
     let cancelled = false
-    fetch('/maps/hungary-counties.geojson')
-      .then((r) => {
-        if (!r.ok) throw new Error(String(r.status))
-        return r.json()
-      })
+    loadCountyGeo()
       .then((geo) => {
         if (!cancelled) setCountyGeo(geo)
       })

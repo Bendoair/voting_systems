@@ -10,8 +10,8 @@ import { useI18n } from '../i18n'
 import { CasePreferenceBar } from './CasePreferenceBar'
 
 const W = 640
-const H = 320
-const MARGIN = { top: 36, right: 28, bottom: 56, left: 52 }
+const H = 348
+const MARGIN = { top: 36, right: 28, bottom: 76, left: 52 }
 const X_PAD = 0.45
 const BAR_HALF = 0.16
 
@@ -245,7 +245,7 @@ export function CaseDietLegend({
                 fontWeight: 700,
                 textAnchor: 'middle',
               }}
-              labelOffset={32}
+              labelOffset={40}
             />
           </Group>
         </svg>

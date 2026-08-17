@@ -1,41 +1,68 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useCompactLayout } from '../hooks/useCompactLayout'
 import { useI18n } from '../i18n'
+
+function GuideList() {
+  const { t } = useI18n()
+  return (
+    <ul className="home-guide">
+      <li>
+        <Link to="/tour">{t('home.guide.tour')}</Link>
+        {': '}
+        {t('home.guide.tourDesc')}
+      </li>
+      <li>
+        <Link to="/systems">{t('home.guide.systems')}</Link>
+        {': '}
+        {t('home.guide.systemsDesc')}
+      </li>
+      <li>
+        <Link to="/case-study">
+          <strong>{t('home.guide.case')}</strong>
+        </Link>
+        {': '}
+        {t('home.guide.caseDesc')}
+      </li>
+      <li>
+        <Link to="/simulate">{t('home.guide.simulate')}</Link>
+        {': '}
+        {t('home.guide.simulateDesc')}
+      </li>
+      <li>
+        <Link to="/games">{t('home.guide.games')}</Link>
+        {': '}
+        {t('home.guide.gamesDesc')}
+      </li>
+    </ul>
+  )
+}
 
 export function Home() {
   const { t } = useI18n()
+  const compact = useCompactLayout()
+  const [guideOpen, setGuideOpen] = useState(false)
+  const guideDialogRef = useRef<HTMLDialogElement>(null)
+
+  useEffect(() => {
+    const el = guideDialogRef.current
+    if (!el) return
+    if (guideOpen) {
+      if (!el.open) el.showModal()
+    } else if (el.open) {
+      el.close()
+    }
+  }, [guideOpen])
 
   return (
-    <div className="home">
+    <div className={`home ${compact ? 'is-compact-page' : ''}`}>
       <section className="hero">
         <div className="hero-copy">
           <p className="eyebrow">Magyarország · Hungary</p>
           <h1>{t('brand.title')}</h1>
           <p className="tagline">{t('brand.tagline')}</p>
           <p className="lead">{t('home.lead')}</p>
-          <ul className="home-guide">
-            <li>
-              <Link to="/tour">{t('home.guide.tour')}</Link>
-              {': '}
-              {t('home.guide.tourDesc')}
-            </li>
-            <li>
-              <Link to="/systems">{t('home.guide.systems')}</Link>
-              {': '}
-              {t('home.guide.systemsDesc')}
-            </li>
-            <li>
-              <Link to="/case-study">
-                <strong>{t('home.guide.case')}</strong>
-              </Link>
-              {': '}
-              {t('home.guide.caseDesc')}
-            </li>
-            <li>
-              <Link to="/simulate">{t('home.guide.simulate')}</Link>
-              {': '}
-              {t('home.guide.simulateDesc')}
-            </li>
-          </ul>
+          {!compact && <GuideList />}
           <div className="cta-row">
             <Link className="btn primary" to="/tour">
               {t('home.cta.tour')}
@@ -43,12 +70,26 @@ export function Home() {
             <Link className="btn primary soft" to="/case-study">
               {t('home.cta.case')}
             </Link>
-            <Link className="btn" to="/systems">
-              {t('home.cta.systems')}
-            </Link>
-            <Link className="btn" to="/simulate">
-              {t('home.cta.simulate')}
-            </Link>
+            {!compact && (
+              <>
+                <Link className="btn" to="/systems">
+                  {t('home.cta.systems')}
+                </Link>
+                <Link className="btn" to="/simulate">
+                  {t('home.cta.simulate')}
+                </Link>
+              </>
+            )}
+            {compact && (
+              <>
+                <Link className="btn" to="/games">
+                  {t('nav.exercises')}
+                </Link>
+                <button type="button" className="btn ghost" onClick={() => setGuideOpen(true)}>
+                  {t('compact.home.guide')}
+                </button>
+              </>
+            )}
           </div>
         </div>
         <div className="hero-visual" aria-hidden>
@@ -83,6 +124,31 @@ export function Home() {
           </svg>
         </div>
       </section>
+      {compact && (
+        <dialog
+          ref={guideDialogRef}
+          className="home-guide-dialog"
+          onClose={() => setGuideOpen(false)}
+          onClick={(e) => {
+            if (e.target === e.currentTarget) setGuideOpen(false)
+          }}
+        >
+          <div className="home-guide-panel">
+            <header className="home-guide-panel-head">
+              <h2>{t('compact.home.guide')}</h2>
+              <button
+                type="button"
+                className="btn ghost"
+                onClick={() => setGuideOpen(false)}
+                aria-label={t('compact.home.guideClose')}
+              >
+                ×
+              </button>
+            </header>
+            <GuideList />
+          </div>
+        </dialog>
+      )}
     </div>
   )
 }
