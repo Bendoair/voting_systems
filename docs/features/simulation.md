@@ -20,7 +20,7 @@ This is exploratory, not authoritative. Affinities and diet lean are teaching kn
 - **Regions** — county diet baselines (meat ↔ plant).
 - **Districts** — OEVK-style single-member units for districted systems.
 - **Seats** — total seats; mixed systems also expose a local-seat budget and district method.
-- **Polarization** — how strongly geography / affinities separate tastes.
+- **Polarization** — how strongly per-county meat↔plant preference pulls votes away from the national average (same label language as system-pick); districts within a county may vary slightly.
 
 ### Output model
 
@@ -37,3 +37,9 @@ Keys under `sim.*`.
 - Keep election math out of the page: only assemble `ElectionInput` and display `ElectionResult`.
 - URL `system` query is a deep-link convenience from system explainers; other state is session UI state (not persisted unless that becomes an explicit feature).
 - Map/GeoJSON simplification is for the web; do not treat boundaries as cadastral truth.
+
+## Mobile composition (≤720px)
+
+**C:** System chips + panel tabs **Parties | Map | Results | Geography** — one pane visible. Sticky live seat-count chip. Map height capped (`~min(42dvh, 280px)` multi-panel; up to `~50dvh` when Map is focus). Geography stays reachable, not removed.
+
+**B:** Stack panes with short scroll and sticky jump links (worse for editing + map together).

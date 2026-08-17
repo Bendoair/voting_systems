@@ -35,7 +35,9 @@ export interface ScoreResult {
 }
 
 export const DISTRICT_COUNT = 5
-export const GRID_SIZE = 48
+/** Playfield size (width × height). 4:3 reads better on phones than a square. */
+export const GRID_WIDTH = 64
+export const GRID_HEIGHT = 48
 export const SIZE_TOLERANCE = 0.15
 
 export type GerryDifficulty = 'easy' | 'medium' | 'hard' | 'insane'

@@ -1,7 +1,9 @@
+import { useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { SYSTEMS, type SystemMeta } from '../data/systems'
+import { PanelTabs } from '../components/PanelTabs'
+import { useCompactLayout } from '../hooks/useCompactLayout'
 import { useI18n } from '../i18n'
-import type { ReactNode } from 'react'
 
 const LOCAL_IDS = new Set(['local', 'ranked', 'two-round'])
 const LIST_IDS = new Set(['closed-list', 'open-list'])
@@ -63,8 +65,57 @@ function SysPickLink() {
   )
 }
 
+type SysSectionTab = 'list' | 'local' | 'mixed'
+
 export function Systems() {
   const { t } = useI18n()
+  const compact = useCompactLayout()
+  const [tab, setTab] = useState<SysSectionTab>('list')
+
+  if (compact) {
+    return (
+      <div className="page systems-page is-compact-page">
+        <header className="page-head">
+          <h1>{t('systems.title')}</h1>
+          <SysPickLink />
+        </header>
+        <PanelTabs
+          ariaLabel={t('compact.systems.tabs')}
+          value={tab}
+          onChange={setTab}
+          tabs={[
+            { id: 'list', label: t('compact.systems.list') },
+            { id: 'local', label: t('compact.systems.local') },
+            { id: 'mixed', label: t('compact.systems.mixed') },
+          ]}
+        />
+        <div className="compact-panel">
+          {tab === 'list' && (
+            <SystemSection
+              titleKey="systems.section.list"
+              introKey="systems.section.listIntro"
+              systems={sectionSystems(LIST_IDS)}
+            />
+          )}
+          {tab === 'local' && (
+            <SystemSection
+              titleKey="systems.section.local"
+              introKey="systems.section.localIntro"
+              systems={sectionSystems(LOCAL_IDS)}
+              titleExtra={<GerryLink />}
+            />
+          )}
+          {tab === 'mixed' && (
+            <SystemSection
+              titleKey="systems.section.mixed"
+              introKey="systems.section.mixedIntro"
+              systems={sectionSystems(MIXED_IDS)}
+            />
+          )}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="page systems-page">

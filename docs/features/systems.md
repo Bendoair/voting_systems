@@ -39,3 +39,13 @@ Copy lives in i18n as `sys.<id>.*` (name, summary, rationale, pros, cons, when).
 
 - Explainers **describe**; engines **implement**. If behavior and copy disagree, fix one to match the intended teaching model and document the choice in `engines.md`.
 - Adding a system means: engine + `SYSTEMS` meta + full HU/EN `sys.*` keys + examples entry + detail route still works via `:id`.
+
+## Mobile composition (≤720px)
+
+**Catalog C:** Segmented **List | Local | Mixed** — one section at a time; full-width rows; game CTAs under the segment.
+
+**Catalog B:** Single short scroll of three sections (tightened stack).
+
+**Detail C:** Tabs **Summary | Pros/cons | Examples**; sticky Simulate CTA.
+
+**Detail B:** Short scroll with collapsed pros/cons accordion.

@@ -1,7 +1,8 @@
 import { createNoise2D } from 'simplex-noise'
 import {
   DIFFICULTY_BANDS,
-  GRID_SIZE,
+  GRID_HEIGHT,
+  GRID_WIDTH,
   type GerryDifficulty,
   type GerryMap,
   type Party,
@@ -45,8 +46,8 @@ function generateOnce(
   const shapeNoise = createNoise2D(rand)
   const voterNoise = createNoise2D(rand)
 
-  const width = GRID_SIZE
-  const height = GRID_SIZE
+  const width = GRID_WIDTH
+  const height = GRID_HEIGHT
   const land: boolean[] = new Array(width * height).fill(false)
   const party: Party[] = new Array(width * height).fill('opponent')
 
@@ -73,7 +74,7 @@ function generateOnce(
     }
   }
 
-  if (landCount < 280 || landCount > 1400) return null
+  if (landCount < 370 || landCount > 1850) return null
 
   const voterScale = 0.028 + rand() * 0.018
   const ox = rand() * 40
@@ -146,8 +147,8 @@ export function generateGerryMap(
   const fallback = generateOnce(seed >>> 0, min, max)
   if (fallback) return forceShare(fallback, min, max)
 
-  const width = GRID_SIZE
-  const height = GRID_SIZE
+  const width = GRID_WIDTH
+  const height = GRID_HEIGHT
   const land: boolean[] = []
   const party: Party[] = []
   let landCount = 0

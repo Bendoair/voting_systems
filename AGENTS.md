@@ -44,3 +44,10 @@ docs/ → intent/structure documentation
 ## Docs vs UI
 
 Feature docs describe **intent and structure**, not pixel-level UI. If you change behavior (win conditions, engine semantics, tour step count, difficulty bands), update the relevant doc in the same change.
+
+## Compact layout (≤720px)
+
+- Use `useCompactLayout()` / `html.is-compact` for phone composition. **Do not fork** `pages/mobile/*` or duplicate engines/i18n.
+- Compact may add tabs/sheets/bottom nav; keep the same information reachable. Cut only secondary chrome.
+- Tour and case-tour claim the bottom bar via `useOwnBottomNav` so site bottom nav does not stack.
+- Desktop layouts above 720px stay unchanged unless the change is shared.

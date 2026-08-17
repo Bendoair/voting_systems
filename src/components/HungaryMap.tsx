@@ -3,6 +3,7 @@ import { geoMercator, geoPath, type GeoPermissibleObjects } from 'd3-geo'
 import type { Feature, FeatureCollection, Geometry } from 'geojson'
 import type { District, DistrictWinner, Party, Region } from '../engines/types'
 import { MEGYE_TO_REGION } from '../data/counties'
+import { loadHungaryMaps } from '../data/mapGeo'
 import { colorForLead, voteLead } from '../utils/mapColor'
 import { useI18n } from '../i18n'
 import { useTheme } from '../theme'
@@ -58,16 +59,7 @@ export function HungaryMap({
 
   useEffect(() => {
     let cancelled = false
-    Promise.all([
-      fetch('/maps/hungary-counties.geojson').then((r) => {
-        if (!r.ok) throw new Error(String(r.status))
-        return r.json()
-      }),
-      fetch('/maps/hungary-oevk.geojson').then((r) => {
-        if (!r.ok) throw new Error(String(r.status))
-        return r.json()
-      }),
-    ])
+    loadHungaryMaps()
       .then(([counties, oevk]) => {
         if (cancelled) return
         setCountyGeo(counties)

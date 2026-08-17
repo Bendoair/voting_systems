@@ -35,3 +35,4 @@ Consumers: `Simulate`, `caseStudy`, `syspick` (and anything else that must stay 
 - Prefer extending `shared` / `districtRules` over copy-pasting seat math.
 - Behavioral changes are product decisions: update case-study narrative and system explainer copy when outcomes shift.
 - Unit tests are welcome here if added later; keep them next to engines, not in pages.
+- Engines are viewport-agnostic; compact UI only changes how results are shown, never how seats are computed.
