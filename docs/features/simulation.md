@@ -28,18 +28,25 @@ This is exploratory, not authoritative. Affinities and diet lean are teaching kn
 - Optional disproportionality summary
 - Map colored by district/county winners where meaningful
 
+### Presentation (desktop)
+
+- Three-column layout: party/setup | map + results | sticky **geo** rail.
+- Geo rail: collapsed vertical strip (`sim.geographyClosed`); open header is short **Geography / Földrajz** (`sim.geographyOpen`) — meat↔plant lives in the editor note, not the toggle.
+- Map county/district toggle keeps a stable SVG aspect ratio so opening geo + switching views does not jump the map box.
+
 ### i18n
 
-Keys under `sim.*`.
+Keys under `sim.*` (incl. `sim.geographyOpen` / `sim.geographyClosed` for the desktop geo rail; `sim.polarization` = **Polarizáció / Polarization**, same term as system-pick). Compact panel tabs use `compact.sim.*` (Geography tab label is short **Geo**).
 
 ## Boundaries
 
 - Keep election math out of the page: only assemble `ElectionInput` and display `ElectionResult`.
 - URL `system` query is a deep-link convenience from system explainers; other state is session UI state (not persisted unless that becomes an explicit feature).
 - Map/GeoJSON simplification is for the web; do not treat boundaries as cadastral truth.
+- County ↔ district map toggle must not change the map’s layout box (stable SVG aspect ratio); avoid view-specific `min-height` jumps when the geo column is open.
 
 ## Mobile composition (≤720px)
 
-**C:** System chips + panel tabs **Parties | Map | Results | Geography** — one pane visible. Sticky live seat-count chip. Map height capped (`~min(42dvh, 280px)` multi-panel; up to `~50dvh` when Map is focus). Geography stays reachable, not removed.
+**C:** System select + panel tabs **Parties | Map | Results | Geo** (Geo is a narrow tab) — one pane visible. Sticky live seat-count chip. Map height capped (`~min(42dvh, 280px)` multi-panel; up to `~50dvh` when Map is focus). Geography stays reachable, not removed.
 
 **B:** Stack panes with short scroll and sticky jump links (worse for editing + map together).

@@ -60,6 +60,6 @@ Keys under `case.*` (page copy) and `case.tour.*` (tour chrome + step captions).
 
 **Page mode B:** Vertical story with only one tall map expanded; others collapsed headers (some scroll).
 
-**Tour mode C:** Same as site Tour — owns bottom nav; caption one screen; viz fills rest; no map remount flash.
+**Tour mode C:** Same as site Tour — owns bottom nav; caption one screen; viz fills rest; no map remount flash. Staged captions use **SegmentDots**.
 
 **Tour mode B:** N/A (already step-shaped).

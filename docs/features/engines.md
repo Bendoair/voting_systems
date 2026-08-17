@@ -28,7 +28,7 @@ No React, no i18n, no DOM.
 - **In:** parties, regions (with diet baselines), districts, seat budgets, optional district method, polarization.
 - **Out:** seats per party, vote/seat shares, and any system-specific breakdown the UI already consumes.
 
-Consumers: `Simulate`, `caseStudy`, `syspick` (and anything else that must stay consistent with those).
+Consumers: `Simulate`, `caseStudy`, `syspick` (and anything else that must stay consistent with those). Polarization is an `ElectionInput` field; UI copy for it should stay aligned across simulation and system-pick.
 
 ## Boundaries
 

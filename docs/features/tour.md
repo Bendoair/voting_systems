@@ -49,6 +49,6 @@ Keys under `tour.*` (`tour.sN.title` / `body`, explore blurbs, compass labels, p
 
 ## Mobile composition (≤720px)
 
-**C (primary):** Keep the step model. Slim site chrome; tour **owns** the bottom bar (`useOwnBottomNav`) so only Prev/Next show. Caption/title above; Compass fills remaining `dvh`. Step 7 explore links stack vertically (full-width buttons + blurbs).
+**C (primary):** Keep the step model. Slim site chrome; tour **owns** the bottom bar (`useOwnBottomNav`) so only Prev/Next show. Caption/title above; Compass fills remaining `dvh`. Step 7 explore links stack vertically (full-width buttons + blurbs). Dimension-reel captions use **SegmentDots** (pause until Replay).
 
 **B:** Short page scroll only if Compass + body cannot fit (rare).

@@ -37,7 +37,7 @@ UI chrome: back link, title, `aside.info-panel.gerry-brief` with rules paragraph
 
 | File | Role |
 |------|------|
-| `types.ts` | Grid constants, difficulty bands, colors, score types |
+| `types.ts` | Grid constants (`GRID_WIDTH` / `GRID_HEIGHT`), difficulty bands, colors, score types |
 | `generate.ts` | Procedural county landmask + voter field; player share by difficulty |
 | `score.ts` | District tallies, win condition, fill remaining space, undo helpers |
 | `polygon.ts` | Lasso stroke → point-in-polygon assignment |
@@ -86,7 +86,7 @@ UI chrome: back link, title, `aside.info-panel.gerry-brief` with rules paragraph
 
 **Hub B:** Tiny scroll if cards are tall.
 
-**Gerrymander C:** Board fills most of the viewport; bottom sheet for district palette + status (peek: active district + seats; expand: undo, difficulty, actions), anchored above the site bottom nav. View toggle on board chrome. Rules stay dialog.
+**Gerrymander C:** Board fills most of the viewport (playfield **64×48** / 4:3); `BottomSheet` (portaled to `document.body`) for district palette + status (peek: active district + seats; expand: undo, difficulty under New map, actions), anchored **above** the site bottom nav. View toggle on board chrome. Rules stay dialog.
 
 **Gerrymander B:** Board then HUD below (current ≤900 stack) — acceptable only if sheet feels wrong.
 

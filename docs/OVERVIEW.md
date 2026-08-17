@@ -8,10 +8,10 @@ The site is not a prediction tool. It teaches mechanisms: same people and prefer
 
 | Area | Route | Role |
 |------|--------|------|
-| Home | `/` | Brand + orientation into the rest of the site. Compact (≤720px): one-viewport card (brand, lead, Tour CTA, Case/Games); guide bullets in a “Where to start?” dialog. |
+| Home | `/` | Brand + orientation. Compact: one-viewport hero + CTAs; guide list in a “Where to start?” dialog (includes Games). |
 | Tour | `/tour` | Guided mental model (preferences → parties → tactics → “rules matter”) |
 | Systems | `/systems`, `/systems/:id` | Catalog + deep explainers for common systems |
-| Case study | `/case-study` | Frozen scenario: identical inputs, compared across systems |
+| Case study | `/case-study` | Frozen scenario: identical inputs, compared across systems (tour + page modes) |
 | Games | `/games`, `/games/gerrymander`, `/games/syspick` | Interactive exercises that make distortions tangible |
 | Simulate | `/simulate` | Adjustable parties, geography, seats; live engine runs |
 
@@ -21,7 +21,7 @@ Legacy `/exercises*` URLs redirect to `/games*`.
 
 1. **Preferences** — abstract “diet lean” (meat ↔ plant) stands in for political taste; multi-issue life is simplified to axes people can see.
 2. **Parties** — positions on that axis plus popularity / affinities.
-3. **Geography** — counties (and OEVK-style districts) turn national taste into local contests.
+3. **Geography** — counties (and OEVK-style districts) turn national taste into local contests. **Polarization** (same word in simulation and system-pick) is how strongly county preference pulls votes away from the national average.
 4. **Rules** — engines map the same inputs to seats under different systems.
 5. **Comparison** — case study and simulation exist so the visitor *sees* rule effects, not only reads about them.
 
@@ -30,12 +30,13 @@ Legacy `/exercises*` URLs redirect to `/games*`.
 ```
 src/
   pages/           # route-level screens
-  components/      # reusable UI (maps, editors, charts, tour compass)
-  data/            # static scenarios, counties, system metadata, examples
+  components/      # reusable UI (maps, editors, charts, tour compass, compact chrome)
+  hooks/           # useCompactLayout, useCompactChrome
+  data/            # static scenarios, counties, system metadata, examples, mapGeo cache
   engines/         # pure election math (no React)
-  exercises/       # game modules (e.g. gerrymander)
+  exercises/       # game modules (gerrymander, syspick)
   i18n/            # HU/EN catalogs + provider
-  styles/          # global CSS
+  styles/          # global CSS (incl. html.is-compact)
   theme.tsx        # light/dark preference
   utils/           # small shared helpers (e.g. map coloring)
 ```
@@ -44,11 +45,20 @@ src/
 
 ## Cross-cutting concerns
 
-- **i18n** — `hu` default; keys shared across features (`tour.*`, `sys.*`, `case.*`, `sim.*`, `ex.*`).
-- **Theme** — light/dark via `ThemeProvider`; CSS variables in `app.css`.
-- **Maps** — Hungary GeoJSON + `d3-geo` for simulation/case; gerrymander uses a generated grid, not real counties. Compact mode caches GeoJSON loaders and caps map height.
-- **Compact layout (≤720px)** — `useCompactLayout()` + `html.is-compact`; bottom nav chrome; pages compose tabs/sheets (C) with short-scroll (B) only where feature docs say so. No forked mobile routes.
+- **i18n** — `hu` default; keys shared across features (`tour.*`, `sys.*`, `case.*`, `sim.*`, `ex.*`, `compact.*`, `segment.*`).
+- **Theme** — light/dark via `ThemeProvider`; header uses sun/moon + flag icons; CSS variables in `app.css`.
+- **Maps** — Hungary GeoJSON via `data/mapGeo.ts` (cached loaders) + `d3-geo`; gerrymander uses a generated **64×48** grid, not real counties.
+- **Compact layout (≤720px)** — see below; each feature doc has a **Mobile composition** section (C primary / B fallback).
 - **Docs** — this folder; each feature has its own doc focused on *intent and structure*.
+
+### Compact layout (site-wide)
+
+- Breakpoint: `max-width: 720px` → `useCompactLayout()` sets `html.is-compact`.
+- **One route per feature** — no `pages/mobile/*` forks; composition only (tabs / steps / sheets).
+- Site chrome: slim top brand + theme/lang; **bottom nav** for Tour / Systems / Case / Games / Simulate (Home via brand).
+- **`useOwnBottomNav(true)`** only when a page supplies its own bottom bar (Tour; case-study **tour** mode). Otherwise keep the site bottom nav.
+- Shared primitives: `PanelTabs`, `BottomSheet` (portaled to `document.body` so `position: fixed` is viewport-true), `SegmentDots` for staged caption beats.
+- Gerrymander district sleeve sits **above** the site bottom nav (`bottomOffset`), not instead of it.
 
 ## Feature docs
 

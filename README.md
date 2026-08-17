@@ -49,13 +49,16 @@ Old `/exercises` URLs redirect to `/games`.
 
 ```
 src/pages/        routes
-src/components/   shared UI
-src/data/         scenarios, counties, system meta
+src/components/   shared UI (maps, compact tabs/sheets, …)
+src/hooks/        compact layout + chrome
+src/data/         scenarios, counties, system meta, map loaders
 src/engines/      pure election math
 src/exercises/    game modules
 src/i18n/         HU / EN strings
 docs/             intent & structure docs (start at OVERVIEW.md)
 ```
+
+Compact phones (≤720px): same routes, tab/sheet composition — see OVERVIEW and each feature’s **Mobile composition** section.
 
 ## Documentation
 
