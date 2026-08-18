@@ -13,6 +13,7 @@ import { CaseStudy } from './pages/CaseStudy'
 import { Exercises } from './pages/Exercises'
 import { Gerrymander } from './pages/Gerrymander'
 import { SysPick } from './pages/SysPick'
+import { OpenListGame } from './pages/OpenListGame'
 import './styles/app.css'
 
 export default function App() {
@@ -31,6 +32,7 @@ export default function App() {
               <Route path="games" element={<Exercises />} />
               <Route path="games/gerrymander" element={<Gerrymander />} />
               <Route path="games/syspick" element={<SysPick />} />
+              <Route path="games/openlist" element={<OpenListGame />} />
               <Route path="exercises" element={<Navigate to="/games" replace />} />
               <Route
                 path="exercises/gerrymander"
@@ -39,6 +41,10 @@ export default function App() {
               <Route
                 path="exercises/syspick"
                 element={<Navigate to="/games/syspick" replace />}
+              />
+              <Route
+                path="exercises/openlist"
+                element={<Navigate to="/games/openlist" replace />}
               />
             </Route>
           </Routes>

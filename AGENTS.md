@@ -33,7 +33,7 @@ docs/ → intent/structure documentation
 ```
 
 - New **feature**: page (or exercise module) + data/engine hooks as needed + i18n + a short `docs/features/*.md` entry + link from `OVERVIEW.md`.
-- New **system**: engine module + `SYSTEMS` meta + full HU/EN `sys.*` keys + examples if applicable.
+- New **system**: engine module + `SYSTEMS` / `SYSTEM_GROUPS` + full HU/EN `sys.*` keys + examples + syspick if it is a playable counting rule. Checklist: [`docs/features/systems.md`](./docs/features/systems.md) (Adding a system).
 - Do not put app code or project README at a parent monorepo root; this project’s docs live here.
 
 ## Use the linter

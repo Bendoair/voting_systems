@@ -1,13 +1,13 @@
 import { useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
-import { SYSTEMS, type SystemMeta } from '../data/systems'
+import { SYSTEMS, SYSTEM_GROUPS, type SystemMeta } from '../data/systems'
 import { PanelTabs } from '../components/PanelTabs'
 import { useCompactLayout } from '../hooks/useCompactLayout'
 import { useI18n } from '../i18n'
 
-const LOCAL_IDS = new Set(['local', 'ranked', 'two-round'])
-const LIST_IDS = new Set(['closed-list', 'open-list'])
-const MIXED_IDS = new Set(['mixed'])
+const LOCAL_IDS = new Set<string>(SYSTEM_GROUPS.local)
+const LIST_IDS = new Set<string>(SYSTEM_GROUPS.list)
+const MIXED_IDS = new Set<string>(SYSTEM_GROUPS.mixed)
 
 function sectionSystems(ids: Set<string>): SystemMeta[] {
   return SYSTEMS.filter((s) => ids.has(s.id))
@@ -65,6 +65,15 @@ function SysPickLink() {
   )
 }
 
+function OpenListLink() {
+  const { t } = useI18n()
+  return (
+    <Link className="btn ghost system-game-btn" to="/games/openlist">
+      {t('systems.openlist.cta')}
+    </Link>
+  )
+}
+
 type SysSectionTab = 'list' | 'local' | 'mixed'
 
 export function Systems() {
@@ -95,6 +104,7 @@ export function Systems() {
               titleKey="systems.section.list"
               introKey="systems.section.listIntro"
               systems={sectionSystems(LIST_IDS)}
+              titleExtra={<OpenListLink />}
             />
           )}
           {tab === 'local' && (
@@ -129,6 +139,7 @@ export function Systems() {
         titleKey="systems.section.list"
         introKey="systems.section.listIntro"
         systems={sectionSystems(LIST_IDS)}
+        titleExtra={<OpenListLink />}
       />
       <SystemSection
         titleKey="systems.section.local"

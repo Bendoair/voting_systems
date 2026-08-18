@@ -3,7 +3,7 @@ import { useSearchParams, Link } from 'react-router-dom'
 import { getDefaultParties } from '../data/defaultParties'
 import { REGIONS, getDefaultDietBaselines } from '../data/counties'
 import { OEVK_COUNT, OEVK_DISTRICTS } from '../data/oevkDistricts'
-import { SYSTEMS } from '../data/systems'
+import { SYSTEMS, isLocalDistrictSystem } from '../data/systems'
 import { runElection, DISTRICT_METHODS, type Party, type SystemId, type DistrictMethod } from '../engines'
 import { HungaryMap } from '../components/HungaryMap'
 import { PartyEditor } from '../components/PartyEditor'
@@ -60,10 +60,7 @@ export function Simulate() {
         parties,
         regions,
         districts,
-        totalSeats:
-          system === 'local' || system === 'ranked' || system === 'two-round'
-            ? districtBudget
-            : totalSeats,
+        totalSeats: isLocalDistrictSystem(system) ? districtBudget : totalSeats,
         districtSeats: showDistrictSeats ? districtBudget : undefined,
         districtMethod: showDistrictSeats ? districtMethod : undefined,
         polarization,

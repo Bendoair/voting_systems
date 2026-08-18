@@ -1,4 +1,5 @@
 import type { ElectionResult, Party, Region, SystemId } from '../../engines'
+import { SYSTEM_GROUPS } from '../../data/systems'
 
 export const SYSPICK_TOTAL_SEATS = 199
 export const SYSPICK_DISTRICT_SEATS = 106
@@ -9,19 +10,13 @@ export const SYSPICK_MAX_PARTIES = 5
  * Playable systems in UI / map-tab order.
  * Open + closed list share D’Hondt seats here → one “List” choice (`closed-list`).
  */
-export const SYSPICK_SYSTEMS: SystemId[] = [
-  'closed-list',
-  'local',
-  'ranked',
-  'two-round',
-  'mixed',
-]
-
 export const SYSPICK_SECTIONS: { titleKey: string; ids: SystemId[] }[] = [
   { titleKey: 'systems.section.list', ids: ['closed-list'] },
-  { titleKey: 'systems.section.local', ids: ['local', 'ranked', 'two-round'] },
-  { titleKey: 'systems.section.mixed', ids: ['mixed'] },
+  { titleKey: 'systems.section.local', ids: [...SYSTEM_GROUPS.local] },
+  { titleKey: 'systems.section.mixed', ids: [...SYSTEM_GROUPS.mixed] },
 ]
+
+export const SYSPICK_SYSTEMS: SystemId[] = SYSPICK_SECTIONS.flatMap((s) => s.ids)
 
 /** Fruit party templates (names localized at deal time) */
 export interface PartyTemplate {

@@ -15,13 +15,15 @@ No React, no i18n, no DOM.
 | `types.ts` | `SystemId`, `Party`, `Region`, `ElectionInput`, `ElectionResult`, … |
 | `index.ts` | `runElection(system, input)` dispatcher |
 | `shared.ts` | Vote shares, D’Hondt, shared helpers |
-| `districtRules.ts` | District winner methods used by mixed / local variants |
+| `districtRules.ts` | District winner methods used by mixed / local variants (incl. Borda points and approval) |
 | `plurality.ts` | Local FPTP-style |
 | `proportional.ts` | Closed list |
 | `openList.ts` | Open list |
 | `mixed.ts` | Local + list teaching hybrid |
 | `irv.ts` | Ranked / IRV |
 | `twoRound.ts` | Two-round |
+| `borda.ts` | Ranked / Borda points |
+| `approval.ts` | Approval (yes/no marks) |
 
 ### Input / output
 
@@ -29,6 +31,8 @@ No React, no i18n, no DOM.
 - **Out:** seats per party, vote/seat shares, and any system-specific breakdown the UI already consumes.
 
 Consumers: `Simulate`, `caseStudy`, `syspick` (and anything else that must stay consistent with those). Polarization is an `ElectionInput` field; UI copy for it should stay aligned across simulation and system-pick.
+
+The **open-list campaign game** does **not** call `openList.ts`. It uses `dhondt` from `shared.ts` on a 21-seat toy chamber. Keep that split: `openList.ts` is the 199-seat sim; Listahely is the cutoff explainer.
 
 ## Boundaries
 
