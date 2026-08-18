@@ -5,6 +5,8 @@ import { runMixed } from './mixed'
 import { runOpenList } from './openList'
 import { runIRV } from './irv'
 import { runTwoRound } from './twoRound'
+import { runBorda } from './borda'
+import { runApproval } from './approval'
 
 export function runElection(system: SystemId, input: ElectionInput): ElectionResult {
   switch (system) {
@@ -20,6 +22,10 @@ export function runElection(system: SystemId, input: ElectionInput): ElectionRes
       return runIRV(input)
     case 'two-round':
       return runTwoRound(input)
+    case 'borda':
+      return runBorda(input)
+    case 'approval':
+      return runApproval(input)
     default:
       return runClosedList(input)
   }

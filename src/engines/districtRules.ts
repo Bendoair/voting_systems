@@ -1,6 +1,39 @@
 import type { Party } from './types'
 import { dietAffinity, pluralityWinner } from './shared'
 
+function leanOf(parties: Party[], id: string): number {
+  return parties.find((p) => p.id === id)?.dietLean ?? 0
+}
+
+/** Parties in the race that have a share entry */
+function raceIds(shares: Record<string, number>, parties: Party[]): string[] {
+  const fromParties = parties.map((p) => p.id).filter((id) => id in shares)
+  if (fromParties.length > 0) return fromParties
+  return Object.keys(shares)
+}
+
+/**
+ * Rank all candidates from a first-preference bloc: favorite first,
+ * then remaining by meat↔plant closeness to that favorite.
+ */
+function rankFromFavorite(
+  favoriteId: string,
+  ids: string[],
+  parties: Party[],
+): string[] {
+  const favLean = leanOf(parties, favoriteId)
+  const others = ids.filter((id) => id !== favoriteId)
+  others.sort((a, b) => {
+    const da = dietAffinity(favLean, leanOf(parties, a))
+    const db = dietAffinity(favLean, leanOf(parties, b))
+    if (db !== da) return db - da
+    return a.localeCompare(b)
+  })
+  return favoriteId && ids.includes(favoriteId)
+    ? [favoriteId, ...others]
+    : others
+}
+
 /** How strongly eliminated ballots prefer ideologically closer remaining parties */
 const TRANSFER_SHARPNESS = 2.4
 
@@ -11,10 +44,6 @@ const TRANSFER_SHARPNESS = 2.4
 function transferWeight(fromLean: number, toLean: number): number {
   const aff = dietAffinity(fromLean, toLean) // 1 = identical, 0 = opposite
   return Math.pow(Math.max(0.02, aff), TRANSFER_SHARPNESS)
-}
-
-function leanOf(parties: Party[], id: string): number {
-  return parties.find((p) => p.id === id)?.dietLean ?? 0
 }
 
 /**
@@ -115,4 +144,53 @@ export function twoRoundWinner(
     }
   }
   return a >= b ? first : second
+}
+
+/**
+ * Classic Borda: n−1 points for 1st, n−2 for 2nd, … 0 for last.
+ * Each first-preference bloc ranks itself first, then nearby tastes.
+ */
+export function bordaWinner(
+  shares: Record<string, number>,
+  parties: Party[],
+): string {
+  const ids = raceIds(shares, parties)
+  if (ids.length === 0) return pluralityWinner(shares)
+  const n = ids.length
+  const scores: Record<string, number> = Object.fromEntries(ids.map((id) => [id, 0]))
+  for (const fav of ids) {
+    const bloc = shares[fav] ?? 0
+    if (bloc <= 0) continue
+    const ranking = rankFromFavorite(fav, ids, parties)
+    ranking.forEach((id, rank) => {
+      scores[id] = (scores[id] ?? 0) + bloc * (n - 1 - rank)
+    })
+  }
+  return pluralityWinner(scores)
+}
+
+/**
+ * Approve own first choice plus parties close on the diet axis.
+ * Affinity 0.7 ≈ gap of 0.6 on meat↔plant (−1…+1).
+ */
+export const APPROVAL_AFFINITY = 0.7
+
+export function approvalWinner(
+  shares: Record<string, number>,
+  parties: Party[],
+): string {
+  const ids = raceIds(shares, parties)
+  if (ids.length === 0) return pluralityWinner(shares)
+  const approvals: Record<string, number> = Object.fromEntries(ids.map((id) => [id, 0]))
+  for (const fav of ids) {
+    const bloc = shares[fav] ?? 0
+    if (bloc <= 0) continue
+    const favLean = leanOf(parties, fav)
+    for (const id of ids) {
+      const close =
+        id === fav || dietAffinity(favLean, leanOf(parties, id)) >= APPROVAL_AFFINITY
+      if (close) approvals[id] = (approvals[id] ?? 0) + bloc
+    }
+  }
+  return pluralityWinner(approvals)
 }

@@ -2,6 +2,7 @@ import { REGIONS } from '../../data/counties'
 import { OEVK_DISTRICTS } from '../../data/oevkDistricts'
 import { DIET_STEPS } from '../../data/diet'
 import { normalizeVotePercents } from '../../data/defaultParties'
+import { isLocalDistrictSystem } from '../../data/systems'
 import { runElection, type Party, type Region, type SystemId } from '../../engines'
 import {
   PARTY_POOL,
@@ -188,8 +189,7 @@ function electionInput(
   polarization: number,
   system: SystemId,
 ) {
-  const districted =
-    system === 'local' || system === 'ranked' || system === 'two-round'
+  const districted = isLocalDistrictSystem(system)
   return {
     parties,
     regions,

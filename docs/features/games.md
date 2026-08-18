@@ -67,7 +67,7 @@ UI chrome: back link, title, `aside.info-panel.gerry-brief` with rules paragraph
 
 - Each deal: usually 3–5 parties; ~10% of deals are a two-party large matchup (≈42–58% split) with independent diet leans.
 - Player vote share is sampled from a truncated normal **N(25, 10)** (median ~25%, most outcomes within ±20 → roughly 5–45%), then rivals fill the remainder. Two-party mode assigns you one of the two large camps instead.
-- Player picks **one** system via chips in a single panel with subsections (list / local / mixed). Open and closed list are one **List** choice (same D’Hondt seats). Map result tabs follow the same order. Win if the pick maximizes the player’s seats (ties count).
+- Player picks **one** system via chips in a single panel with subsections (list / local / mixed). Open and closed list are one **List** choice (same D’Hondt seats). Local chips include FPTP, IRV, two-round, Borda, and approval. Map result tabs follow the same order. Win if the pick maximizes the player’s seats (ties count).
 - Engines and seat budgets match simulation / case study (`199` / `106` OEVK, mixed uses plurality districts).
 - Generation retries until systems diverge for the player (seat spread ≥ 2 when possible).
 - Deal UI shows a compact county diet map (meat↔plant) under the assigned party, plus population-weighted national lean.

@@ -5,6 +5,8 @@ export type SystemId =
   | 'open-list'
   | 'ranked'
   | 'two-round'
+  | 'borda'
+  | 'approval'
 
 /** How single-member district seats are decided (used by mixed, and standalone systems) */
 export type DistrictMethod = 'plurality' | 'ranked' | 'two-round'

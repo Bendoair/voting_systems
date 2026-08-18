@@ -152,4 +152,38 @@ export const SYSTEM_EXAMPLES: Record<SystemId, SystemExample[]> = {
       wikiEn: 'https://en.wikipedia.org/wiki/Elections_in_Hungary',
     },
   ],
+  borda: [
+    {
+      titleHu: 'Borda-számlálás',
+      titleEn: 'Borda count',
+      wikiEn: 'https://en.wikipedia.org/wiki/Borda_count',
+    },
+    {
+      titleHu: 'Nauru (Dowdall, rokon pontos rendszer)',
+      titleEn: 'Nauru (Dowdall, related points system)',
+      wikiEn: 'https://en.wikipedia.org/wiki/Electoral_system_of_Nauru',
+    },
+    {
+      titleHu: 'Kiribati (módosított Borda)',
+      titleEn: 'Kiribati (modified Borda)',
+      wikiEn: 'https://en.wikipedia.org/wiki/Elections_in_Kiribati',
+    },
+  ],
+  approval: [
+    {
+      titleHu: 'Támogató szavazás',
+      titleEn: 'Approval voting',
+      wikiEn: 'https://en.wikipedia.org/wiki/Approval_voting',
+    },
+    {
+      titleHu: 'Fargo (Észak-Dakota)',
+      titleEn: 'Fargo, North Dakota',
+      wikiEn: 'https://en.wikipedia.org/wiki/Electoral_reform_in_Fargo,_North_Dakota',
+    },
+    {
+      titleHu: 'St. Louis (Missouri)',
+      titleEn: 'St. Louis, Missouri',
+      wikiEn: 'https://en.wikipedia.org/wiki/Approval_voting',
+    },
+  ],
 }

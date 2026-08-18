@@ -70,16 +70,16 @@ export const hu: Dict = {
 
   'systems.title': 'Választási rendszerek',
   'systems.intro':
-    'Minden rendszer más prioritást szolgál: helyi elszámoltathatóság, arányosság, egyszerűség vagy a taktikai szavazás csökkentése. Nyiss meg egyet a részletekért és valós példákért.',
+    'Minden rendszer másra teszi a hangsúlyt: helyi felelősség, arányosság, egyszerűség, vagy hogy kevesebben kényszerüljenek taktikai szavazásra. Kattints egyre a részletekhez és a valós példákhoz.',
   'systems.section.local': 'Helyi képviselők',
   'systems.section.localIntro':
-    'Egyéni körzetek: egy nyertes helyi szinten. Erős helyi kapcsolat, de a nemzeti arányosság gyakran megsínyli.',
+    'Minden körzetben egy győztes van. Erős a helyi kapcsolat, de az országos arányosság gyakran sérül.',
   'systems.section.list': 'Listás rendszerek',
   'systems.section.listIntro':
-    'A mandátumok pártlistákról jutnak el, zárt vagy nyílt sorrenddel. Közelebb állnak a nemzeti szavazatarányhoz.',
+    'A mandátumokat pártlistákról osztják, zárt vagy nyílt sorrenddel. Az eredmény általában közelebb van a szavazatarányhoz.',
   'systems.section.mixed': 'Vegyes rendszerek',
   'systems.section.mixedIntro':
-    'Helyi és listás ág együtt. A részletek döntik el, mennyire arányos a végeredmény, Magyarország is ide tartozik.',
+    'Helyi egyéni ág és lista együtt. A részletszabályok döntik el, mennyire arányos a végeredmény. Magyarország is ide tartozik.',
   'systems.gerry.cta': 'Gerrymander játék',
   'systems.gerry.title': 'Gerrymander játék',
   'systems.syspick.cta': 'Rendszertipp játék',
@@ -206,14 +206,18 @@ export const hu: Dict = {
   'ex.syspick.chip.open-list': 'Nyílt lista',
   'ex.syspick.chip.ranked': 'IRV',
   'ex.syspick.chip.two-round': 'Kétfordulós',
+  'ex.syspick.chip.borda': 'Borda',
+  'ex.syspick.chip.approval': 'Támogató',
   'ex.syspick.chipDesc.local': 'Relatív többség nyer körzetenként',
   'ex.syspick.chipDesc.closed-list': 'Arányos listás (nyílt / zárt)',
   'ex.syspick.chipDesc.mixed': 'Egyéni + lista együtt',
   'ex.syspick.chipDesc.open-list': 'Listán belül jelöltet is erősíthetsz',
   'ex.syspick.chipDesc.ranked': 'Rangsorolás; átvitelek a körzetben',
   'ex.syspick.chipDesc.two-round': 'Döntő a két élmezőny között',
+  'ex.syspick.chipDesc.borda': 'Pontok a teljes rangsorért',
+  'ex.syspick.chipDesc.approval': 'Több X; a legtöbb támogatás nyer',
 
-  'systems.simulate': 'Szimuláció ezzel',
+  'systems.simulate': 'Próbáld a szimulációban',
   'systems.pros': 'Előnyök',
   'systems.cons': 'Hátrányok',
   'systems.when': 'Mikor segít / árt',
@@ -222,63 +226,63 @@ export const hu: Dict = {
 
   'sys.local.name': 'Helyi képviselők (egyéni, FPTP)',
   'sys.local.summary':
-    'Minden választókerületben a legtöbb szavazatot kapó jelölt nyeri el az egyetlen mandátumot, abszolút többség nélkül is.',
+    'Minden választókerületben az kapja az egyetlen mandátumot, aki a legtöbb szavazatot kapja, akkor is, ha nincs abszolút többsége.',
   'sys.local.rationale':
-    'A klasszikus „egy körzet, egy képviselő” modell. A választó konkrét személyre szavaz, aki a térséget képviseli a parlamentben. A szabály egyszerű: aki a legtöbb szavazatot kapja, az nyer, még akkor is, ha a szavazatok többsége más jelöltekre ment.\n\nEz erős helyi elszámoltathatóságot és világos felelősséget ad, de országos szinten gyakran torzítja a pártok arányát. A kisebb pártok, amelyek támogatottsága szétszórt, kevés vagy semmilyen mandátumot sem szerezhetnek.',
+    'A klasszikus „egy körzet, egy képviselő” modell. A választó konkrét személyre szavaz, aki a térséget képviseli a parlamentben. A szabály egyszerű: aki a legtöbbet kapja, az nyer, akkor is, ha a szavazatok többsége más jelöltekre ment.\n\nErős a helyi felelősség: van kit számon kérni. Országosan viszont gyakran eltorzul a pártok aránya. A kisebb pártok, ha a támogatásuk szétszóródik, kevés mandátumot szereznek, vagy semmit.',
   'sys.local.pros':
-    'Erős helyi kötődés: van „a te képviselőd”, akit számonkérhetsz.\n\nEgyszerű szavazólap és gyors, átlátható eredmény.\n\nStabil kormánytöbbséget könnyebben eredményezhet, mint a tiszta arányos rendszerek.',
+    'Erős helyi kötődés: van „a te képviselőd”, akit számon kérhetsz.\n\nEgyszerű szavazólap, gyorsan átlátható eredmény.\n\nKönnyebben ad stabil kormánytöbbséget, mint a tiszta arányos rendszerek.',
   'sys.local.cons':
-    'A vesztes jelöltekre leadott szavazatok nem eredményeznek mandátumot („elveszett” szavazatok).\n\nA nemzeti szavazatarány és a mandátumarány jelentősen eltérhet, akár „fordított győzelem” is előfordulhat, ahol a több szavazatot kapó párt kevesebb helyet szerez.\n\nErősen ösztönzi a taktikai szavazást: sokan a „esélyesebb” jelöltre szavaznak, nem a legszimpatikusabbra.\n\nA körzethatárok húzása (gerrymandering) önmagában is politikai fegyver lehet.',
+    'A vesztes jelöltekre leadott szavazatok nem hoznak mandátumot („elveszett” szavazatok).\n\nA szavazatarány és a mandátumarány jelentősen eltérhet. Előfordulhat „fordított győzelem” is: a több szavazatot kapó párt kevesebb helyet szerez.\n\nErősen ösztönzi a taktikai szavazást: sokan az „esélyesebbre” szavaznak, nem a legszimpatikusabbra.\n\nA körzethatárok húzása (gerrymandering) önmagában is politikai fegyver lehet.',
   'sys.local.when':
-    'Akkor vonzó, ha a helyi felelősség és a személyes képviselet a legfontosabb prioritás.\n\nGyengén szolgálja azt a célt, hogy a parlament tükrözze az országos pártpreferenciákat, ezért a magyar reformvitában gyakran kritikák tárgya, ha az egyéni ág túl erős.',
+    'Akkor vonzó, ha a helyi felelősség és a személyes képviselet a legfontosabb.\n\nRosszul szolgálja azt, hogy a parlament tükrözze az országos pártarányokat. A magyar reformvitában ezért gyakran éri kritika, ha az egyéni ág túl erős.',
 
   'sys.closed-list.name': 'Pártlisták (zárt lista)',
   'sys.closed-list.summary':
-    'A választó pártra szavaz; a mandátumokat arányosan osztják szét. A listán belüli sorrendet a párt határozza meg.',
+    'A választó pártra szavaz; a mandátumokat arányosan osztják. A listán belüli sorrendet a párt határozza meg.',
   'sys.closed-list.rationale':
-    'Zárt listás arányos rendszerben a szavazatok elsősorban pártokra mennek. A párt előre rögzített listájáról annyi jelölt jut be, ahány mandátumot a párt megszerzett (pl. D’Hondt-módszerrel).\n\nA parlament összetétele általában közel áll a nemzeti (vagy regionális) szavazatarányokhoz. A taktikai „kisebbik rossz” nyomás csökken, mert a kisebb pártokra leadott szavazatok is mandátumot eredményezhetnek, küszöbök függvényében.\n\nA kompromisszum: a választó nem dönt közvetlenül arról, hogy a párt melyik konkrét embere kerüljön be.',
+    'Zárt listás arányos rendszerben a szavazatok elsősorban pártokra mennek. A párt előre rögzített listájáról annyi jelölt jut be, ahány mandátumot a párt megszerzett, például D’Hondt-módszerrel.\n\nA parlament összetétele általában közel áll a nemzeti vagy regionális szavazatarányokhoz. A taktikai „kisebbik rossz” nyomás csökken, mert a kisebb pártokra leadott szavazatok is hozhatnak mandátumot, a küszöbtől függően.\n\nA kompromisszum: a választó nem dönt közvetlenül arról, hogy a párt melyik konkrét embere kerüljön be.',
   'sys.closed-list.pros':
-    'Jobban tükrözi a szavazatarányt; kevesebb „elveszett” szavazat.\n\nKisebb pártok és új szereplők is szóhoz juthatnak, ha átlépik a küszöböt.\n\nKevesebb kényszer a taktikai átállásra nagy egypárti blokkok felé.',
+    'Jobban tükrözi a szavazatarányt; kevesebb az „elveszett” szavazat.\n\nKisebb pártok és új szereplők is szóhoz juthatnak, ha átlépik a küszöböt.\n\nKevesebb a kényszer, hogy taktikai okból a nagy táborok felé állj át.',
   'sys.closed-list.cons':
-    'Gyengébb a közvetlen helyi képviselő-választó kapcsolat.\n\nA pártvezetés „kapuőr”: a lista elején lévők szinte biztosan bejutnak, a választó beleszólása korlátozott.\n\nA képviselők a párt felé elszámoltathatóbbak lehetnek, mint a választókerület felé.\n\nMagas bejutási küszöb mellett az arányosság romlik, és újra megjelenik a taktikai szavazás.',
+    'Gyengébb a közvetlen kapcsolat képviselő és választó között.\n\nA pártvezetés kapuőr: aki a lista elején van, szinte biztosan bejut, a választó beleszólása kevés.\n\nA képviselők inkább a pártnak tartozhatnak felelősséggel, mint a választókerületnek.\n\nMagas bejutási küszöb mellett az arányosság romlik, és újra megjelenik a taktikai szavazás.',
   'sys.closed-list.when':
-    'Erős választás, ha a cél a szavazatok és a mandátumok közötti igazságosság.\n\nKevesebb támogatást kap ott, ahol az emberek ragaszkodnak a név szerint megválasztott helyi képviselőhöz. A magyar vitában gyakran ez a referencia a „tisztább arányosság” irányába.',
+    'Jó választás, ha a szavazatok és a mandátumok aránya a fő szempont.\n\nKevesebben állnak mellé ott, ahol ragaszkodnak a név szerint megválasztott helyi képviselőhöz. A magyar vitában gyakran ez a viszonyítási pont, ha „tisztább arányosságról” van szó.',
 
-  'sys.mixed.name': 'Vegyes rendszer (magyarhoz hasonló)',
+  'sys.mixed.name': 'Vegyes rendszer (a magyarhoz hasonló)',
   'sys.mixed.summary':
-    'Egyéni körzeti győztesek + országos (vagy területi) lista. A mai magyar modell rokona, a szimuláció egyszerűsített kompenzációs logikát használ.',
+    'Egyéni körzeti győztesek és országos (vagy területi) lista. A mai magyar modell rokona; a szimuláció egyszerűsített kompenzációt használ.',
   'sys.mixed.rationale':
-    'A vegyes rendszerek helyi képviselőt és listás mandátumot is adnak. Magyarország 2011 óta egyéni többségi ágat és országos listát kombinál; a részletszabályok (győzteskompenzáció, töredékszavazatok) döntően befolyásolják, mennyire arányos a végeredmény.\n\nA német típusú MMP célja tipikusan az, hogy a lista „kijavítsa” az egyéni ág torzítását. A magyar gyakorlatban az egyéni ág súlya és a kompenzáció módja miatt a rendszer gyakran a helyi győzteseket erősíti.\n\nA reformviták központi kérdése: mennyit számítson a helyi győzelem, és mennyire kövesse a parlament a nemzeti szavazatarányt.',
+    'A vegyes rendszerek helyi képviselőt és listás mandátumot is adnak. Magyarország 2011 óta egyéni többségi ágat és országos listát kombinál. A részletszabályok (győzteskompenzáció, töredékszavazatok) döntően befolyásolják, mennyire arányos a végeredmény.\n\nA német típusú MMP célja általában az, hogy a lista „kijavítsa” az egyéni ág torzítását. A magyar gyakorlatban az egyéni ág súlya és a kompenzáció módja miatt a rendszer gyakran a helyi győzteseket erősíti.\n\nA reformviták központi kérdése: mennyit számítson a helyi győzelem, és mennyire kövesse a parlament a nemzeti szavazatarányt.',
   'sys.mixed.pros':
-    'Van helyi arc és országos pártképviselet is.\n\nIsmerős a magyar választóknak; kompromisszumként eladható.\n\nElméletben ötvözheti a személyes elszámoltathatóságot és az arányosságot (ha a listás ág elég erős és valóban kompenzáló).',
+    'Van helyi arc és országos pártképviselet is.\n\nA magyar választóknak ismerős; kompromisszumként könnyebb elfogadtatni.\n\nElméletben ötvözheti a személyes felelősséget és az arányosságot, ha a listás ág elég erős, és valóban kompenzál.',
   'sys.mixed.cons':
-    'Bonyolult szabályok: a választók nehezen látják át, hogyan lesz a szavazatból mandátum.\n\nHa az egyéni ág dominál vagy a kompenzáció a győzteseket jutalmazza, az arányosság sérül.\n\nKét szavazat / két logika: taktikai viselkedés mindkét ágon megjelenhet.\n\nA nemzetközi „vegyes” címke elfedi a nagy különbségeket (pl. német MMP vs. magyar rendszer).',
+    'Bonyolult szabályok: a választók nehezen látják át, hogyan lesz a szavazatból mandátum.\n\nHa az egyéni ág dominál, vagy a kompenzáció a győzteseket jutalmazza, az arányosság sérül.\n\nKét szavazat, két logika: taktikai viselkedés mindkét ágon megjelenhet.\n\nA nemzetközi „vegyes” címke elfedi a nagy különbségeket, például a német MMP és a magyar rendszer között.',
   'sys.mixed.when':
-    'Jó kiindulópont a status quo megértéséhez.\n\nHa a cél az arányosabb parlament, a vita jellemzően a listás ág erősítése, a győzteskompenzáció újragondolása vagy tisztább arányos modell felé mozdul.',
+    'Jó kiindulópont a jelenlegi rendszer megértéséhez.\n\nHa arányosabb parlament a cél, a vita általában a listás ág erősítése, a győzteskompenzáció újragondolása vagy egy tisztább arányos modell felé mozdul.',
 
-  'sys.open-list.name': 'Nyílt lista (preferenciális lista)',
+  'sys.open-list.name': 'Nyílt lista (sorbeli beleszólással)',
   'sys.open-list.summary':
-    'Arányos pártmandátumok, de a választó a listán belüli sorrendet is befolyásolhatja preferenciális szavazattal.',
+    'Arányos pártmandátumok, de a választó a listán belüli sorrendet is befolyásolhatja.',
   'sys.open-list.rationale':
-    'A nyílt lista megtartja az arányos pártképviseletet, miközben a választóknak beleszólást ad abba, hogy a párt melyik jelöltjei jutnak be. Tipikusan pártra és/vagy jelöltre is lehet szavazni; a preferenciák átrendezhetik a lista sorrendjét.\n\nEz részben választ ad a zárt lista „pártkapuőr” kritikájára, anélkül hogy visszatérne a tiszta egyéni többségi rendszerhez. Finnország, Hollandia vagy Brazília különböző erősségű nyílt listás változatokat használ.\n\nA reform-kontextusban gyakran erős jelölt: arányosság + személyes választás.',
+    'A nyílt lista megtartja az arányos pártképviseletet, miközben a választó beleszólhat abba, hogy a párt melyik jelöltjei jutnak be. Tipikusan pártra és jelöltre is lehet szavazni; a preferenciák átrendezhetik a lista sorrendjét.\n\nEz részben választ ad a zárt lista kritikájára, hogy a párt dönti el, ki kerül be, anélkül hogy visszatérne a tiszta egyéni többségi rendszerhez. Finnország, Hollandia vagy Brazília különböző erősségű nyílt listás változatokat használ.\n\nA reformvitában gyakran erős ajánlat: arányosság és személyes választás együtt.',
   'sys.open-list.pros':
-    'Arányos mandátumelosztás pártok között.\n\nA választó befolyásolhatja, ki kerül be a pártból, nagyobb személyes legitimáció.\n\nCsökkenti a teljesen zárt lista elitizmus-érzetét, miközben megtartja a listás arányosság előnyeit.',
+    'Arányos mandátumelosztás a pártok között.\n\nA választó befolyásolhatja, ki kerül be a pártból; erősebb a személyes legitimáció.\n\nTomítja a teljesen zárt lista elitizmus-érzetét, miközben megtartja a listás arányosság előnyeit.',
   'sys.open-list.cons':
-    'Bonyolultabb szavazólap és számolás.\n\nListán belüli verseny: a kampány pártársak ellen is folyhat, ami feszültséget szül.\n\nInformációs költség: a választónak több nevet kell ismernie.\n\nHa a preferenciahatás gyenge, gyakorlatilag majdnem zárt listaként működik.',
+    'Bonyolultabb a szavazólap és a számolás.\n\nListán belüli verseny: a kampány pártársak ellen is folyhat, ami feszültséget szül.\n\nTöbb utánajárás: a választónak több nevet kell ismernie.\n\nHa a preferencia hatása gyenge, gyakorlatilag majdnem zárt listaként működik.',
   'sys.open-list.when':
     'Különösen vonzó, ha arányosságot akarsz, de nem fogadod el, hogy csak a pártvezetés döntsön a személyekről.\n\nA magyar vitában gyakran „középút” a tiszta egyéni rendszer és a teljesen zárt lista között.',
 
   'sys.ranked.name': 'Rangsoros szavazás (IRV)',
   'sys.ranked.summary':
-    'A választó rangsorolja a jelölteket. A leggyengébb kiesik, szavazatai átkerülnek a következő preferenciára, amíg valaki többséget nem szerez.',
+    'A választó rangsorolja a jelölteket. A leggyengébb kiesik, szavazatai a következő preferenciára kerülnek, amíg valaki többséget nem szerez.',
   'sys.ranked.rationale':
-    'Az azonnali második forduló (instant-runoff, IRV) célja, hogy a győztes szélesebb támogatást mutasson, és csökkenjen a „kisebbik rossz” kényszere: ha a kedvenced kiesik, a második (harmadik…) helyen megjelölt jelölt még számíthat.\n\nAusztrália képviselőháza ezt a logikát használja egyéni körzetekben. Fontos: önmagában az IRV nem arányos parlamentet ad, továbbra is körzetenként egy győztes van. Az arányossághoz többmandátumos STV vagy listás elem kell.\n\nA magyar kontextusban inkább az egyéni ág reformjaként merül fel, nem a teljes arányos váltás helyettesítőjeként.',
+    'Az azonnali második forduló (instant-runoff, IRV) célja, hogy a győztes szélesebb támogatást mutasson, és csökkenjen a „kisebbik rossz” kényszere: ha a kedvenced kiesik, a második vagy harmadik helyen megjelölt jelölt még számíthat.\n\nAusztrália képviselőháza ezt a logikát használja egyéni körzetekben. Fontos: önmagában az IRV nem ad arányos parlamentet, továbbra is körzetenként egy győztes van. Az arányossághoz többmandátumos STV vagy listás elem kell.\n\nA magyar vitában inkább az egyéni ág reformjaként merül fel, nem a teljes arányos váltás helyettesítőjeként.',
   'sys.ranked.pros':
-    'Csökkenti a spoiler-hatást és a taktikai „csak a két esélyesre” nyomást.\n\nA győztesnek tipikusan többségi (vagy legalábbis szélesebb) támogatása van a preferenciák után.\n\nLehetővé teszi, hogy a választó őszintébben rangsorolja a kisebb jelölteket is.',
+    'Csökkenti, hogy a hasonló jelöltek szétaprózzák a tábort, és a „csak a két esélyesre” taktikai nyomást.\n\nA preferenciák átvitele után a győztesnek általában többsége van, vagy legalábbis szélesebb a támogatása.\n\nLehetővé teszi, hogy a választó őszintébben rangsorolja a kisebb jelölteket is.',
   'sys.ranked.cons':
-    'Országos arányosságot nem biztosít egymandátumos körzetekben.\n\nBonyolultabb a számolás és a magyarázat, mint az FPTP.\n\nRitka, de létező stratégiai paradoxonok (pl. non-monotonicity) elméletben előfordulhatnak.\n\nA „többségi” érzés körzetenként érvényesül, nem feltétlenül a parlament egészére.',
+    'Körzetenként egy mandátum mellett országos arányosságot nem ad.\n\nBonyolultabb számolni és elmagyarázni, mint a relatív többséget.\n\nRitka, de létező stratégiai furcsaságok is előfordulhatnak, például hogy valakinek árt, ha többen teszik első helyre.\n\nA „többségi” érzés körzetenként érvényesül, nem feltétlenül a parlament egészére.',
   'sys.ranked.when':
-    'Hasznos egyéni versenyekben, ha a cél a taktikai nyomás csökkentése.\n\nNem helyettesíti a listás arányosságot, ha a vita tárgya a nemzeti mandátumarány.',
+    'Egyéni versenyekben akkor hasznos, ha a cél a taktikai nyomás csökkentése.\n\nNem helyettesíti a listás arányosságot, ha a vita a nemzeti mandátumarányról szól.',
 
   'sys.two-round.name': 'Többfordulós (kétfordulós) szavazás',
   'sys.two-round.summary':
@@ -286,11 +290,35 @@ export const hu: Dict = {
   'sys.two-round.rationale':
     'A kétfordulós rendszer a francia elnökválasztásról ismert, de sok országban egyéni képviselőválasztásokon is használják. Magyarország 1990–2010 között az egyéni ágon kétfordulós logikát alkalmazott.\n\nAz első fordulóban a kisebb jelöltek „üzenhetnek” és mérhetik az erejüket; a másodikban a táborok összeállhatnak. A győztes végül abszolút többséget szerez a döntőben, ez erős legitimációs érv.\n\nOrszágos arányosságot azonban ez sem garantál: továbbra is helyi győztesekből áll össze a kép.',
   'sys.two-round.pros':
-    'A végső győztesnek többségi támogatása van a döntő fordulóban.\n\nAz első forduló lehetővé teszi a kisebb erők megjelenését anélkül, hogy azonnal „elveszne” a szavazat.\n\nIsmerős európai minta; historikusan része volt a magyar gyakorlatnak is.',
+    'A végső győztesnek többségi támogatása van a döntő fordulóban.\n\nAz első fordulóban a kisebb erők is megjelenhetnek anélkül, hogy a szavazat azonnal „elveszne”.\n\nIsmerős európai minta; korábban a magyar gyakorlatnak is része volt.',
   'sys.two-round.cons':
-    'Költségesebb és hosszabb (két választási nap).\n\nA második fordulóban erős taktikai átállás és alkuk jelennek meg.\n\nOrszágosan továbbra is torzíthat, ha a mandátumok egymandátumos körzetekből jönnek.\n\nAz alacsonyabb részvétel a második fordulóban megváltoztathatja az eredményt.',
+    'Költségesebb és hosszabb: két választási nap.\n\nA második fordulóban erős taktikai átállás és alkuk jelennek meg.\n\nOrszágosan továbbra is torzíthat, ha a mandátumok egyéni körzetekből jönnek.\n\nA második forduló alacsonyabb részvétele megváltoztathatja az eredményt.',
   'sys.two-round.when':
-    'Jól működhet egyéni tisztségekhez (elnök, polgármester, egyéni képviselő), ha a többségi legitimáció a cél.\n\nOrszágos arányossághoz listás vagy arányos elem kell mellé.',
+    'Egyéni tisztségeknél (elnök, polgármester, egyéni képviselő) akkor jó, ha a többségi legitimáció a cél.\n\nOrszágos arányossághoz listás vagy arányos elem kell mellé.',
+
+  'sys.borda.name': 'Rangsoros szavazás (Borda)',
+  'sys.borda.summary':
+    'A választó rangsorolja a jelölteket. Az első hely n−1 pontot ér, a második n−2-t, az utolsó semmit. A körzetet a legtöbb pont nyeri.',
+  'sys.borda.rationale':
+    'A Borda-számlálás is rangsoros szavazólapot használ, mint az IRV, de másképp számol: senki nem esik ki menet közben. Minden helyezés pontot ad, ezért a széles körben elfogadható, gyakran középen álló jelölt előnyben van azzal szemben, akinek sok, de szűk első helye van.\n\nEz pont az ellenkezője annak, ami az IRV-nél gyakran megesik: hogy a középen álló kiesik. Nauru a rokon Dowdall-változatot használja (1, ½, ⅓…); Kiribati is módosított Borda-szabályt alkalmazott. A magyar reformvitában ritkán merül fel, de tanulságos: nem kell senkinek az első választásának lenned ahhoz, hogy nyerj.\n\nA szimulációban minden elsőhelyes tábor magát teszi elsőnek, a többieket a hús–növény közelség szerint rangsorolja.',
+  'sys.borda.pros':
+    'A kompromisszumos jelöltet jutalmazza, nem csak azt, akinek sok első helye van.\n\nMinden helyezés számít, nem csak az, ami a kiesés után átkerül.\n\nKönnyebb elmagyarázni, mint a körönkénti kiesést: pontok, aztán összeg.',
+  'sys.borda.cons':
+    'Továbbra is körzetenként egy mandátum: országos arányosságot nem ad.\n\nÖsztönzi, hogy a veszélyes riválist szándékosan a lista aljára tegyék.\n\nA nagyon hasonló jelöltek elvihetik egymás pontjait, vagy felhígíthatják a mezőnyt.\n\nHa valakit a lista végére teszel, az is megváltoztathatja, ki nyer.',
+  'sys.borda.when':
+    'Akkor érdekes, ha a cél egy szélesebb egyetértésű helyi győztes, nem a tábor leghangosabb neve.\n\nNem helyettesíti a listás arányosságot, és nem ugyanaz, mint az IRV, akkor sem, ha mindkettő szavazólapon rangsorolunk.',
+
+  'sys.approval.name': 'Támogató szavazás (Approval)',
+  'sys.approval.summary':
+    'A választó annyi X-et tehet, amennyit akar: minden jelöltről külön dönt, támogatja vagy sem. A körzetet a legtöbb támogatás nyeri.',
+  'sys.approval.rationale':
+    'Támogató szavazáskor nincs rangsor és nincs kiesés. Minden jelöltről külön döntés: igen vagy nem. Aki a legtöbb igent kapja, az nyer. Így egy tábor több, egymáshoz közeli jelöltet is támogathat anélkül, hogy szétaprózná magát, mint a relatív többségnél.\n\nFargo (Észak-Dakota) és St. Louis helyi választásokon használta. A szavazólap egyszerűbb, mint a teljes rangsor, de a taktika más: meddig mered X-szel támogatni a második kedvencedet, ha azzal a kedvencedet is veszélyezteted?\n\nA szimulációban minden elsőhelyes tábor magát és a hús–növény tengelyen közeli pártokat támogatja, az ellentétes oldalt nem.',
+  'sys.approval.pros':
+    'Egyszerű szavazólap: X vagy sem, ahányat csak akarsz.\n\nTomítja, hogy a hasonló jelöltek szétaprózzák a tábort, mert együtt is kaphatnak támogatást.\n\nNincs kiesési kör, és nincs második választási nap.',
+  'sys.approval.cons':
+    'Körzetenként egy mandátum mellett a parlament továbbra sem arányos.\n\nNem derül ki, kit szeretsz jobban a támogatottak közül.\n\nHa túl sok X-et teszel, a riválisod is nyerhet.\n\nA győztesnek nem kell többség, elég a relatív legtöbb igen.',
+  'sys.approval.when':
+    'Jól mutatja, hogy a relatív többség spoiler-hatását egyszerű lappal is lehet enyhíteni.\n\nEgyéni tisztségeknél (polgármester, körzeti képviselő) merül fel. Országos arányossághoz lista kell mellé.',
 
   'sim.title': 'Magyarország-szimuláció',
   'sim.intro':
@@ -709,12 +737,16 @@ export const en: Dict = {
   'ex.syspick.chip.open-list': 'Open list',
   'ex.syspick.chip.ranked': 'IRV',
   'ex.syspick.chip.two-round': 'Two-round',
+  'ex.syspick.chip.borda': 'Borda',
+  'ex.syspick.chip.approval': 'Approval',
   'ex.syspick.chipDesc.local': 'Plurality wins each district',
   'ex.syspick.chipDesc.closed-list': 'Proportional list (open / closed)',
   'ex.syspick.chipDesc.mixed': 'Local seats plus a list',
   'ex.syspick.chipDesc.open-list': 'Boost candidates on the list',
   'ex.syspick.chipDesc.ranked': 'Rank choices; transfers locally',
   'ex.syspick.chipDesc.two-round': 'Runoff between the top two',
+  'ex.syspick.chipDesc.borda': 'Points for the full ranking',
+  'ex.syspick.chipDesc.approval': 'As many Xs as you like; most wins',
 
   'systems.simulate': 'Simulate with this',
   'systems.pros': 'Pros',
@@ -794,6 +826,30 @@ export const en: Dict = {
     'Costlier and longer (two election days).\n\nRound two brings heavy tactical shifts and bargaining.\n\nNationally still distorting if seats come from single-member districts.\n\nLower turnout in the runoff can change the result.',
   'sys.two-round.when':
     'Works well for single offices (president, mayor, single-member MP) when majority legitimacy is the goal.\n\nNeeds a list or proportional element alongside it for national fairness.',
+
+  'sys.borda.name': 'Ranked choice (Borda)',
+  'sys.borda.summary':
+    'Voters rank candidates. First place is worth n−1 points, second n−2, last zero. Most points wins the district.',
+  'sys.borda.rationale':
+    'Borda uses the same ranked ballot as IRV, but counts differently: nobody is eliminated. Every rank scores points, so a broadly acceptable (often centrist) candidate beats a narrower first-place lead.\n\nThat is the opposite of IRV’s “center squeeze.” Nauru uses the related Dowdall weights (1, 1/2, 1/3…); Kiribati has used a modified Borda rule. It rarely appears in Hungary’s reform debate, but it teaches a sharp lesson: you don’t have to be anyone’s first choice to win.\n\nIn the simulation each first-preference camp ranks itself first and the others by meat↔plant closeness.',
+  'sys.borda.pros':
+    'Rewards a compromise candidate, not only a loud first-place pile.\n\nEvery rank counts, not only transfers after elimination.\n\nEasier to explain than round-by-round knockouts: points, then a total.',
+  'sys.borda.cons':
+    'Still one winner per district: no national proportionality.\n\nInvites burial: rank a dangerous rival last on purpose.\n\nClones (similar candidates) can split points or dilute the field.\n\nNot later-no-harm: an extra lower rank can change the winner.',
+  'sys.borda.when':
+    'Interesting when the goal is a broadly agreeable local winner, not the loudest name in the camp.\n\nNot a substitute for list PR, and not the same as IRV, even though both use a ranked ballot.',
+
+  'sys.approval.name': 'Approval voting',
+  'sys.approval.summary':
+    'Voters may mark as many Xs as they like: approve a candidate or not. Most approvals wins the district.',
+  'sys.approval.rationale':
+    'Under approval there is no ranking and no elimination. Each candidate is a yes/no. Whoever has the most yeses wins. A camp can support several nearby names without spoiling itself the way FPTP does.\n\nFargo (North Dakota) and St. Louis have used it locally. The ballot is simpler than a full ranking, but the tactic is different: how far do you dare approve your second choice if that might beat your favorite?\n\nIn the simulation each first-preference camp approves itself and parties close on the meat↔plant axis (not the opposite side).',
+  'sys.approval.pros':
+    'Simple ballot: X or not, as many as you want.\n\nSoftens spoilers, because nearby candidates can share support.\n\nNo elimination rounds and no second election day.',
+  'sys.approval.cons':
+    'Still not proportional in single-member districts.\n\nDoes not say whom you prefer among those you approved.\n\nTactics: “too many” Xs can elect a rival.\n\nThe winner needs only the most yeses, not a majority.',
+  'sys.approval.when':
+    'A useful teaching tool when the debate is whether FPTP spoilers can be eased with a simple ballot.\n\nComes up for single offices (mayor, district MP); national fairness still needs a list beside it.',
 
   'sim.title': 'Hungary simulation',
   'sim.intro':
