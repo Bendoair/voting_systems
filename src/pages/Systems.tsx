@@ -65,6 +65,15 @@ function SysPickLink() {
   )
 }
 
+function OpenListLink() {
+  const { t } = useI18n()
+  return (
+    <Link className="btn ghost system-game-btn" to="/games/openlist">
+      {t('systems.openlist.cta')}
+    </Link>
+  )
+}
+
 type SysSectionTab = 'list' | 'local' | 'mixed'
 
 export function Systems() {
@@ -95,6 +104,7 @@ export function Systems() {
               titleKey="systems.section.list"
               introKey="systems.section.listIntro"
               systems={sectionSystems(LIST_IDS)}
+              titleExtra={<OpenListLink />}
             />
           )}
           {tab === 'local' && (
@@ -129,6 +139,7 @@ export function Systems() {
         titleKey="systems.section.list"
         introKey="systems.section.listIntro"
         systems={sectionSystems(LIST_IDS)}
+        titleExtra={<OpenListLink />}
       />
       <SystemSection
         titleKey="systems.section.local"

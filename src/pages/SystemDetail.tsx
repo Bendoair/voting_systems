@@ -93,6 +93,11 @@ export function SystemDetail() {
           {tab === 'pros' && <ProsCons id={sid} />}
           {tab === 'examples' && examplesBlock}
         </div>
+        {sid === 'open-list' && (
+          <Link className="btn ghost system-game-btn" to="/games/openlist" style={{ marginTop: '0.75rem' }}>
+            {t('systems.openlist.cta')}
+          </Link>
+        )}
         <Link className="btn primary" to={`/simulate?system=${sid}`} style={{ marginTop: '0.75rem' }}>
           {t('systems.simulate')}
         </Link>
@@ -116,6 +121,11 @@ export function SystemDetail() {
       </div>
       <ProsCons id={sid} />
       {examplesBlock}
+      {sid === 'open-list' && (
+        <Link className="btn ghost system-game-btn" to="/games/openlist">
+          {t('systems.openlist.cta')}
+        </Link>
+      )}
       <Link className="btn primary" to={`/simulate?system=${sid}`}>
         {t('systems.simulate')}
       </Link>

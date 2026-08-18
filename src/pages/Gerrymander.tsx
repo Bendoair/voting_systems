@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { BottomSheet } from '../components/BottomSheet'
+import { CompactFlavorChrome } from '../components/CompactFlavorChrome'
 import { ConfettiBurst } from '../components/ConfettiBurst'
 import { GerryBoard, type GerryViewMode } from '../exercises/gerrymander/Board'
 import { generateGerryMap } from '../exercises/gerrymander/generate'
@@ -44,6 +45,7 @@ export function Gerrymander() {
   const [activeDistrict, setActiveDistrict] = useState(1)
   const [viewMode, setViewMode] = useState<GerryViewMode>('voters')
   const [rulesOpen, setRulesOpen] = useState(false)
+  const [flavorOpen, setFlavorOpen] = useState(false)
   const activeDistrictRef = useRef(activeDistrict)
   activeDistrictRef.current = activeDistrict
   const rulesDialogRef = useRef<HTMLDialogElement>(null)
@@ -177,13 +179,23 @@ export function Gerrymander() {
         </aside>
         )}
         {compact && (
-          <button
-            type="button"
-            className="gerry-rules-btn"
-            onClick={() => setRulesOpen(true)}
+          <CompactFlavorChrome
+            flavorOpen={flavorOpen}
+            rulesOpen={rulesOpen}
+            onOpenFlavor={() => {
+              setRulesOpen(false)
+              setFlavorOpen(true)
+            }}
+            onOpenRules={() => {
+              setFlavorOpen(false)
+              setRulesOpen(true)
+            }}
+            onCloseFlavor={() => setFlavorOpen(false)}
+            rulesLabel={t('ex.gerry.rulesLink')}
+            closeLabel={t('ex.gerry.rulesClose')}
           >
-            {t('ex.gerry.rulesLink')}
-          </button>
+            <p>{t('ex.gerry.rules')}</p>
+          </CompactFlavorChrome>
         )}
       </header>
 

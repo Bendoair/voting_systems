@@ -2693,6 +2693,133 @@ a.btn.primary.soft:hover {
   border-radius: 3px;
 }
 
+.fx-miss,
+.fx-surge,
+.fx-rain {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  width: 100dvw;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 9998;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.fx-surge {
+  box-shadow:
+    inset 0 0 72px 18px color-mix(in srgb, #f5c400 50%, transparent),
+    inset 0 0 160px 48px color-mix(in srgb, #ffe566 18%, transparent);
+  animation: fx-surge-flash 1.1s ease-out forwards;
+}
+
+.fx-surge-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.fx-bolt {
+  fill: #e4b00c;
+  stroke: none;
+  animation: fx-bolt-flicker 1.1s ease-out forwards;
+}
+
+.fx-rain {
+  background: color-mix(in srgb, #3a4a5c 18%, transparent);
+  animation: fx-rain-wash 1.8s ease-out forwards;
+}
+
+.fx-raindrop {
+  position: absolute;
+  top: -3rem;
+  width: 6px;
+  border-radius: 2px;
+  background: linear-gradient(180deg, transparent, #7a93a8 35%, #4d6578);
+  animation-name: fx-rain-fall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.fx-miss {
+  background: radial-gradient(
+    ellipse at 50% 40%,
+    color-mix(in srgb, var(--ink) 20%, transparent),
+    color-mix(in srgb, var(--ink) 62%, #120e0c)
+  );
+  animation: fx-miss-fade 2.2s ease forwards;
+}
+
+@keyframes fx-surge-flash {
+  0%,
+  14% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0.25;
+  }
+  32% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fx-bolt-flicker {
+  0%,
+  12% {
+    opacity: 1;
+  }
+  18% {
+    opacity: 0.15;
+  }
+  28% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fx-rain-wash {
+  0% {
+    opacity: 0.85;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fx-rain-fall {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(var(--confetti-rot, 8deg));
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate3d(var(--confetti-drift, 0), 110dvh, 0) rotate(var(--confetti-rot, 8deg));
+    opacity: 0.2;
+  }
+}
+
+@keyframes fx-miss-fade {
+  0% {
+    opacity: 0;
+  }
+  18% {
+    opacity: 0.58;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @keyframes confetti-fall {
   0% {
     transform: translate3d(0, 0, 0) rotate(var(--confetti-rot, 0deg)) scale(1);
@@ -2710,6 +2837,12 @@ a.btn.primary.soft:hover {
 
 @media (prefers-reduced-motion: reduce) {
   .confetti-burst {
+    display: none;
+  }
+
+  .fx-surge,
+  .fx-rain,
+  .fx-miss {
     display: none;
   }
 
@@ -2773,6 +2906,11 @@ a.btn.primary.soft:hover {
   flex-shrink: 0;
 }
 
+.gerry-rules-info.is-star {
+  font-style: normal;
+  font-size: 0.68rem;
+}
+
 .gerry-rules-dialog {
   border: none;
   padding: 0;
@@ -2793,6 +2931,18 @@ a.btn.primary.soft:hover {
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 1.05rem 1.15rem 1.2rem;
+}
+
+.gerry-flavor-copy {
+  padding: 0.85rem 0.95rem;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--accent) 12%, var(--paper-2));
+}
+
+.gerry-flavor-copy > p {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.45;
 }
 
 .gerry-rules-panel-head {
@@ -4253,3 +4403,621 @@ html.is-compact .case-block.pane-map,
 html.is-compact .case-block.pane-summary {
   grid-template-columns: 1fr;
 }
+
+/* Open-list campaign game */
+.olist-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.olist-intro {
+  margin-top: 0.35rem;
+}
+
+.olist-campaign,
+.olist-night {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.olist-campaign-top,
+.olist-campaign-bottom,
+.olist-night-grid {
+  display: grid;
+  grid-template-columns: minmax(13rem, 18rem) 1fr;
+  gap: 1.15rem;
+  align-items: stretch;
+}
+
+.olist-campaign-bottom {
+  grid-template-columns: minmax(16rem, 1.1fr) minmax(13rem, 22rem);
+}
+
+.olist-id-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.olist-id-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 0.75rem;
+  border: 3px solid var(--party, var(--accent));
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--party, var(--accent)) 12%, var(--paper));
+}
+
+.olist-id-portrait {
+  aspect-ratio: 1;
+  width: 100%;
+  max-width: 12rem;
+  margin: 0 auto;
+  border: 1px solid color-mix(in srgb, var(--party, var(--accent)) 40%, var(--line));
+  overflow: hidden;
+  background: var(--paper-2);
+}
+
+.olist-id-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.olist-id-rule,
+.olist-id-stats {
+  display: none;
+  margin: 0;
+}
+
+.olist-id-party {
+  order: -1;
+  margin: 0.15rem 0 0;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+}
+
+.olist-id-name {
+  font-size: 1.15rem;
+}
+
+.olist-week-play {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.olist-list-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  min-width: 0;
+}
+
+.olist-list-head h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.olist-list-head h2 span {
+  font-weight: 600;
+  color: var(--ink-soft);
+}
+
+.olist-list-head .muted {
+  margin: 0.2rem 0 0;
+  font-size: 0.88rem;
+}
+
+.olist-rows {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  height: calc(var(--rows, 8) * var(--row-h, 2.7rem));
+}
+
+.olist-clip {
+  --taper: 1.75rem;
+  position: relative;
+  overflow: hidden;
+  height: var(--clip-h, calc(var(--clip-rows, 3) * var(--row-h, 2.7rem)));
+  border-radius: var(--radius);
+  background: var(--paper-2);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+
+.olist-clip::before,
+.olist-clip::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  height: var(--taper);
+  pointer-events: none;
+}
+
+.olist-clip::before {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--paper-2) 0%,
+    color-mix(in srgb, var(--paper-2) 55%, transparent) 55%,
+    transparent
+  );
+}
+
+.olist-clip::after {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    var(--paper-2) 0%,
+    color-mix(in srgb, var(--paper-2) 55%, transparent) 55%,
+    transparent
+  );
+}
+
+.olist-clip.is-edge-top::before,
+.olist-clip.is-edge-bottom::after {
+  content: none;
+}
+
+.olist-rows.is-clip-shift {
+  --olist-clip-h: var(--clip-h, calc(var(--clip-rows, 3) * var(--row-h)));
+  --olist-list-h: calc(var(--rows, 8) * var(--row-h));
+  --olist-center: calc(
+    (var(--olist-clip-h) - var(--row-h)) / 2 - var(--player-index, 0) * var(--row-h)
+  );
+  --olist-min: calc(var(--olist-clip-h) - var(--olist-list-h));
+  transform: translateY(clamp(var(--olist-min), var(--olist-center), 0px));
+  transition: transform 0.5s ease;
+}
+
+.olist-you-peek {
+  height: var(--row-h, 2.7rem);
+}
+
+.olist-you-peek .olist-row {
+  position: relative;
+  top: auto;
+}
+
+.olist-row {
+  position: absolute;
+  left: 0;
+  right: 0;
+  display: grid;
+  grid-template-columns: 1.6rem 1fr auto;
+  gap: 0.45rem;
+  align-items: center;
+  height: calc(var(--row-h) - 0.2rem);
+  padding: 0 0.55rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  background: transparent;
+  transition:
+    top 0.5s ease,
+    background-color 0.4s ease,
+    border-color 0.3s ease;
+}
+
+.olist-row.is-in {
+  background: color-mix(in srgb, var(--party, var(--accent)) 18%, var(--paper));
+}
+
+.olist-row.is-you {
+  border: 2px solid var(--party, var(--accent));
+  font-weight: 700;
+}
+
+.olist-row.is-cutoff {
+  box-shadow: 0 1px 0 0 color-mix(in srgb, var(--ink) 28%, transparent);
+}
+
+.olist-row-rank {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+.olist-row-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.olist-week-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.olist-week-count {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.olist-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.olist-action {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  align-items: flex-start;
+  text-align: left;
+  padding: 0.75rem 0.8rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--paper-2);
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.olist-action:hover:not(:disabled) {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--paper-2));
+}
+
+.olist-action:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.olist-action strong {
+  font-size: 1rem;
+}
+
+.olist-action span {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  line-height: 1.35;
+}
+
+.olist-captions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.olist-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.5rem 0.7rem;
+  border-left: 3px solid var(--line-strong);
+  background: color-mix(in srgb, var(--ink) 5%, var(--paper-2));
+  border-radius: var(--radius);
+}
+
+.olist-caption.is-good {
+  border-left-color: var(--ok, #2e7d32);
+  background: color-mix(in srgb, var(--ok, #2e7d32) 12%, var(--paper-2));
+}
+
+.olist-caption.is-bad {
+  border-left-color: var(--warn);
+  background: color-mix(in srgb, var(--warn) 12%, var(--paper-2));
+}
+
+.olist-caption-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.olist-caption-mark {
+  width: 0.85em;
+  height: 0.85em;
+  flex-shrink: 0;
+}
+
+.olist-caption-mark.is-surge {
+  color: #e4b00c;
+}
+
+.olist-caption-mark.is-fizzle {
+  color: #4d6578;
+}
+
+.olist-caption p {
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+.olist-field-panel,
+.olist-night-result {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.olist-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 0.35rem;
+  min-height: 16rem;
+}
+
+.olist-bars.is-short {
+  min-height: 12.5rem;
+}
+
+.olist-bar-col {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.olist-bar-col.is-you .olist-bar-name {
+  font-weight: 800;
+}
+
+.olist-bar-nums {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+
+.olist-bar-nums strong {
+  font-size: 0.82rem;
+}
+
+.olist-bar-nums span {
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+}
+
+.olist-bar-track {
+  width: 100%;
+  max-width: 3.2rem;
+  height: 11.5rem;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 3px 3px 0 0;
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+  overflow: hidden;
+}
+
+.olist-bars.is-short .olist-bar-track {
+  height: 8.5rem;
+}
+
+.olist-bar-col.is-you .olist-bar-track {
+  outline: 2px solid var(--party, var(--accent));
+  outline-offset: 1px;
+}
+
+.olist-bar-fill {
+  width: 100%;
+  transition: height 0.55s ease;
+}
+
+.olist-bars.is-scramble .olist-bar-fill {
+  transition: height 0.42s ease-in-out;
+}
+
+.olist-bar-fruit {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.olist-bar-name {
+  font-size: 0.72rem;
+  text-align: center;
+  line-height: 1.2;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.olist-counting {
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--accent) 10%, var(--paper-2));
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.olist-closed {
+  margin: 0.2rem 0 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.openlist-card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  width: 7.5rem;
+}
+
+.openlist-card-list span {
+  display: block;
+  height: 0.85rem;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--ink) 10%, var(--paper));
+}
+
+.openlist-card-list span.is-in {
+  background: color-mix(in srgb, var(--accent) 35%, var(--paper));
+}
+
+.openlist-card-list span.is-cut {
+  height: 2px;
+  background: var(--ink);
+  opacity: 0.45;
+}
+
+.ex-card-openlist .ex-card-visual {
+  background:
+    radial-gradient(ellipse at 30% 40%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 55%),
+    linear-gradient(165deg, color-mix(in srgb, var(--accent-2) 8%, var(--paper-2)), var(--paper-2));
+}
+
+html.is-compact .olist-campaign-top,
+html.is-compact .olist-campaign-bottom,
+html.is-compact .olist-night-grid {
+  grid-template-columns: 1fr;
+}
+
+html.is-compact .olist-page .olist-campaign.tab-you .olist-campaign-bottom {
+  display: none;
+}
+
+html.is-compact .olist-page .olist-campaign.tab-campaign .olist-campaign-top {
+  display: none;
+}
+
+html.is-compact .olist-page .olist-campaign .olist-list-head {
+  display: none;
+}
+
+html.is-compact .olist-id-card {
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+}
+
+html.is-compact .olist-id-portrait {
+  flex: 0 0 6.75rem;
+  width: 6.75rem;
+  max-width: 6.75rem;
+  margin: 0;
+}
+
+html.is-compact .olist-id-meta {
+  flex: 1;
+  justify-content: center;
+  min-width: 0;
+  padding-left: 0.75rem;
+  margin-left: 0.7rem;
+  border-left: 1px solid color-mix(in srgb, var(--party, var(--accent)) 45%, var(--line));
+}
+
+html.is-compact .olist-id-party {
+  order: 0;
+}
+
+html.is-compact .olist-id-rule {
+  display: none;
+}
+
+html.is-compact .olist-id-stats {
+  display: block;
+  margin: 0.15rem 0 0;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.35;
+}
+
+html.is-compact .gerry-compact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.35rem;
+}
+
+html.is-compact .olist-page .olist-campaign.tab-you .olist-id-panel {
+  margin-bottom: 0.35rem;
+}
+
+html.is-compact .olist-week-play {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.45rem;
+  align-items: stretch;
+}
+
+html.is-compact .olist-week-play .olist-actions {
+  grid-template-columns: 1fr;
+  gap: 0.35rem;
+}
+
+html.is-compact .olist-week-play .olist-action {
+  padding: 0.5rem 0.55rem;
+}
+
+html.is-compact .olist-week-play .olist-captions {
+  height: 0;
+  min-height: 100%;
+  overflow-y: auto;
+  gap: 0.3rem;
+}
+
+html.is-compact .olist-field-panel .sim-section-title {
+  display: none;
+}
+
+html.is-compact .olist-night .olist-list-head,
+html.is-compact .olist-night-result .sim-section-title {
+  display: none;
+}
+
+html.is-compact .olist-night-status {
+  margin: 0 0 0.55rem;
+  padding: 0.6rem 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.2;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius);
+}
+
+html.is-compact .olist-night-status.is-count {
+  background: color-mix(in srgb, var(--accent) 10%, var(--paper-2));
+  border-color: var(--accent);
+}
+
+html.is-compact .olist-night-status.is-win {
+  color: color-mix(in srgb, var(--ok, #2e7d32) 85%, var(--ink));
+  background: color-mix(in srgb, var(--ok, #2e7d32) 12%, var(--paper-2));
+  border-color: var(--ok, #2e7d32);
+}
+
+html.is-compact .olist-night-status.is-lose {
+  color: var(--warn);
+  background: color-mix(in srgb, var(--warn) 10%, var(--paper-2));
+  border-color: var(--warn);
+}
+
+html.is-compact .olist-actions {
+  grid-template-columns: 1fr;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .olist-row,
+  .olist-rows.is-clip-shift,
+  .olist-bar-fill {
+    transition: none;
+  }
+}
+

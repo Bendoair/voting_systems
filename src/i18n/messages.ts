@@ -51,6 +51,18 @@ export const hu: Dict = {
   'compact.syspick.revealTabs': 'Eredmény nézet',
   'compact.syspick.seats': 'Mandátumok',
   'compact.syspick.map': 'Térkép',
+  'compact.ex.flavorLink': 'Történet',
+  'compact.openlist.tabs': 'Listahely',
+  'compact.openlist.you': 'Te',
+  'compact.openlist.campaign': 'Kampány',
+  'compact.openlist.rulesP1':
+    'A Te fülön: a jelöltkártyád, alatta a lista élő sorrendje. A színezés mutatja, ki van bent a mai D’Hondt-küszöb szerint.',
+  'compact.openlist.rulesP2':
+    'A Kampány fülön: a te listahelyed, a hét számlálója, majd három kártya - pártkampány, egyensúly, saját támogatás. A tervezett hatás általában bejön, de néha elhal 🌧️ vagy túlteljesít ⚡.',
+  'compact.openlist.rulesP3':
+    'Alul a függőleges oszlopok a pártok aktuális arányát mutatják. A többi párt listáját nem látod, csak az aggregált lengést: kampányolhatnak, vagy belviszályba kavarodhatnak.',
+  'compact.openlist.rulesP4':
+    'Az utolsó hét után jönnek az eredmények. Remélhetőleg bent vagy! Milyen izgi...',
   'home.cta.tour': 'Kezdd az útmutatóval',
   'home.cta.systems': 'Rendszerek magyarázata',
   'home.cta.simulate': 'Próbáld a térképen',
@@ -84,6 +96,7 @@ export const hu: Dict = {
   'systems.gerry.title': 'Gerrymander játék',
   'systems.syspick.cta': 'Rendszertipp játék',
   'systems.syspick.link': 'Próbáld ki: melyik rendszer adná a legtöbb mandátumot a te pártodnak?',
+  'systems.openlist.cta': 'Listahely játék',
 
   'ex.title': 'Játékok',
   'ex.intro': 'Rövid játékok, amelyek megmutatják, hogyan torzíthatják a szabályok és a határok a képviseletet.',
@@ -216,6 +229,68 @@ export const hu: Dict = {
   'ex.syspick.chipDesc.two-round': 'Döntő a két élmezőny között',
   'ex.syspick.chipDesc.borda': 'Pontok a teljes rangsorért',
   'ex.syspick.chipDesc.approval': 'Több X; a legtöbb támogatás nyer',
+
+  'ex.openlist.cardTitle': 'Listahely',
+  'ex.openlist.badge': 'Mini-játék',
+  'ex.openlist.cardBlurb':
+    'Nyílt listás arányos rendszerben két számolás fut együtt: a párt szavazataránya (D’Hondt) mondja meg, hány mandátumot kap a lista; a személyes támogatás pedig azt, hogy a listáról ki tölti be ezeket a helyeket. A zárt lista ugyanannyi mandátumot oszt, de befagyasztja a sorrendet.',
+  'ex.openlist.play': 'Játszom',
+  'ex.openlist.title': 'Listahely',
+  'ex.openlist.rulesL1': 'Zedország új, nyílt listás rendszerrel választ.',
+  'ex.openlist.rulesL2':
+    'Most már nem csak a pártokra, hanem a konkrét politikusokra is lehet szavazni.',
+  'ex.openlist.rulesL3':
+    'A pártodnak természetesen mennie kell, de te sem akarsz kimaradni.',
+  'ex.openlist.rulesL4': 'Van még néhány kampányhét - hozd ki belőle a legtöbbet!',
+  'ex.openlist.rulesLink': 'Játékszabályok',
+  'ex.openlist.rulesClose': 'Bezárás',
+  'ex.openlist.rulesP1':
+    'Bal oldalon a te igazolványod, jobb oldalon a lista élő sorrendje. A színezés mutatja, ki van bent a mai D’Hondt-küszöb szerint.',
+  'ex.openlist.rulesP2':
+    'Lent három kártya: pártkampány, egyensúly, saját támogatás. A tervezett hatás általában bejön, de néha elhal 🌧️ vagy túlteljesít ⚡.',
+  'ex.openlist.rulesP3':
+    'A függőleges oszlopok a pártok aktuális arányát mutatják. A többi párt listáját nem látod, csak az aggregált lengést: kampányolhatnak, vagy belviszályba kavarodhatnak.',
+  'ex.openlist.rulesP4':
+    'Az utolsó hét után jönnek az eredmények. Remélhetőleg bent vagy! Milyen izgi...',
+  'ex.openlist.rulesP5': 'Sok sikert!',
+  'ex.openlist.youAre': 'A te jelölted',
+  'ex.openlist.you': 'te',
+  'ex.openlist.in': 'bent',
+  'ex.openlist.out': 'kint',
+  'ex.openlist.week': 'Kampány: {n}. hét / {total}',
+  'ex.openlist.projected': 'Becsült mandátum: {n}',
+  'ex.openlist.standings': 'Pártok állása',
+  'ex.openlist.newDeal': 'Új leosztás',
+  'ex.openlist.act.party': 'Párt',
+  'ex.openlist.act.balanced': 'Egyensúly',
+  'ex.openlist.act.own': 'Saját támogatás',
+  'ex.openlist.actHint.party': 'A lista erősödik; te alig mozdulsz.',
+  'ex.openlist.actHint.balanced': 'Kicsit a párt, kicsit te.',
+  'ex.openlist.actHint.own': 'Te feljebb lépsz; a párt lapos marad.',
+  'ex.openlist.news.you': 'A pártod hete',
+  'ex.openlist.news.field': 'A mezőny',
+  'ex.openlist.you.party.planned': 'Pártos hét: a lista szavazataránya nőtt, a te pontod alig mozdult.',
+  'ex.openlist.you.party.fizzle': 'A pártkampány elhalt, sőt visszafelé sült el.',
+  'ex.openlist.you.party.overperform': 'A pártkampány túlteljesített: a lista látványosan erősödött.',
+  'ex.openlist.you.balanced.planned': 'Kiegyensúlyozott hét: a párt és te is kaptatok egy kicsit.',
+  'ex.openlist.you.balanced.fizzle': 'A vegyes hét nem jött össze.',
+  'ex.openlist.you.balanced.overperform': 'A vegyes hét mindkét oldalon jobban sikerült a vártnál.',
+  'ex.openlist.you.own.planned': 'Saját kampány: te feljebb léptél a listán; a párt alig mozdult.',
+  'ex.openlist.you.own.fizzle': 'A saját hét nem hozta a várt emelkedést.',
+  'ex.openlist.you.own.overperform': 'A saját kampány berobbant: a listán nagyot léptél.',
+  'ex.openlist.field.campaign': 'A {party} a saját jelöltjeit tolta - az arányuk nőtt.',
+  'ex.openlist.field.infight': 'A {party} belviszályba kavarodott - az arányuk esett.',
+  'ex.openlist.field.quiet': 'A többi párt csendes maradt.',
+  'ex.openlist.mate.self':
+    '{name} magára kampányolt, és ez a te helyezésedet vagy a küszöböt is átírta.',
+  'ex.openlist.counting': 'Számolás…',
+  'ex.openlist.final': 'Végleges eredmény',
+  'ex.openlist.victory': 'Bejutottál. Helyezésed: {rank}. A párt {seats} mandátumot hozott.',
+  'ex.openlist.defeat': 'Kimaradtál. Helyezésed: {rank}; a párt {seats} mandátumot hozott.',
+  'ex.openlist.closed.bothIn': 'Zárt listán, az eredeti sorrenddel, te is bejutottál volna.',
+  'ex.openlist.closed.openSaved': 'Zárt listán kimaradtál volna - a nyílt lista emelt be.',
+  'ex.openlist.closed.openCost': 'Zárt listán bent lettél volna - a nyílt lista mást tolt előre.',
+  'ex.openlist.closed.bothOut': 'Zárt listán, az eredeti sorrenddel, sem fértél volna be.',
 
   'systems.simulate': 'Próbáld a szimulációban',
   'systems.pros': 'Előnyök',
@@ -582,6 +657,18 @@ export const en: Dict = {
   'compact.syspick.revealTabs': 'Result view',
   'compact.syspick.seats': 'Seats',
   'compact.syspick.map': 'Map',
+  'compact.ex.flavorLink': 'Story',
+  'compact.openlist.tabs': 'List place',
+  'compact.openlist.you': 'You',
+  'compact.openlist.campaign': 'Campaign',
+  'compact.openlist.rulesP1':
+    'On You: your ID card sits above the live list order. Tint shows who is in under today’s D’Hondt cutoff.',
+  'compact.openlist.rulesP2':
+    'On Campaign: your list row, the week counter, then three cards - party campaign, balanced, own support. The intended effect usually lands; sometimes it fizzles 🌧️ or overperforms ⚡.',
+  'compact.openlist.rulesP3':
+    'The bars below are current party shares. You do not see rival lists - only their aggregate swing. They may push their own candidates, or fall victim to infighting.',
+  'compact.openlist.rulesP4':
+    'After the last week, see the results. Hopefully you are in! What a nail-biter...',
   'home.cta.tour': 'Start the tour',
   'home.cta.systems': 'Explain the systems',
   'home.cta.simulate': 'Try the map lab',
@@ -615,6 +702,7 @@ export const en: Dict = {
   'systems.gerry.title': 'Gerrymander game',
   'systems.syspick.cta': 'System pick game',
   'systems.syspick.link': 'Try it: which system would give your party the most seats?',
+  'systems.openlist.cta': 'List place game',
 
   'ex.title': 'Games',
   'ex.intro': 'Short games that show how rules and boundaries can warp representation.',
@@ -747,6 +835,70 @@ export const en: Dict = {
   'ex.syspick.chipDesc.two-round': 'Runoff between the top two',
   'ex.syspick.chipDesc.borda': 'Points for the full ranking',
   'ex.syspick.chipDesc.approval': 'As many Xs as you like; most wins',
+
+  'ex.openlist.cardTitle': 'List place',
+  'ex.openlist.badge': 'Mini-game',
+  'ex.openlist.cardBlurb':
+    'Open-list PR is two coupled counts: party vote share (D’Hondt) sets how many seats the list wins; personal preference decides who fills those seats. Closed list shares the first count and freezes the second.',
+  'ex.openlist.play': 'Play now',
+  'ex.openlist.title': 'List place',
+  'ex.openlist.rulesL1':
+    'Zedcountry is electing with a fancy new open-list system.',
+  'ex.openlist.rulesL2':
+    'In this election it is not just the parties, but the specific politicians, that can get votes.',
+  'ex.openlist.rulesL3':
+    'You of course want your party to succeed, but don’t want to get left out.',
+  'ex.openlist.rulesL4':
+    'There are still a few weeks of campaigning left - try and make the most of it!',
+  'ex.openlist.rulesLink': 'Game rules',
+  'ex.openlist.rulesClose': 'Close',
+  'ex.openlist.rulesP1':
+    'Left is your ID card; right is the live list order. Tint shows who is in under today’s D’Hondt cutoff.',
+  'ex.openlist.rulesP2':
+    'Below, three cards: party campaign, balanced, own support. The intended effect usually lands; sometimes it fizzles 🌧️ or overperforms ⚡.',
+  'ex.openlist.rulesP3':
+    'The vertical bars are current party shares. You do not see rival lists - only their aggregate swing. They may push their own candidates, or fall victim to infighting.',
+  'ex.openlist.rulesP4':
+    'After the last week, see the results. Hopefully you are in! What a nail-biter...',
+  'ex.openlist.rulesP5': 'Good luck!',
+  'ex.openlist.youAre': 'Your candidate',
+  'ex.openlist.you': 'you',
+  'ex.openlist.in': 'in',
+  'ex.openlist.out': 'out',
+  'ex.openlist.week': 'Campaign: Week {n} / {total}',
+  'ex.openlist.projected': 'Projected seats: {n}',
+  'ex.openlist.standings': 'Party standings',
+  'ex.openlist.newDeal': 'New deal',
+  'ex.openlist.act.party': 'Party',
+  'ex.openlist.act.balanced': 'Balanced',
+  'ex.openlist.act.own': 'Own support',
+  'ex.openlist.actHint.party': 'The list rises; you barely move.',
+  'ex.openlist.actHint.balanced': 'A little for the party, a little for you.',
+  'ex.openlist.actHint.own': 'You climb; the party stays flat.',
+  'ex.openlist.news.you': 'Your party’s week',
+  'ex.openlist.news.field': 'The field',
+  'ex.openlist.you.party.planned': 'Party week: list share rose; your personal score barely moved.',
+  'ex.openlist.you.party.fizzle': 'The party campaign fizzled - or backfired.',
+  'ex.openlist.you.party.overperform': 'The party campaign overperformed: the list surged.',
+  'ex.openlist.you.balanced.planned': 'Balanced week: the party and you both ticked up a little.',
+  'ex.openlist.you.balanced.fizzle': 'The mixed week did not land.',
+  'ex.openlist.you.balanced.overperform': 'The mixed week beat the plan on both sides.',
+  'ex.openlist.you.own.planned': 'Own campaign: you climbed the list; the party barely moved.',
+  'ex.openlist.you.own.fizzle': 'The self week did not deliver the climb you wanted.',
+  'ex.openlist.you.own.overperform': 'Your self campaign exploded: a big jump on the list.',
+  'ex.openlist.field.campaign': '{party} pushed their own candidates - their share rose.',
+  'ex.openlist.field.infight': '{party} fell victim to infighting - their share slipped.',
+  'ex.openlist.field.quiet': 'The other parties stayed quiet.',
+  'ex.openlist.mate.self':
+    '{name} campaigned for themselves, and that changed your rank or the cutoff.',
+  'ex.openlist.counting': 'Counting…',
+  'ex.openlist.final': 'Final result',
+  'ex.openlist.victory': 'You are in. Rank {rank}. The party won {seats} seats.',
+  'ex.openlist.defeat': 'You missed the cut. Rank {rank}; the party won {seats} seats.',
+  'ex.openlist.closed.bothIn': 'On a closed list, in the original order, you would have gotten in too.',
+  'ex.openlist.closed.openSaved': 'A closed list would have left you out - the open list brought you in.',
+  'ex.openlist.closed.openCost': 'A closed list would have seated you - the open list pushed someone else in.',
+  'ex.openlist.closed.bothOut': 'On a closed list, in the original order, you would still have missed it.',
 
   'systems.simulate': 'Simulate with this',
   'systems.pros': 'Pros',

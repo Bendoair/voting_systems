@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CaseDietGeoMap } from '../components/CaseDietGeoMap'
+import { CompactFlavorChrome } from '../components/CompactFlavorChrome'
 import { ConfettiBurst } from '../components/ConfettiBurst'
 import { HungaryMap } from '../components/HungaryMap'
 import { SeatChart } from '../components/SeatChart'
@@ -89,6 +90,7 @@ export function SysPick() {
   const [pick, setPick] = useState<SystemId | null>(null)
   const [mapTab, setMapTab] = useState<SystemId>('closed-list')
   const [rulesOpen, setRulesOpen] = useState(false)
+  const [flavorOpen, setFlavorOpen] = useState(false)
   const [dealTab, setDealTab] = useState<'deal' | 'pick'>('deal')
   const [revealPane, setRevealPane] = useState<'map' | 'seats'>('map')
   const rulesDialogRef = useRef<HTMLDialogElement>(null)
@@ -139,18 +141,26 @@ export function SysPick() {
         </p>
         <h1>{t('ex.syspick.title')}</h1>
         {compact && (
-          <button
-            type="button"
-            className="gerry-rules-btn"
-            onClick={() => setRulesOpen(true)}
-            aria-haspopup="dialog"
-            aria-expanded={rulesOpen}
+          <CompactFlavorChrome
+            flavorOpen={flavorOpen}
+            rulesOpen={rulesOpen}
+            onOpenFlavor={() => {
+              setRulesOpen(false)
+              setFlavorOpen(true)
+            }}
+            onOpenRules={() => {
+              setFlavorOpen(false)
+              setRulesOpen(true)
+            }}
+            onCloseFlavor={() => setFlavorOpen(false)}
+            rulesLabel={t('ex.syspick.rulesLink')}
+            closeLabel={t('ex.syspick.rulesClose')}
           >
-            <span className="gerry-rules-info" aria-hidden>
-              i
-            </span>
-            {t('ex.syspick.rulesLink')}
-          </button>
+            <p>{t('ex.syspick.rulesL1')}</p>
+            <p>{t('ex.syspick.rulesL2')}</p>
+            <p>{t('ex.syspick.rulesL3')}</p>
+            <p>{t('ex.syspick.rulesL4')}</p>
+          </CompactFlavorChrome>
         )}
         {compact && phase === 'pick' && (
           <PanelTabs

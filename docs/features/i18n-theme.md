@@ -33,6 +33,7 @@ Shared vocabulary across features (keep wording aligned):
 - Header chrome: **sun/moon** icon for theme; **flag** icon for the locale you would switch *to* (`nav.langSwitch`).
 - Components should prefer variables (`--ink`, `--accent`, …) over hard-coded palette when adding UI.
 - Compact chrome uses the same tokens; `html.is-compact` toggles layout CSS only.
+- Shared compact game chrome: `CompactFlavorChrome` + `compact.ex.flavorLink` (**Történet / Story**) next to Game rules.
 
 ## Boundaries
 

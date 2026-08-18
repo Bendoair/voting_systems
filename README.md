@@ -1,6 +1,6 @@
 # Választási rendszerek / Voting systems
 
-Hungarian-first educational site about how **voting rules shape representation** — guided tour, system explainers, a frozen case study, interactive simulation, and short games (including gerrymander).
+Hungarian-first educational site about how **voting rules shape representation** — guided tour, system explainers, a frozen case study, interactive simulation, and short games (gerrymander, system pick, open-list campaign).
 
 Not a forecast. Same preferences and geography under different rules is the whole point.
 
@@ -41,6 +41,7 @@ On Vercel, enable **Web Analytics** and **Speed Insights** in the project dashbo
 | `/games` | Games hub |
 | `/games/gerrymander` | Draw districts; minority votes, majority seats |
 | `/games/syspick` | Guess which system maximizes your party’s seats |
+| `/games/openlist` | Campaign on an open list; get elected |
 | `/simulate` | Tweak parties, geography, seats; live engine |
 
 Old `/exercises` URLs redirect to `/games`.

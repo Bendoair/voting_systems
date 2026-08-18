@@ -10,7 +10,7 @@ Each system ties to:
 - Real-world Wikipedia-linked examples (`systemExamples`)
 - Optional jump into simulation with that system preselected
 - For relevant systems, a path into the gerrymander game (district distortion)
-- Page intro CTA: system-pick game under the systems intro; gerrymander next to the local section (shared `system-game-btn` style)
+- Page intro CTA: system-pick game under the systems intro; gerrymander next to the local section; open-list campaign next to the list section (shared `system-game-btn` style)
 
 ## Structure
 
@@ -26,7 +26,7 @@ Checklist (keep HU/EN copy in `src/i18n/messages.ts`):
 
 1. **Explainer** in the right catalog group (`SYSTEM_GROUPS` in `src/data/systems.ts`: list / local / mixed), plus `SYSTEMS` meta flags, full `sys.<id>.*` keys, and `SYSTEM_EXAMPLES`.
 2. **Engine** module + `runElection` case. Simulation uses `SYSTEMS` as the dropdown; local district systems must use OEVK seat budget via `isLocalDistrictSystem`.
-3. **Games** that compare counting rules: add to syspick sections/chips (`ex.syspick.chip.*`). Gerrymander is FPTP packing/cracking only, unless the new system changes that mechanic.
+3. **Games** that compare counting rules: add to syspick sections/chips (`ex.syspick.chip.*`). Gerrymander is FPTP packing/cracking only, unless the new system changes that mechanic. Dedicated explainer games (gerrymander on local, Listahely on list / `open-list` detail) stay next to those catalog sections.
 4. Ask before adding to **case study** (frozen spoiler story) or **mixed district-method** dropdown. Tour is the preference mental model, not the catalog.
 
 ### System ids (stable)
@@ -57,6 +57,6 @@ Copy lives in i18n as `sys.<id>.*` (name, summary, rationale, pros, cons, when).
 
 **Catalog B:** Single short scroll of three sections (tightened stack).
 
-**Detail C:** Tabs **Summary | Pros/cons | Examples**; sticky Simulate CTA.
+**Detail C:** Tabs **Summary | Pros/cons | Examples**; sticky Simulate CTA. Open-list detail also links to Listahely.
 
 **Detail B:** Short scroll with collapsed pros/cons accordion.

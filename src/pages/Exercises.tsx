@@ -42,6 +42,25 @@ export function Exercises() {
             <span className="ex-card-cta btn primary">{t('ex.syspick.play')}</span>
           </div>
         </Link>
+
+        <Link to="/games/openlist" className="ex-card ex-card-openlist">
+          <div className="ex-card-visual" aria-hidden>
+            <div className="openlist-card-list">
+              <span className="is-in" />
+              <span className="is-in" />
+              <span className="is-in" />
+              <span className="is-cut" />
+              <span />
+              <span />
+            </div>
+            <span className="ex-card-badge">{t('ex.openlist.badge')}</span>
+          </div>
+          <div className="ex-card-body">
+            <h2>{t('ex.openlist.cardTitle')}</h2>
+            <p>{t('ex.openlist.cardBlurb')}</p>
+            <span className="ex-card-cta btn primary">{t('ex.openlist.play')}</span>
+          </div>
+        </Link>
       </div>
     </div>
   )
