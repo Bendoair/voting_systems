@@ -58,7 +58,7 @@ export const hu: Dict = {
   'compact.openlist.rulesP1':
     'A Te fülön: a jelöltkártyád, alatta a lista élő sorrendje. A színezés mutatja, ki van bent a mai D’Hondt-küszöb szerint.',
   'compact.openlist.rulesP2':
-    'A Kampány fülön: a te listahelyed, a hét számlálója, majd három kártya - pártkampány, egyensúly, saját támogatás. A tervezett hatás általában bejön, de néha elhal 🌧️ vagy túlteljesít ⚡.',
+    'A Kampány fülön: a te listahelyed, a hét számlálója, majd három kártya - kampány a pártért, kiegyensúlyozott kampány, kampány magadért. A tervezett hatás általában bejön, de néha elhal 🌧️ vagy túlteljesít ⚡.',
   'compact.openlist.rulesP3':
     'Alul a függőleges oszlopok a pártok aktuális arányát mutatják. A többi párt listáját nem látod, csak az aggregált lengést: kampányolhatnak, vagy belviszályba kavarodhatnak.',
   'compact.openlist.rulesP4':
@@ -240,14 +240,14 @@ export const hu: Dict = {
   'ex.openlist.rulesL2':
     'Most már nem csak a pártokra, hanem a konkrét politikusokra is lehet szavazni.',
   'ex.openlist.rulesL3':
-    'A pártodnak természetesen mennie kell, de te sem akarsz kimaradni.',
+    'A legjobbat akarod a pártodnak, de te sem akarsz kimaradni.',
   'ex.openlist.rulesL4': 'Van még néhány kampányhét - hozd ki belőle a legtöbbet!',
   'ex.openlist.rulesLink': 'Játékszabályok',
   'ex.openlist.rulesClose': 'Bezárás',
   'ex.openlist.rulesP1':
     'Bal oldalon a te igazolványod, jobb oldalon a lista élő sorrendje. A színezés mutatja, ki van bent a mai D’Hondt-küszöb szerint.',
   'ex.openlist.rulesP2':
-    'Lent három kártya: pártkampány, egyensúly, saját támogatás. A tervezett hatás általában bejön, de néha elhal 🌧️ vagy túlteljesít ⚡.',
+    'Lent három kártya: kampány a pártért, kiegyensúlyozott kampány, kampány magadért. A tervezett hatás általában bejön, de néha elhal 🌧️ vagy túlteljesít ⚡.',
   'ex.openlist.rulesP3':
     'A függőleges oszlopok a pártok aktuális arányát mutatják. A többi párt listáját nem látod, csak az aggregált lengést: kampányolhatnak, vagy belviszályba kavarodhatnak.',
   'ex.openlist.rulesP4':
@@ -260,13 +260,13 @@ export const hu: Dict = {
   'ex.openlist.week': 'Kampány: {n}. hét / {total}',
   'ex.openlist.projected': 'Becsült mandátum: {n}',
   'ex.openlist.standings': 'Pártok állása',
-  'ex.openlist.newDeal': 'Új leosztás',
-  'ex.openlist.act.party': 'Párt',
-  'ex.openlist.act.balanced': 'Egyensúly',
-  'ex.openlist.act.own': 'Saját támogatás',
+  'ex.openlist.newDeal': 'Új kör',
+  'ex.openlist.act.party': 'Kampány a pártért',
+  'ex.openlist.act.balanced': 'Kiegyensúlyozott kampány',
+  'ex.openlist.act.own': 'Kampány magadért',
   'ex.openlist.actHint.party': 'A lista erősödik; te alig mozdulsz.',
   'ex.openlist.actHint.balanced': 'Kicsit a párt, kicsit te.',
-  'ex.openlist.actHint.own': 'Te feljebb lépsz; a párt lapos marad.',
+  'ex.openlist.actHint.own': 'Te feljebb lépsz; ez nem feltétlenül segít a pártnak.',
   'ex.openlist.news.you': 'A pártod hete',
   'ex.openlist.news.field': 'A mezőny',
   'ex.openlist.you.party.planned': 'Pártos hét: a lista szavazataránya nőtt, a te pontod alig mozdult.',
@@ -664,7 +664,7 @@ export const en: Dict = {
   'compact.openlist.rulesP1':
     'On You: your ID card sits above the live list order. Tint shows who is in under today’s D’Hondt cutoff.',
   'compact.openlist.rulesP2':
-    'On Campaign: your list row, the week counter, then three cards - party campaign, balanced, own support. The intended effect usually lands; sometimes it fizzles 🌧️ or overperforms ⚡.',
+    'On Campaign: your list row, the week counter, then three cards - campaign for party, balanced campaign, campaign for yourself. The intended effect usually lands; sometimes it fizzles 🌧️ or overperforms ⚡.',
   'compact.openlist.rulesP3':
     'The bars below are current party shares. You do not see rival lists - only their aggregate swing. They may push their own candidates, or fall victim to infighting.',
   'compact.openlist.rulesP4':
@@ -847,7 +847,7 @@ export const en: Dict = {
   'ex.openlist.rulesL2':
     'In this election it is not just the parties, but the specific politicians, that can get votes.',
   'ex.openlist.rulesL3':
-    'You of course want your party to succeed, but don’t want to get left out.',
+    'You want the best for your party, but you don’t want to get left out either.',
   'ex.openlist.rulesL4':
     'There are still a few weeks of campaigning left - try and make the most of it!',
   'ex.openlist.rulesLink': 'Game rules',
@@ -855,7 +855,7 @@ export const en: Dict = {
   'ex.openlist.rulesP1':
     'Left is your ID card; right is the live list order. Tint shows who is in under today’s D’Hondt cutoff.',
   'ex.openlist.rulesP2':
-    'Below, three cards: party campaign, balanced, own support. The intended effect usually lands; sometimes it fizzles 🌧️ or overperforms ⚡.',
+    'Below, three cards: campaign for party, balanced campaign, campaign for yourself. The intended effect usually lands; sometimes it fizzles 🌧️ or overperforms ⚡.',
   'ex.openlist.rulesP3':
     'The vertical bars are current party shares. You do not see rival lists - only their aggregate swing. They may push their own candidates, or fall victim to infighting.',
   'ex.openlist.rulesP4':
@@ -869,12 +869,12 @@ export const en: Dict = {
   'ex.openlist.projected': 'Projected seats: {n}',
   'ex.openlist.standings': 'Party standings',
   'ex.openlist.newDeal': 'New deal',
-  'ex.openlist.act.party': 'Party',
-  'ex.openlist.act.balanced': 'Balanced',
-  'ex.openlist.act.own': 'Own support',
+  'ex.openlist.act.party': 'Campaign for Party',
+  'ex.openlist.act.balanced': 'Balanced Campaign',
+  'ex.openlist.act.own': 'Campaign for Yourself',
   'ex.openlist.actHint.party': 'The list rises; you barely move.',
   'ex.openlist.actHint.balanced': 'A little for the party, a little for you.',
-  'ex.openlist.actHint.own': 'You climb; the party stays flat.',
+  'ex.openlist.actHint.own': 'You climb; that won’t necessarily help the party.',
   'ex.openlist.news.you': 'Your party’s week',
   'ex.openlist.news.field': 'The field',
   'ex.openlist.you.party.planned': 'Party week: list share rose; your personal score barely moved.',
