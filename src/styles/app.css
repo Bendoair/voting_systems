@@ -515,6 +515,49 @@ a.btn.primary.soft:hover {
   color: var(--ink-soft) !important;
 }
 
+.sim-intro-note {
+  margin-top: 0.55rem;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.info-panel .sim-intro-note {
+  margin-top: 0.65rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.sim-intro-dialog-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.98rem;
+  line-height: 1.45;
+}
+
+.sim-intro-dialog-body p {
+  margin: 0;
+}
+
+.sim-compact-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.sim-compact-head h1 {
+  margin: 0;
+  min-width: 0;
+}
+
+.sim-compact-head .gerry-rules-btn {
+  flex-shrink: 0;
+  padding: 0.28rem 0.45rem;
+}
+
 .cta-row {
   display: flex;
   flex-wrap: wrap;
@@ -2891,6 +2934,37 @@ a.btn.primary.soft:hover {
   background: color-mix(in srgb, var(--accent) 18%, var(--paper-2));
 }
 
+.gerry-rules-btn.is-entry-hint {
+  transform-origin: center center;
+  animation: rules-btn-wiggle 0.5s ease-in-out 0.4s 3;
+}
+
+@keyframes rules-btn-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  20% {
+    transform: rotate(-8deg) scale(1.06);
+  }
+  40% {
+    transform: rotate(8deg) scale(1.06);
+  }
+  60% {
+    transform: rotate(-5deg) scale(1.03);
+  }
+  80% {
+    transform: rotate(5deg) scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gerry-rules-btn.is-entry-hint {
+    animation: none;
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+}
+
 .gerry-rules-info {
   display: inline-flex;
   align-items: center;
@@ -4161,6 +4235,12 @@ html.is-compact .site-bottom-nav {
   background: var(--rule);
 }
 
+.bottom-sheet.is-primary-peek .bottom-sheet-handle {
+  width: 2.85rem;
+  height: 5px;
+  background: var(--accent);
+}
+
 .bottom-sheet-peek-body {
   width: 100%;
   text-align: left;
@@ -4223,22 +4303,6 @@ html.is-compact .compact-panel {
   min-height: 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-}
-
-html.is-compact .compact-live-chip {
-  position: sticky;
-  top: 0;
-  z-index: 5;
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5rem;
-  padding: 0.4rem 0.55rem;
-  margin-bottom: 0.35rem;
-  background: var(--chrome-bg);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  font-size: 0.82rem;
-  font-weight: 700;
 }
 
 html.is-compact .home.is-compact-page .hero {

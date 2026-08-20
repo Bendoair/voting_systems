@@ -10,6 +10,7 @@ export function BottomSheet({
   children,
   /** Offset from the viewport bottom (e.g. site bottom nav height). */
   bottomOffset = '0px',
+  className,
 }: {
   open: boolean
   onOpenChange: (open: boolean) => void
@@ -18,6 +19,7 @@ export function BottomSheet({
   title?: string
   children: ReactNode
   bottomOffset?: string
+  className?: string
 }) {
   const titleId = useId()
   const panelRef = useRef<HTMLDivElement>(null)
@@ -35,7 +37,7 @@ export function BottomSheet({
 
   return createPortal(
     <div
-      className={`bottom-sheet ${open ? 'is-open' : 'is-peek'}`}
+      className={`bottom-sheet ${open ? 'is-open' : 'is-peek'} ${className ?? ''}`.trim()}
       style={{ bottom: bottomOffset }}
     >
       <button

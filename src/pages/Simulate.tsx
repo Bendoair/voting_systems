@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useSearchParams, Link } from 'react-router-dom'
 import { getDefaultParties } from '../data/defaultParties'
 import { REGIONS, getDefaultDietBaselines } from '../data/counties'
@@ -33,6 +33,18 @@ export function Simulate() {
   const [baselines, setBaselines] = useState<Record<string, number>>(getDefaultDietBaselines)
   const [geoOpen, setGeoOpen] = useState(false)
   const [tab, setTab] = useState<SimTab>('parties')
+  const [introOpen, setIntroOpen] = useState(false)
+  const introDialogRef = useRef<HTMLDialogElement>(null)
+
+  useEffect(() => {
+    const el = introDialogRef.current
+    if (!el) return
+    if (introOpen) {
+      if (!el.open) el.showModal()
+    } else if (el.open) {
+      el.close()
+    }
+  }, [introOpen])
 
   const meta = SYSTEMS.find((s) => s.id === system)
   const showDistrictSeats = system === 'mixed'
@@ -99,8 +111,12 @@ export function Simulate() {
     return fill('sim.fair')
   }, [result, parties, system, t])
 
-  const topSeat = [...result.seats].sort((a, b) => b.seats - a.seats)[0]
-  const topParty = topSeat ? parties.find((p) => p.id === topSeat.partyId) : null
+  const introBody = (
+    <>
+      <p>{t('sim.intro')}</p>
+      <p className="sim-intro-note">{t('sim.introNote')}</p>
+    </>
+  )
 
   const setupBlock = (
     <section className="sim-section">
@@ -247,20 +263,54 @@ export function Simulate() {
     </div>
   )
 
+  const introDialog = (
+    <dialog
+      ref={introDialogRef}
+      className="gerry-rules-dialog"
+      onClose={() => setIntroOpen(false)}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) setIntroOpen(false)
+      }}
+    >
+      <div className="gerry-rules-panel">
+        <header className="gerry-rules-panel-head">
+          <h2>{t('sim.introLink')}</h2>
+          <button
+            type="button"
+            className="btn ghost"
+            onClick={() => setIntroOpen(false)}
+            aria-label={t('sim.introClose')}
+          >
+            ×
+          </button>
+        </header>
+        <div className="sim-intro-dialog-body">{introBody}</div>
+      </div>
+    </dialog>
+  )
+
   if (compact) {
     return (
       <div className="page simulate-page is-compact-page">
         <header className="page-head">
-          <h1>{t('sim.title')}</h1>
+          <div className="sim-compact-head">
+            <h1>{t('sim.title')}</h1>
+            <button
+              type="button"
+              className="gerry-rules-btn"
+              onClick={() => setIntroOpen(true)}
+              aria-haspopup="dialog"
+              aria-expanded={introOpen}
+              aria-label={t('sim.introLink')}
+              title={t('sim.introLink')}
+            >
+              <span className="gerry-rules-info" aria-hidden>
+                i
+              </span>
+            </button>
+          </div>
         </header>
-        <div className="compact-live-chip" aria-live="polite">
-          <span>{t(`sys.${system}.name`)}</span>
-          <span>
-            {topParty
-              ? `${topParty.fruit} ${topSeat?.seats ?? 0} ${t('sim.seatPct')}`
-              : t('sim.results')}
-          </span>
-        </div>
+        {introDialog}
         <PanelTabs
           ariaLabel={t('compact.sim.tabs')}
           value={tab}
@@ -292,7 +342,7 @@ export function Simulate() {
       <header className="page-head">
         <h1>{t('sim.title')}</h1>
         <aside className="info-panel" role="note">
-          <p>{t('sim.intro')}</p>
+          {introBody}
         </aside>
       </header>
 

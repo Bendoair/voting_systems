@@ -26,6 +26,7 @@ import {
 } from '../exercises/gerrymander/types'
 import { useI18n } from '../i18n'
 import { useCompactLayout } from '../hooks/useCompactLayout'
+import { useEntryHint } from '../hooks/useEntryHint'
 
 const HISTORY_LIMIT = 5
 
@@ -37,6 +38,7 @@ function newRound(difficulty: GerryDifficulty): { map: GerryMap; assignment: Dis
 export function Gerrymander() {
   const { t } = useI18n()
   const compact = useCompactLayout()
+  const rulesHint = useEntryHint()
   const [sheetOpen, setSheetOpen] = useState(false)
   const [difficulty, setDifficulty] = useState<GerryDifficulty>('medium')
   const [{ map, assignment }, setRound] = useState(() => newRound('medium'))
@@ -166,7 +168,7 @@ export function Gerrymander() {
           <p>{t('ex.gerry.rules')}</p>
           <button
             type="button"
-            className="gerry-rules-btn"
+            className={`gerry-rules-btn ${rulesHint}`}
             onClick={() => setRulesOpen(true)}
             aria-haspopup="dialog"
             aria-expanded={rulesOpen}
@@ -224,7 +226,7 @@ export function Gerrymander() {
             <li>{t('ex.gerry.rulesP2')}</li>
             <li>
               {t('ex.gerry.rulesP3a')} <strong>{t('ex.gerry.districts')}</strong>{' '}
-              {t('ex.gerry.rulesP3b')}
+              {t(compact ? 'compact.gerry.rulesP3b' : 'ex.gerry.rulesP3b')}
             </li>
             <li>
               {t('ex.gerry.rulesP4a')} <strong>{t('ex.gerry.rulesP4em')}</strong>{' '}
@@ -232,7 +234,7 @@ export function Gerrymander() {
             </li>
             <li>
               {t('ex.gerry.rulesP5a')} <strong>{t('ex.gerry.undo')}</strong>
-              {t('ex.gerry.rulesP5b')}
+              {t(compact ? 'compact.gerry.rulesP5b' : 'ex.gerry.rulesP5b')}
             </li>
             <li>{t('ex.gerry.rulesP6')}</li>
             <li>
@@ -240,8 +242,8 @@ export function Gerrymander() {
               {t('ex.gerry.rulesP7b')}
             </li>
             <li>
-              {t('ex.gerry.rulesP8a')} <strong>{t('ex.gerry.fixBorders')}</strong>{' '}
-              {t('ex.gerry.rulesP8b')}
+              {t('ex.gerry.rulesP8a')} <strong>{t('ex.gerry.fillBorders')}</strong>{' '}
+              {t(compact ? 'compact.gerry.rulesP8b' : 'ex.gerry.rulesP8b')}
             </li>
           </ol>
           <p className="gerry-rules-luck">{t('ex.gerry.rulesP9')}</p>
@@ -473,6 +475,7 @@ export function Gerrymander() {
           onOpenChange={setSheetOpen}
           title={t('ex.gerry.districts')}
           bottomOffset="var(--compact-bottom-nav-h)"
+          className="is-primary-peek"
           peek={
             <span>
               {t('ex.gerry.district')} {activeDistrict} · {score.playerSeats}/{DISTRICT_COUNT}{' '}

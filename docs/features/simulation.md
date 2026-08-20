@@ -36,7 +36,7 @@ This is exploratory, not authoritative. Affinities and diet lean are teaching kn
 
 ### i18n
 
-Keys under `sim.*` (incl. `sim.geographyOpen` / `sim.geographyClosed` for the desktop geo rail; `sim.polarization` = **Polarizáció / Polarization**, same term as system-pick). Compact panel tabs use `compact.sim.*` (Geography tab label is short **Geo**).
+Keys under `sim.*` (incl. `sim.intro` / `sim.introNote` explainer; `sim.geographyOpen` / `sim.geographyClosed` for the desktop geo rail; `sim.polarization` = **Polarizáció / Polarization**, same term as system-pick). Compact panel tabs use `compact.sim.*` (Geography tab label is short **Geo**); compact opens the explainer via a header `i` button (`sim.introLink`).
 
 ## Boundaries
 
@@ -47,6 +47,6 @@ Keys under `sim.*` (incl. `sim.geographyOpen` / `sim.geographyClosed` for the de
 
 ## Mobile composition (≤720px)
 
-**C:** System select + panel tabs **Parties | Map | Results | Geo** (Geo is a narrow tab) — one pane visible. Sticky live seat-count chip. Map height capped (`~min(42dvh, 280px)` multi-panel; up to `~50dvh` when Map is focus). Geography stays reachable, not removed.
+**C:** Title + small info (`i`) for the explainer dialog; panel tabs **Parties | Map | Results | Geo** (Geo is a narrow tab) — one pane visible. Map height capped (`~min(42dvh, 280px)` multi-panel; up to `~50dvh` when Map is focus). Geography stays reachable, not removed.
 
 **B:** Stack panes with short scroll and sticky jump links (worse for editing + map together).

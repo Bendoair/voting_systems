@@ -20,7 +20,7 @@ Match the gerrymander pattern for hub + in-game framing:
 | `ex.<game>.rules` / `rulesL*` | **Short in-world brief** in the page `info-panel gerry-brief` — narrative stake, second person, inviting. Prefer short line paragraphs (`rulesL1`…) when the brief is longer than one beat. |
 | `ex.<game>.rulesP*` + `rulesLink` | **How-to dialog** — concrete steps; end with a short luck line. |
 
-Desktop chrome: back link, title, `aside.info-panel.gerry-brief` with the in-world brief + `gerry-rules-btn`, modal for the numbered steps.
+Desktop chrome: back link, title, `aside.info-panel.gerry-brief` with the in-world brief + `gerry-rules-btn`, modal for the numbered steps. Compact how-to reuses the same steps and only swaps in sleeve location notes (`compact.gerry.rulesP3b|P5b|P8b`).
 
 Compact (≤720px): `CompactFlavorChrome` — star **Történet / Story** (`compact.ex.flavorLink`) beside Game rules. Story opens the in-world brief (`rules` / `rulesL*`); Game rules still opens `rulesP*`.
 
@@ -116,17 +116,17 @@ Shared compact chrome: `src/components/CompactFlavorChrome.tsx`. Party-share sam
 
 **Hub B:** Tiny scroll if cards are tall.
 
-**Gerrymander C:** Board fills most of the viewport (playfield **64×48** / 4:3); `BottomSheet` (portaled to `document.body`) for district palette + status (peek: active district + seats; expand: undo, difficulty under New map, actions), anchored **above** the site bottom nav. View toggle on board chrome. Compact chrome: star **Story** next to **Game rules** (same `i` pill as the other games); Story opens the in-world county brief.
+**Gerrymander C:** Board fills most of the viewport (playfield **64×48** / 4:3); `BottomSheet` (portaled to `document.body`) for district palette + status (peek: active district + seats; grab handle in **accent** green; expand: undo, difficulty under New map, actions), anchored **above** the site bottom nav. View toggle on board chrome. Compact chrome: star **Story** next to **Game rules** (same `i` pill as the other games); Story opens the in-world county brief. On entry, Game rules wiggles briefly (`useEntryHint`). How-to is the desktop list plus compact sleeve notes on district panel / Undo / Fill Remaining Space (`compact.gerry.rulesP3b|P5b|P8b`).
 
 **Gerrymander B:** Board then HUD below (current ≤900 stack) — acceptable only if sheet feels wrong.
 
-**SysPick deal C:** Tabs **Lineup | Pick** — Lineup stacks You above rivals; Pick = system chips + confirm. Compact chrome: star **Story** next to **Game rules**; Story opens `rulesL*`.
+**SysPick deal C:** Tabs **Lineup | Pick** — Lineup stacks You above rivals; Pick = system chips + confirm. Compact chrome: star **Story** next to **Game rules**; Story opens `rulesL*`. On entry, Game rules wiggles briefly.
 
 **SysPick reveal C:** Tabs **Map | Seats** + system chips; win/lose banner sticky top.
 
 **SysPick B:** Short scroll deal → pick → reveal as desktop, tightened.
 
-**Open list campaign C:** Tabs **You | Campaign**. Compact chrome: star **Story** next to **Game rules** (same pill as the other games); Story opens the in-world `rulesL*` brief. You = portrait left, vertical divider, name / party / vote % / projected seats on the right, then the live list. Campaign = your current list row (rank, IN/OUT, party tint) under the tabs, then **Campaign: Week n / total**, three action cards left with caption chips in a matching-height scroller on the right (surge/fizzle marks on the party-week kicker), vertical bars below (kept on-screen). Site bottom nav stays (no `useOwnBottomNav`).
+**Open list campaign C:** Tabs **You | Campaign**. Compact chrome: star **Story** next to **Game rules** (same pill as the other games); Story opens the in-world `rulesL*` brief. On entry, Game rules wiggles briefly. You = portrait left, vertical divider, name / party / vote % / projected seats on the right, then the live list. Campaign = your current list row (rank, IN/OUT, party tint) under the tabs, then **Campaign: Week n / total**, three action cards left with caption chips in a matching-height scroller on the right (surge/fizzle marks on the party-week kicker), vertical bars below (kept on-screen). Site bottom nav stays (no `useOwnBottomNav`).
 
 **Open list election C:** One page (no List | Result tabs). Story / Game rules pills stay in the header; the counting/result strip sits in the tab slot. The party list is a window clipped around you, **the same height as the campaign play stack** (your row + week counter + three action cards) so the bars do not jump. You stay centered unless that would leave empty space — then the window pins to the top (or bottom) of the list. Clipped edges fade, except the edge your row sits on. Count-in bars, then closed-list line and new deal after lock. How-to dialog uses `compact.openlist.rulesP*` (no left/right desktop layout talk).
 

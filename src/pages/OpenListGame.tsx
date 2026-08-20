@@ -22,6 +22,7 @@ import type {
   WeekEvent,
 } from '../exercises/openlist/types'
 import { useCompactLayout } from '../hooks/useCompactLayout'
+import { useEntryHint } from '../hooks/useEntryHint'
 import { useI18n } from '../i18n'
 
 type CampaignTab = 'you' | 'campaign'
@@ -320,6 +321,7 @@ function approachNightFrames(parties: OpenListParty[]): OpenListParty[][] {
 export function OpenListGame() {
   const { t, locale } = useI18n()
   const compact = useCompactLayout()
+  const rulesHint = useEntryHint()
   const [deal, setDeal] = useState<OpenListDeal>(() => generateOpenListDeal(locale))
   const [parties, setParties] = useState<OpenListParty[]>(() => deal.parties)
   const [list, setList] = useState<ListCandidate[]>(() => deal.list)
@@ -710,7 +712,7 @@ export function OpenListGame() {
             <p>{t('ex.openlist.rulesL4')}</p>
             <button
               type="button"
-              className="gerry-rules-btn"
+              className={`gerry-rules-btn ${rulesHint}`}
               onClick={() => setRulesOpen(true)}
               aria-haspopup="dialog"
               aria-expanded={rulesOpen}

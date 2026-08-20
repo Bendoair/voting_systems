@@ -52,6 +52,10 @@ export const hu: Dict = {
   'compact.syspick.seats': 'Mandátumok',
   'compact.syspick.map': 'Térkép',
   'compact.ex.flavorLink': 'Történet',
+  'compact.gerry.rulesP3b':
+    'panelen kiválaszthatod a körzetet. A panelt / sávot a képernyő alján lévő kis gombra koppintva nyithatod meg.',
+  'compact.gerry.rulesP5b': ' gombot (az alsó sávban).',
+  'compact.gerry.rulesP8b': 'gomb (szintén az alsó sávban) helyreteszi a határokat.',
   'compact.openlist.tabs': 'Listahely',
   'compact.openlist.you': 'Te',
   'compact.openlist.campaign': 'Kampány',
@@ -397,7 +401,11 @@ export const hu: Dict = {
 
   'sim.title': 'Magyarország-szimuláció',
   'sim.intro':
-    'Állítsd be a pártok országos szavazatarányát és hús↔növény pozícióját. A megyék is állíthatók a tengelyen; a körzetek enyhe zajjal eltérnek. A helyek a tengelyen legközelebbi pártot (vagy a legközelebbi alternatívát) részesítik előnyben. Nagyjából az országos átlaghoz igazodva szavaznak.',
+    'Állítsd be az ország jelenlegi helyzetét. Adj hozzá vagy törölj pártokat, állítsd be az országos szavazatarányukat és a politikai irányultságukat (húspárti – növénykedvelő). Nézd az eredményt a térképen!',
+  'sim.introNote':
+    'A megyéknek is van hús–növény preferenciájuk, ami befolyásolja az eredményt. Ezek is állíthatók.',
+  'sim.introLink': 'Magyarázat',
+  'sim.introClose': 'Bezárás',
   'sim.system': 'Rendszer',
   'sim.setup': 'Rendszer és mandátumok',
   'sim.seats': 'Mandátumok száma',
@@ -658,6 +666,10 @@ export const en: Dict = {
   'compact.syspick.seats': 'Seats',
   'compact.syspick.map': 'Map',
   'compact.ex.flavorLink': 'Story',
+  'compact.gerry.rulesP3b':
+    'panel. The panel/sleeve can be opened by clicking the small button on the bottom of the screen.',
+  'compact.gerry.rulesP5b': '. (Found in the sleeve)',
+  'compact.gerry.rulesP8b': 'button (also found in the sleeve) will fix the borders.',
   'compact.openlist.tabs': 'List place',
   'compact.openlist.you': 'You',
   'compact.openlist.campaign': 'Campaign',
@@ -733,8 +745,8 @@ export const en: Dict = {
   'ex.gerry.rulesP7a': 'The currently selected district will',
   'ex.gerry.rulesP7em': 'draw over the previous one',
   'ex.gerry.rulesP7b': '.',
-  'ex.gerry.rulesP8a': 'Do not fret about small edges or boundaries.',
-  'ex.gerry.rulesP8b': 'will fix the borders.',
+  'ex.gerry.rulesP8a': 'Do not fret about small edges or boundaries. The',
+  'ex.gerry.rulesP8b': 'button will fix the borders.',
   'ex.gerry.rulesP9': 'Good luck!',
   'ex.gerry.drawHint': 'With a district selected, circle an area on the map.',
   'ex.gerry.view': 'View',
@@ -1005,7 +1017,11 @@ export const en: Dict = {
 
   'sim.title': 'Hungary simulation',
   'sim.intro':
-    'Set each party’s national vote share and meat↔plant position. Counties have editable baselines; districts add light noise. Places prefer the closest party on the axis, or the closest alternative. They vote roughly in line with the national average.',
+    'Set up the current situation in the country. Add or remove parties, set their national vote share and their political leaning (prefer meat – prefer plant). See the results on the map!',
+  'sim.introNote':
+    'The counties have meat–plant preferences that influence the results. These can also be changed.',
+  'sim.introLink': 'About',
+  'sim.introClose': 'Close',
   'sim.system': 'System',
   'sim.setup': 'System & seats',
   'sim.seats': 'Total seats',
