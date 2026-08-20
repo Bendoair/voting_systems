@@ -1,3 +1,6 @@
+import { useLayoutEffect, useRef } from 'react'
+import { scrollAppToTop } from '../utils/scrollAppToTop'
+
 export type PanelTab<T extends string> = {
   id: T
   label: string
@@ -19,8 +22,18 @@ export function PanelTabs<T extends string>({
   ariaLabel: string
   className?: string
 }) {
+  const listRef = useRef<HTMLDivElement>(null)
+  const prevValue = useRef(value)
+
+  useLayoutEffect(() => {
+    if (prevValue.current === value) return
+    prevValue.current = value
+    scrollAppToTop(listRef.current?.closest('.page') ?? document)
+  }, [value])
+
   return (
     <div
+      ref={listRef}
       className={`panel-tabs ${className ?? ''}`}
       role="tablist"
       aria-label={ariaLabel}

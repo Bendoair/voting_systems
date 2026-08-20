@@ -21,6 +21,7 @@ import {
 } from '../exercises/syspick/types'
 import { useI18n } from '../i18n'
 import { useCompactLayout } from '../hooks/useCompactLayout'
+import { useEntryHint } from '../hooks/useEntryHint'
 import { PanelTabs } from '../components/PanelTabs'
 import { nationalDietLean } from '../utils/mapColor'
 
@@ -83,6 +84,7 @@ function SystemChip({
 export function SysPick() {
   const { t, locale } = useI18n()
   const compact = useCompactLayout()
+  const rulesHint = useEntryHint()
   const [scenario, setScenario] = useState<SysPickScenario>(() =>
     generateSysPickScenario(locale),
   )
@@ -133,7 +135,10 @@ export function SysPick() {
 
   return (
     <div className={`page syspick-page ${compact ? 'is-compact-page' : ''}`}>
-      <ConfettiBurst active={phase === 'reveal' && won} />
+      <ConfettiBurst
+        active={phase === 'reveal' && pick !== null}
+        kind={won ? 'confetti' : 'rain'}
+      />
 
       <header className="page-head">
         <p className="gerry-back">
@@ -192,7 +197,7 @@ export function SysPick() {
             <p>{t('ex.syspick.rulesL4')}</p>
             <button
               type="button"
-              className="gerry-rules-btn"
+              className={`gerry-rules-btn ${rulesHint}`}
               onClick={() => setRulesOpen(true)}
               aria-haspopup="dialog"
               aria-expanded={rulesOpen}

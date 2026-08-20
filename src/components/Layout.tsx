@@ -1,8 +1,10 @@
+import { useLayoutEffect } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { CompactChromeProvider, useCompactChrome } from '../hooks/useCompactChrome'
 import { useCompactLayout } from '../hooks/useCompactLayout'
 import { useI18n } from '../i18n'
 import { useTheme } from '../theme'
+import { scrollAppToTop } from '../utils/scrollAppToTop'
 
 const MAIN_LINKS = [
   { to: '/tour', labelKey: 'nav.tour', icon: 'tour' },
@@ -121,6 +123,10 @@ function LayoutInner() {
   const { ownsBottomNav } = useCompactChrome()
   const showBottomNav = compact && !ownsBottomNav
   const nextLocale = locale === 'hu' ? 'en' : 'hu'
+
+  useLayoutEffect(() => {
+    scrollAppToTop()
+  }, [location.pathname, location.search])
 
   return (
     <div className={`app-shell ${compact ? 'is-compact-shell' : ''}`}>

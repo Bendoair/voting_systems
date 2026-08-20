@@ -1,4 +1,5 @@
 import { useEffect, useRef, type ReactNode } from 'react'
+import { useEntryHint } from '../hooks/useEntryHint'
 import { useI18n } from '../i18n'
 
 export function CompactFlavorChrome({
@@ -22,6 +23,7 @@ export function CompactFlavorChrome({
 }) {
   const { t } = useI18n()
   const flavorDialogRef = useRef<HTMLDialogElement>(null)
+  const rulesHint = useEntryHint()
 
   useEffect(() => {
     const el = flavorDialogRef.current
@@ -50,7 +52,7 @@ export function CompactFlavorChrome({
         </button>
         <button
           type="button"
-          className="gerry-rules-btn"
+          className={`gerry-rules-btn ${rulesHint}`}
           onClick={onOpenRules}
           aria-haspopup="dialog"
           aria-expanded={rulesOpen}
