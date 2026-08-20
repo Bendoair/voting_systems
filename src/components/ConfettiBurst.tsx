@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type CSSProperties } from 'react'
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { createPortal } from 'react-dom'
 
 const COLORS = [
@@ -218,6 +218,7 @@ export function FullscreenEffect({
   }, [])
 
   useEffect(() => {
+    // token === 0 is the idle/reset sentinel (Listahely new deal). Never fire on that alone.
     if (!active || token <= 0) {
       setShow(false)
       return
@@ -346,7 +347,27 @@ export function FullscreenEffect({
   )
 }
 
-/** Existing API for SysPick / Gerrymander. */
-export function ConfettiBurst({ active }: { active: boolean }) {
-  return <FullscreenEffect active={active} kind="confetti" />
+/**
+ * Win/loss overlay for SysPick / Gerrymander.
+ * Bumps an internal token on each rising edge of `active` so FullscreenEffect’s
+ * token<=0 idle guard (Listahely new-deal reset) still applies.
+ */
+export function ConfettiBurst({
+  active,
+  kind = 'confetti',
+}: {
+  active: boolean
+  kind?: 'confetti' | 'rain' | 'miss'
+}) {
+  const [token, setToken] = useState(0)
+  const wasActive = useRef(false)
+
+  useEffect(() => {
+    if (active && !wasActive.current) {
+      setToken((t) => t + 1)
+    }
+    wasActive.current = active
+  }, [active])
+
+  return <FullscreenEffect active={active} kind={kind} token={token} />
 }

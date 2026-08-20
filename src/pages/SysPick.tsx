@@ -133,7 +133,10 @@ export function SysPick() {
 
   return (
     <div className={`page syspick-page ${compact ? 'is-compact-page' : ''}`}>
-      <ConfettiBurst active={phase === 'reveal' && won} />
+      <ConfettiBurst
+        active={phase === 'reveal' && pick !== null}
+        kind={won ? 'confetti' : 'rain'}
+      />
 
       <header className="page-head">
         <p className="gerry-back">

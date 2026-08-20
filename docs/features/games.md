@@ -74,7 +74,7 @@ Compact (≤720px): `CompactFlavorChrome` — star **Történet / Story** (`comp
 - Engines and seat budgets match simulation / case study (`199` / `106` OEVK, mixed uses plurality districts).
 - Generation retries until systems diverge for the player (seat spread ≥ 2 when possible).
 - Deal UI shows a compact county diet map (meat↔plant) under the assigned party, plus population-weighted national lean.
-- After the pick, a Hungary election map with system tab chips compares outcomes; chips mark the player’s pick and the best system(s). Correct guesses trigger confetti.
+- After the pick, a Hungary election map with system tab chips compares outcomes; chips mark the player’s pick and the best system(s). Correct guesses trigger confetti; misses get a short rain wash (same overlay stack as Listahely).
 
 ### Open list (Listahely)
 
